@@ -1,0 +1,40 @@
+{
+    "NoUberFile": {
+        "Root": [
+            "Source/StdAfx.cpp",
+            "Source/StdAfx.h"
+        ]
+    },
+    "none": {
+        "Interface": [
+            "Include/PlayFabAdminAPI.h",
+            "Include/PlayFabMatchmakerAPI.h",
+            "Include/PlayFabServerAPI.h",
+            "Include/IPlayFabSdkGem.h"
+        ],
+        "Implementation": [
+            "Source/PlayFabSdkGem.h",
+            "Source/PlayFabSdkGem.cpp",
+
+            "Source/PlayFabAdminDataModels.h",
+            "Source/PlayFabAdminDataModels.cpp",
+            "Source/PlayFabAdminAPI.cpp",
+            "Source/PlayFabMatchmakerDataModels.h",
+            "Source/PlayFabMatchmakerDataModels.cpp",
+            "Source/PlayFabMatchmakerAPI.cpp",
+            "Source/PlayFabServerDataModels.h",
+            "Source/PlayFabServerDataModels.cpp",
+            "Source/PlayFabServerAPI.cpp",
+
+            "Source/PlayFabBaseModel.h",
+            "Source/PlayFabError.h",
+            "Source/PlayFabHttp.h",
+            "Source/PlayFabSettings.h",
+
+            "Source/PlayFabBaseModel.cpp",
+            "Source/PlayFabFlowNode.cpp",
+            "Source/PlayFabHttp.cpp",
+            "Source/PlayFabSettings.cpp"
+        ]
+    }
+}
