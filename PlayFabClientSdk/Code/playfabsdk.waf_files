@@ -7,23 +7,24 @@
     },
     "none": {
         "Interface": [
-            "Include/IPlayFabSdkGem.h",
-            "Include/PlayFabClientAPI.h"
+            "Include/PlayFabClientAPI.h",
+            "Include/IPlayFabSdkGem.h"
         ],
         "Implementation": [
             "Source/PlayFabSdkGem.h",
             "Source/PlayFabSdkGem.cpp",
 
-            "Source/PlayFabBaseModel.h",
             "Source/PlayFabClientDataModels.h",
+            "Source/PlayFabClientDataModels.cpp",
+            "Source/PlayFabClientAPI.cpp",
+
+            "Source/PlayFabBaseModel.h",
             "Source/PlayFabError.h",
             "Source/PlayFabHttp.h",
             "Source/PlayFabSettings.h",
 
             "Source/PlayFabBaseModel.cpp",
-            "Source/PlayFabClientAPI.cpp",
             "Source/PlayFabFlowNode.cpp",
-            "Source/PlayFabClientDataModels.cpp",
             "Source/PlayFabHttp.cpp",
             "Source/PlayFabSettings.cpp"
         ]
