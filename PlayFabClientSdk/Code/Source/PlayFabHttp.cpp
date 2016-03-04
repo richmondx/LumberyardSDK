@@ -61,10 +61,9 @@ void PlayFabRequest::HandleErrorReport()
         if (errorDetailsJson != end && errorDetailsJson->value.IsObject())
         {
             const Value& errorDetailsObj = errorDetailsJson->value;
-
             for (Value::ConstMemberIterator itr = errorDetailsObj.MemberBegin(); itr != errorDetailsObj.MemberEnd(); ++itr)
             {
-                if (!itr->name.IsString() || !itr->value.IsArray())
+                if (itr->name.IsString() && itr->value.IsArray())
                 {
                     const Value& errorList = itr->value;
                     for (Value::ConstValueIterator erroListIter = errorList.Begin(); erroListIter != errorList.End(); ++erroListIter)

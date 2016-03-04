@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "FlowBaseNode.h"
 #include "PlayFabClientAPI.h"
-//#include "PlayFabServerAPI.h"
+#include "PlayFabServerAPI.h"
 #include "PlayFabSettings.h"
 #include "PlayFabSdkGem.h"
 
@@ -57,7 +57,7 @@ struct PfTestContext
         temp += " ms, ";
         switch (finishState)
         {
-        case PASSED: temp += "PASSED: "; break;
+        case PASSED: temp += "pass: "; break;
         case FAILED: temp += "FAILED: "; break;
         case SKIPPED: temp += "SKIPPED: "; break;
         case TIMEDOUT: temp += "TIMED OUT: "; break;
@@ -81,15 +81,19 @@ public:
 
         // Reset testContexts if this has already been run (The results are kept for later viewing)
         for (auto it = testContexts.begin(); it != testContexts.end(); ++it)
-            delete it->second;
+            delete *it;
         testContexts.clear();
 
-        testContexts["InvalidLogin"] = new PfTestContext("InvalidLogin", InvalidLogin);
-        testContexts["InvalidRegistration"] = new PfTestContext("InvalidRegistration", InvalidRegistration);
-        testContexts["LoginOrRegister"] = new PfTestContext("LoginOrRegister", LoginOrRegister);
-        testContexts["LoginWithAdvertisingId"] = new PfTestContext("LoginWithAdvertisingId", LoginWithAdvertisingId);
-        testContexts["UserDataApi"] = new PfTestContext("UserDataApi", UserDataApi);
-        testContexts["UserStatisticsApi"] = new PfTestContext("UserStatisticsApi", UserStatisticsApi);
+        testContexts.insert(testContexts.end(), new PfTestContext("InvalidLogin", InvalidLogin));
+        testContexts.insert(testContexts.end(), new PfTestContext("InvalidRegistration", InvalidRegistration));
+        testContexts.insert(testContexts.end(), new PfTestContext("LoginOrRegister", LoginOrRegister));
+        testContexts.insert(testContexts.end(), new PfTestContext("LoginWithAdvertisingId", LoginWithAdvertisingId));
+        testContexts.insert(testContexts.end(), new PfTestContext("UserDataApi", UserDataApi));
+        testContexts.insert(testContexts.end(), new PfTestContext("UserStatisticsApi", UserStatisticsApi));
+        testContexts.insert(testContexts.end(), new PfTestContext("UserCharacter", UserCharacter));
+        testContexts.insert(testContexts.end(), new PfTestContext("LeaderBoard", LeaderBoard));
+        testContexts.insert(testContexts.end(), new PfTestContext("AccountInfo", AccountInfo));
+        testContexts.insert(testContexts.end(), new PfTestContext("CloudScript", CloudScript));
     }
 
     static bool TickTestSuite()
@@ -101,15 +105,15 @@ public:
         PfTestContext* nextTest = nullptr;
         for (auto it = testContexts.begin(); it != testContexts.end(); ++it)
         {
-            auto eachState = it->second->activeState;
+            auto eachState = (*it)->activeState;
 
             if (eachState != COMPLETE && eachState != ABORTED)
                 unfinishedTests++;
 
             if (eachState == ACTIVE || eachState == READY) // Find the active test, and prioritize it
-                nextTest = it->second;
+                nextTest = *it;
             else if (eachState == PENDING && nextTest == nullptr) // Or find a test to start
-                nextTest = it->second;
+                nextTest = *it;
         }
 
         if (nextTest != nullptr && nextTest->activeState == PENDING)
@@ -133,9 +137,9 @@ public:
         {
             if (_outputSummary.length() != 0)
                 _outputSummary += '\n';
-            _outputSummary += it->second->GenerateSummary(now);
-            if (it->second->finishState == PASSED) numPassed++;
-            else if (it->second->finishState == FAILED) numFailed++;
+            _outputSummary += (*it)->GenerateSummary(now);
+            if ((*it)->finishState == PASSED) numPassed++;
+            else if ((*it)->finishState == FAILED) numFailed++;
         }
 
         std::string testCountLine = "\nTotal tests: ";
@@ -162,9 +166,10 @@ private:
     static Aws::String characterName;
     static Aws::String TEST_DATA_KEY;
     static Aws::String TEST_STAT_NAME;
+    static Aws::String playFabId;
     static int testMessageInt;
     static time_t testMessageTime;
-    static std::map<Aws::String, PfTestContext*> testContexts;
+    static std::list<PfTestContext*> testContexts;
 
     static void ClassSetup()
     {
@@ -178,6 +183,7 @@ private:
         characterName = "Ragnar";
 
         PlayFabSettings::titleId = titleId;
+        PlayFabSettings::developerSecretKey = developerSecretKey;
     }
 
     // Start a test, and block until the threaded response arrives
@@ -250,7 +256,7 @@ private:
         ClientModels::RegisterPlayFabUserRequest request;
         request.Username = userName;
         request.Email = "x";
-        request.Password = userPassword + "INVALID";
+        request.Password = "x";
         PlayFabClientAPI::RegisterPlayFabUser(request, InvalidRegistrationSuccess, InvalidRegistrationFail, &testContext);
     }
     static void InvalidRegistrationSuccess(const ClientModels::RegisterPlayFabUserResult& result, void* customData)
@@ -265,8 +271,7 @@ private:
         Aws::String expectedPasswordMsg = "Password must be between";
         Aws::String errorConcat;
 
-        auto end = error.ErrorDetails.end();
-        for (auto it = error.ErrorDetails.begin(); it != end; ++it)
+        for (auto it = error.ErrorDetails.begin(); it != error.ErrorDetails.end(); ++it)
             errorConcat += it->second;
         foundEmailMsg = (errorConcat.find(expectedEmailMsg) != -1);
         foundPasswordMsg = (errorConcat.find(expectedPasswordMsg) != -1);
@@ -294,6 +299,7 @@ private:
     }
     static void OnLoginOrRegister(const ClientModels::LoginResult& result, void* customData)
     {
+        playFabId = result.PlayFabId;
         PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
         EndTest(*testContext, PASSED, "");
     }
@@ -376,7 +382,7 @@ private:
             EndTest(*testContext, FAILED, "Expected user data not found.");
         else if (testMessageInt != actualDataValue)
             EndTest(*testContext, FAILED, "User data not updated as expected.");
-        else if (minTime <= testMessageTime && testMessageTime <= maxTime)
+        else if (!(minTime <= testMessageTime && testMessageTime <= maxTime))
             EndTest(*testContext, FAILED, "DateTime not parsed correctly.");
         else
             EndTest(*testContext, PASSED, "");
@@ -428,6 +434,120 @@ private:
         else
             EndTest(*testContext, PASSED, "");
     }
+
+    /// <summary>
+    /// SERVER API
+    /// Get or create the given test character for the given user
+    /// Parameter types tested: Contained-Classes, string
+    /// </summary>
+    static void UserCharacter(PfTestContext& testContext)
+    {
+        ClientModels::ListUsersCharactersRequest request;
+        PlayFabClientAPI::GetAllUsersCharacters(request, OnUserCharacter, OnSharedError, &testContext);
+    }
+    static void OnUserCharacter(const ClientModels::ListUsersCharactersResult& result, void* customData)
+    {
+        bool charFound = false;
+        for (auto it = result.Characters.begin(); it != result.Characters.end(); ++it)
+            if (it->CharacterName == characterName)
+                charFound = true;
+
+        PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
+        if (charFound)
+            EndTest(*testContext, PASSED, "");
+        else
+            EndTest(*testContext, FAILED, "Character not found");
+    }
+
+    /// <summary>
+    /// CLIENT AND SERVER API
+    /// Test that leaderboard results can be requested
+    /// Parameter types tested: List of contained-classes
+    /// </summary>
+    static void LeaderBoard(PfTestContext& testContext)
+    {
+        testMessageInt = 0;
+        ClientModels::GetLeaderboardRequest clientRequest;
+        clientRequest.MaxResultsCount = 3;
+        clientRequest.StatisticName = TEST_STAT_NAME;
+        PlayFabClientAPI::GetLeaderboard(clientRequest, OnClientLeaderBoard, OnSharedError, &testContext);
+        ServerModels::GetLeaderboardRequest serverRequest;
+        serverRequest.MaxResultsCount = 3;
+        serverRequest.StatisticName = TEST_STAT_NAME;
+        PlayFabServerAPI::GetLeaderboard(serverRequest, OnServerLeaderBoard, OnSharedError, &testContext);
+    }
+    static void OnClientLeaderBoard(const ClientModels::GetLeaderboardResult& result, void* customData)
+    {
+        bool foundEntry = false;
+        for (auto it = result.Leaderboard.begin(); it != result.Leaderboard.end(); ++it)
+            if (it->PlayFabId == playFabId)
+                foundEntry++;
+        if (foundEntry)
+            testMessageInt++;
+        PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
+        if (testMessageInt == 2)
+            EndTest(*testContext, PASSED, "");
+    }
+    static void OnServerLeaderBoard(const ServerModels::GetLeaderboardResult& result, void* customData)
+    {
+        bool foundEntry = false;
+        for (auto it = result.Leaderboard.begin(); it != result.Leaderboard.end(); ++it)
+            if (it->PlayFabId == playFabId)
+                foundEntry++;
+        if (foundEntry)
+            testMessageInt++;
+        PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
+        if (testMessageInt == 2)
+            EndTest(*testContext, PASSED, "");
+    }
+
+    /// <summary>
+    /// CLIENT API
+    /// Test that AccountInfo can be requested
+    /// Parameter types tested: List of enum-as-strings converted to list of enums
+    /// </summary>
+    static void AccountInfo(PfTestContext& testContext)
+    {
+        ClientModels::GetAccountInfoRequest request;
+        PlayFabClientAPI::GetAccountInfo(request, OnAccountInfo, OnSharedError, &testContext);
+    }
+    static void OnAccountInfo(const ClientModels::GetAccountInfoResult& result, void* customData)
+    {
+        PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
+        // Enums-by-name can't really be tested in C++, the way they can in other languages
+        if (result.AccountInfo == nullptr || result.AccountInfo->TitleInfo == nullptr || result.AccountInfo->TitleInfo->Origination.isNull())
+            EndTest(*testContext, FAILED, "The Origination data is not present to test");
+        else if (result.AccountInfo->TitleInfo->Origination.mValue != ClientModels::UserOriginationOrganic)
+            EndTest(*testContext, FAILED, "The Origination does not match expected value");
+        else // Received data-format as expected
+            EndTest(*testContext, PASSED, "");
+        auto output = result.AccountInfo->TitleInfo->Origination.mValue; // TODO: Basic verification of this value (range maybe?)
+    }
+
+    /// <summary>
+    /// CLIENT API
+    /// Test that CloudScript can be properly set up and invoked
+    /// </summary>
+    static void CloudScript(PfTestContext& testContext)
+    {
+        ClientModels::GetCloudScriptUrlRequest request;
+        PlayFabClientAPI::GetCloudScriptUrl(request, OnCloudUrl, OnSharedError, &testContext);
+    }
+    static void OnCloudUrl(const ClientModels::GetCloudScriptUrlResult& result, void* customData)
+    {
+        ClientModels::RunCloudScriptRequest request;
+        request.ActionId = "helloWorld";
+        PlayFabClientAPI::RunCloudScript(request, OnHelloWorldCloudScript, OnSharedError, customData);
+    }
+    static void OnHelloWorldCloudScript(const ClientModels::RunCloudScriptResult& result, void* customData)
+    {
+        bool success = (result.ResultsEncoded.find("Hello " + playFabId + "!") != -1);
+        PfTestContext* testContext = reinterpret_cast<PfTestContext*>(customData);
+        if (!success)
+            EndTest(*testContext, FAILED, result.ResultsEncoded);
+        else
+            EndTest(*testContext, PASSED, "");
+    }
 };
 // C++ Static vars
 Aws::String PlayFabApiTests::_outputSummary;
@@ -440,10 +560,10 @@ Aws::String PlayFabApiTests::userPassword;
 Aws::String PlayFabApiTests::characterName;
 Aws::String PlayFabApiTests::TEST_DATA_KEY = "testCounter";
 Aws::String PlayFabApiTests::TEST_STAT_NAME = "str";
-std::map<Aws::String, PfTestContext*> PlayFabApiTests::testContexts;
+std::list<PfTestContext*> PlayFabApiTests::testContexts;
+Aws::String PlayFabApiTests::playFabId;
 int PlayFabApiTests::testMessageInt;
 time_t PlayFabApiTests::testMessageTime;
-
 
 class CFlowNode_PlayFabTest : public CFlowBaseNode<eNCT_Instanced>
 {
@@ -452,17 +572,17 @@ public:
     {
     }
 
-    virtual IFlowNodePtr Clone(SActivationInfo *pActInfo)
+    virtual IFlowNodePtr Clone(SActivationInfo *pActInfo) override
     {
         return new CFlowNode_PlayFabTest(pActInfo);
     }
 
-    virtual void GetMemoryUsage(ICrySizer* s) const
+    virtual void GetMemoryUsage(ICrySizer* s) const override
     {
         s->Add(*this);
     }
 
-    virtual void GetConfiguration(SFlowNodeConfig& config)
+    virtual void GetConfiguration(SFlowNodeConfig& config) override
     {
         static const SInputPortConfig in_config[] = {
             InputPortConfig<SFlowSystemVoid>("Activate", _HELP("Run the PlayFabApiTests")),
@@ -479,7 +599,7 @@ public:
         config.SetCategory(EFLN_APPROVED);
     }
 
-    virtual void ProcessEvent(EFlowEvent event, SActivationInfo* pActInfo)
+    virtual void ProcessEvent(EFlowEvent event, SActivationInfo* pActInfo) override
     {
         switch (event)
         {
