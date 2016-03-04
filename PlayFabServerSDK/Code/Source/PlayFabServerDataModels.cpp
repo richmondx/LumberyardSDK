@@ -202,7 +202,7 @@ void PlayFab::ServerModels::writeUserOriginationEnumJSON(UserOrigination enumVal
 
 UserOrigination PlayFab::ServerModels::readUserOriginationFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserOrigination> _UserOriginationMap;
+    static std::map<Aws::String, UserOrigination> _UserOriginationMap;
     if (_UserOriginationMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -487,7 +487,7 @@ void PlayFab::ServerModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJson
 
 Currency PlayFab::ServerModels::readCurrencyFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Currency> _CurrencyMap;
+    static std::map<Aws::String, Currency> _CurrencyMap;
     if (_CurrencyMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -677,7 +677,7 @@ void PlayFab::ServerModels::writeTitleActivationStatusEnumJSON(TitleActivationSt
 
 TitleActivationStatus PlayFab::ServerModels::readTitleActivationStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, TitleActivationStatus> _TitleActivationStatusMap;
+    static std::map<Aws::String, TitleActivationStatus> _TitleActivationStatusMap;
     if (_TitleActivationStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -1877,7 +1877,7 @@ void PlayFab::ServerModels::writeUserDataPermissionEnumJSON(UserDataPermission e
 
 UserDataPermission PlayFab::ServerModels::readUserDataPermissionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserDataPermission> _UserDataPermissionMap;
+    static std::map<Aws::String, UserDataPermission> _UserDataPermissionMap;
     if (_UserDataPermissionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -4496,7 +4496,7 @@ void PlayFab::ServerModels::writePlayerConnectionStateEnumJSON(PlayerConnectionS
 
 PlayerConnectionState PlayFab::ServerModels::readPlayerConnectionStateFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, PlayerConnectionState> _PlayerConnectionStateMap;
+    static std::map<Aws::String, PlayerConnectionState> _PlayerConnectionStateMap;
     if (_PlayerConnectionStateMap.size() == 0)
     {
         // Auto-generate the map on the first use

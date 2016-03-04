@@ -244,7 +244,7 @@ void PlayFab::MatchmakerModels::writeRegionEnumJSON(Region enumVal, PFStringJson
 
 Region PlayFab::MatchmakerModels::readRegionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Region> _RegionMap;
+    static std::map<Aws::String, Region> _RegionMap;
     if (_RegionMap.size() == 0)
     {
         // Auto-generate the map on the first use

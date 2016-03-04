@@ -62,7 +62,7 @@ void PlayFab::ClientModels::writeTradeStatusEnumJSON(TradeStatus enumVal, PFStri
 
 TradeStatus PlayFab::ClientModels::readTradeStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, TradeStatus> _TradeStatusMap;
+    static std::map<Aws::String, TradeStatus> _TradeStatusMap;
     if (_TradeStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -1424,7 +1424,7 @@ void PlayFab::ClientModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJson
 
 Currency PlayFab::ClientModels::readCurrencyFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Currency> _CurrencyMap;
+    static std::map<Aws::String, Currency> _CurrencyMap;
     if (_CurrencyMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -1616,7 +1616,7 @@ void PlayFab::ClientModels::writeRegionEnumJSON(Region enumVal, PFStringJsonWrit
 
 Region PlayFab::ClientModels::readRegionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Region> _RegionMap;
+    static std::map<Aws::String, Region> _RegionMap;
     if (_RegionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -1849,7 +1849,7 @@ void PlayFab::ClientModels::writeTitleActivationStatusEnumJSON(TitleActivationSt
 
 TitleActivationStatus PlayFab::ClientModels::readTitleActivationStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, TitleActivationStatus> _TitleActivationStatusMap;
+    static std::map<Aws::String, TitleActivationStatus> _TitleActivationStatusMap;
     if (_TitleActivationStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -2150,7 +2150,7 @@ void PlayFab::ClientModels::writeUserOriginationEnumJSON(UserOrigination enumVal
 
 UserOrigination PlayFab::ClientModels::readUserOriginationFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserOrigination> _UserOriginationMap;
+    static std::map<Aws::String, UserOrigination> _UserOriginationMap;
     if (_UserOriginationMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -2617,7 +2617,7 @@ void PlayFab::ClientModels::writeUserDataPermissionEnumJSON(UserDataPermission e
 
 UserDataPermission PlayFab::ClientModels::readUserDataPermissionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserDataPermission> _UserDataPermissionMap;
+    static std::map<Aws::String, UserDataPermission> _UserDataPermissionMap;
     if (_UserDataPermissionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -6414,7 +6414,7 @@ void PlayFab::ClientModels::writeMatchmakeStatusEnumJSON(MatchmakeStatus enumVal
 
 MatchmakeStatus PlayFab::ClientModels::readMatchmakeStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, MatchmakeStatus> _MatchmakeStatusMap;
+    static std::map<Aws::String, MatchmakeStatus> _MatchmakeStatusMap;
     if (_MatchmakeStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -6649,7 +6649,7 @@ void PlayFab::ClientModels::writeTransactionStatusEnumJSON(TransactionStatus enu
 
 TransactionStatus PlayFab::ClientModels::readTransactionStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, TransactionStatus> _TransactionStatusMap;
+    static std::map<Aws::String, TransactionStatus> _TransactionStatusMap;
     if (_TransactionStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use

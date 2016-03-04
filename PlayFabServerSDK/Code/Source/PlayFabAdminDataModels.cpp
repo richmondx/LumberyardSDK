@@ -72,7 +72,7 @@ void PlayFab::AdminModels::writeRegionEnumJSON(Region enumVal, PFStringJsonWrite
 
 Region PlayFab::AdminModels::readRegionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Region> _RegionMap;
+    static std::map<Aws::String, Region> _RegionMap;
     if (_RegionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -159,7 +159,7 @@ void PlayFab::AdminModels::writeGameBuildStatusEnumJSON(GameBuildStatus enumVal,
 
 GameBuildStatus PlayFab::AdminModels::readGameBuildStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, GameBuildStatus> _GameBuildStatusMap;
+    static std::map<Aws::String, GameBuildStatus> _GameBuildStatusMap;
     if (_GameBuildStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -709,7 +709,7 @@ void PlayFab::AdminModels::writeStatisticResetIntervalOptionEnumJSON(StatisticRe
 
 StatisticResetIntervalOption PlayFab::AdminModels::readStatisticResetIntervalOptionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, StatisticResetIntervalOption> _StatisticResetIntervalOptionMap;
+    static std::map<Aws::String, StatisticResetIntervalOption> _StatisticResetIntervalOptionMap;
     if (_StatisticResetIntervalOptionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -975,7 +975,7 @@ void PlayFab::AdminModels::writeCurrencyEnumJSON(Currency enumVal, PFStringJsonW
 
 Currency PlayFab::AdminModels::readCurrencyFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, Currency> _CurrencyMap;
+    static std::map<Aws::String, Currency> _CurrencyMap;
     if (_CurrencyMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -1826,7 +1826,7 @@ void PlayFab::AdminModels::writeStatisticVersionArchivalStatusEnumJSON(Statistic
 
 StatisticVersionArchivalStatus PlayFab::AdminModels::readStatisticVersionArchivalStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, StatisticVersionArchivalStatus> _StatisticVersionArchivalStatusMap;
+    static std::map<Aws::String, StatisticVersionArchivalStatus> _StatisticVersionArchivalStatusMap;
     if (_StatisticVersionArchivalStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -2021,7 +2021,7 @@ void PlayFab::AdminModels::writeResultTableNodeTypeEnumJSON(ResultTableNodeType 
 
 ResultTableNodeType PlayFab::AdminModels::readResultTableNodeTypeFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, ResultTableNodeType> _ResultTableNodeTypeMap;
+    static std::map<Aws::String, ResultTableNodeType> _ResultTableNodeTypeMap;
     if (_ResultTableNodeTypeMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -2488,7 +2488,7 @@ void PlayFab::AdminModels::writeUserDataPermissionEnumJSON(UserDataPermission en
 
 UserDataPermission PlayFab::AdminModels::readUserDataPermissionFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserDataPermission> _UserDataPermissionMap;
+    static std::map<Aws::String, UserDataPermission> _UserDataPermissionMap;
     if (_UserDataPermissionMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -3177,7 +3177,7 @@ void PlayFab::AdminModels::writeUserOriginationEnumJSON(UserOrigination enumVal,
 
 UserOrigination PlayFab::AdminModels::readUserOriginationFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, UserOrigination> _UserOriginationMap;
+    static std::map<Aws::String, UserOrigination> _UserOriginationMap;
     if (_UserOriginationMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -3305,7 +3305,7 @@ void PlayFab::AdminModels::writeTitleActivationStatusEnumJSON(TitleActivationSta
 
 TitleActivationStatus PlayFab::AdminModels::readTitleActivationStatusFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, TitleActivationStatus> _TitleActivationStatusMap;
+    static std::map<Aws::String, TitleActivationStatus> _TitleActivationStatusMap;
     if (_TitleActivationStatusMap.size() == 0)
     {
         // Auto-generate the map on the first use
@@ -4129,7 +4129,7 @@ void PlayFab::AdminModels::writeResolutionOutcomeEnumJSON(ResolutionOutcome enum
 
 ResolutionOutcome PlayFab::AdminModels::readResolutionOutcomeFromValue(const rapidjson::Value& obj)
 {
-    static std::map<std::string, ResolutionOutcome> _ResolutionOutcomeMap;
+    static std::map<Aws::String, ResolutionOutcome> _ResolutionOutcomeMap;
     if (_ResolutionOutcomeMap.size() == 0)
     {
         // Auto-generate the map on the first use
