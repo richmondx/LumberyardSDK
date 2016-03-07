@@ -17,7 +17,7 @@ The PlayFab platform runs on AWS, and PlayFab has express permission from Amazon
 * Install Lumberyard: https://aws.amazon.com/lumberyard/downloads/
  * Fully unpacked and installed, Lumberyard will need at least 50-80 gigabytes of space
   * This does not include the files specific to your project, which may be 5-20 additional gigabytes (or more, depending on your project)
-  * The PlayFab SDK adds approximately 1 mb by comparison
+  * The PlayFab SDK adds approximately 1 mb
  * Follow the instructions on acceptable directory requirements for your Lumberyard install location: {LumberyardLocation}
 * Install Visual Studio (2013 or 2015)
 * Follow the Lumberyard setup instructions here: https://gamedev.amazon.com/forums/tutorials
