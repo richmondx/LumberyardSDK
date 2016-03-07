@@ -565,16 +565,16 @@ Aws::String PlayFabApiTests::playFabId;
 int PlayFabApiTests::testMessageInt;
 time_t PlayFabApiTests::testMessageTime;
 
-class CFlowNode_PlayFabTest : public CFlowBaseNode<eNCT_Instanced>
+class CFlowNode_PlayFabApiTests : public CFlowBaseNode<eNCT_Instanced>
 {
 public:
-    CFlowNode_PlayFabTest(SActivationInfo* pActInfo)
+    CFlowNode_PlayFabApiTests(SActivationInfo* pActInfo)
     {
     }
 
     virtual IFlowNodePtr Clone(SActivationInfo *pActInfo) override
     {
-        return new CFlowNode_PlayFabTest(pActInfo);
+        return new CFlowNode_PlayFabApiTests(pActInfo);
     }
 
     virtual void GetMemoryUsage(ICrySizer* s) const override
@@ -620,4 +620,4 @@ public:
     }
 };
 
-REGISTER_FLOW_NODE("PlayFab:PlayFabTest", CFlowNode_PlayFabTest);
+REGISTER_FLOW_NODE("PlayFab:PlayFabApiTests", CFlowNode_PlayFabApiTests);
