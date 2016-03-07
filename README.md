@@ -17,7 +17,7 @@ The PlayFab platform runs on AWS, and PlayFab has express permission from Amazon
 * Install Lumberyard: https://aws.amazon.com/lumberyard/downloads/
  * Fully unpacked and installed, Lumberyard will need at least 50-80 gigabytes of space
   * This does not include the files specific to your project, which may be 5-20 additional gigabytes (or more, depending on your project)
-  * The PlayFab SDK adds approximately 1 mb by comparison
+  * The PlayFab SDK adds approximately 1 mb
  * Follow the instructions on acceptable directory requirements for your Lumberyard install location: {LumberyardLocation}
 * Install Visual Studio (2013 or 2015)
 * Follow the Lumberyard setup instructions here: https://gamedev.amazon.com/forums/tutorials
@@ -27,8 +27,7 @@ The PlayFab platform runs on AWS, and PlayFab has express permission from Amazon
 * Follow the "Programming" series of tutorials to set up your Lumberyard environment (halfway down the page, search for "Programming")
  * https://gamedev.amazon.com/forums/tutorials
 
-* Users should be very familiar with the topics covered in our [getting started guide](https://playfab.com/docs/getting-started-with-playfab/).
-
+Users should be very familiar with the topics covered in our [getting started guide](https://playfab.com/docs/getting-started-with-playfab/).
 To connect to the PlayFab service, your machine must be running TLS v1.2 or better.
 * For Windows, this means Windows 7 and above
 * [Official Microsoft Documentation](https://msdn.microsoft.com/en-us/library/windows/desktop/aa380516%28v=vs.85%29.aspx)
@@ -37,43 +36,38 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 
 3. Gem Installation:
 ----
-For building the game client, distributed to the End-User, you must only use the PlayFabClientSDK.
-
-A game server is not required for all games, however many online games require online server architecture.  PlayFab also does not require you to use the same SDK for client and server.
-If your game-server is a separate stand-alone console application, it is possible to use the [C++ WindowsSDK](https://github.com/PlayFab/WindowsSDK).
+* **To build a Client**: use the PlayFabClientSDK.
+* **To build a Server**: If your game-server is a separate stand-alone console application, it is possible to use the [C++ WindowsSDK](https://github.com/PlayFab/WindowsSDK).
 If your game-server requires an the game environment, you can also use the PlayFabServerSDK provided with in the Lumberyard SDK.
 Do not mix the client/server/combo files, or your project may not compile.
+* **To build a Client / Server hybrid**: Create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
 
-To implement both client and server in Lumberyard, you must create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
-
-* After you finish the Lumberyard setup steps in the section above, you will need to download the PlayFab gem.
- * If you are reading this document, you probably already have it, but you can also find it here: https://api.playfab.com/sdks/LumberyardSdk/
-* The rest of this document assumes you will use the Client-Api in your Lumberyard project: https://api.playfab.com/Documentation/Client
- * Instructions for Server/Combo are similar
-* Download and extract the Lumberyard SDK to a temporary folder: {tempPlayFabSdkLocation}
-* Copy/Paste the {tempPlayFabSdkLocation}/PlayFabClientSdk folder into your lumberyard project, specifically to: {LumberyardLocation}/dev/Gems/PlayFabClientSdk
- * Rename {LumberyardLocation}/dev/Gems/PlayFabClientSdk to {LumberyardLocation}/dev/Gems/PlayFabSdk
-* Follow these screenshots to configure lumberyard to include the PlayFabSdk Gem
- * ![1_Launcher](LumberTutorial/1_Launcher.png)
- * ![2_SetupGems](LumberTutorial/2_SetupGems.png)
- * ![3_EnablePlayFab](LumberTutorial/3_EnablePlayFab.png)
+#### Importing the PlayFab Gem into your project:
+  1. Download and extract the [Lumberyard SDK](https://github.com/PlayFab/LumberyardSDK) to a temporary folder: {tempPlayFabSdkLocation}
+  2. Copy/Paste the {tempPlayFabSdkLocation}/PlayFabClientSdk folder into your lumberyard project, specifically to: {LumberyardLocation}/dev/Gems/PlayFabClientSdk
+  3. Rename {LumberyardLocation}/dev/Gems/PlayFabClientSdk to {LumberyardLocation}/dev/Gems/PlayFabSdk
+  4. Follow these screenshots to configure lumberyard to include the PlayFabSdk Gem
+    * ![1_Launcher](LumberTutorial/1_Launcher.png)
+    * ![2_SetupGems](LumberTutorial/2_SetupGems.png)
+    * ![3_EnablePlayFab](LumberTutorial/3_EnablePlayFab.png)
 
   
 4. Gem-Dependency:
 ----
-If you create your own Gem, you can access PlayFab by adding a Gem-dependency in your WAF files.
+If you create your own Gem, you can access PlayFab by adding a Gem-dependency in your gem.json file.
 * Navigate to: {LumberyardLocation}/dev/Gems/{YourGem}/gem.json
 * Use this guide to add a dependency to PlayFab: http://docs.aws.amazon.com/lumberyard/latest/userguide/gems-system.html
  * Example:
-'''
-"Dependencies": [
+
+```
+    "Dependencies": [
         {
             "Uuid": "9a81e5573c13455b850560486e4e7d05",
             "VersionConstraints": [ ">=0.0.160302" ],
             "_comment": "PlayFab Lumberyard Gem"
         }
     ]
-'''
+```
 
 
 5. Troubleshooting:
