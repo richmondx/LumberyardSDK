@@ -36,14 +36,12 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 
 3. Gem Installation:
 ----
-For building the game client, distributed to the End-User, you must only use the PlayFabClientSDK.
-
-A game server is not required for all games, however many online games require online server architecture.  PlayFab also does not require you to use the same SDK for client and server.
-If your game-server is a separate stand-alone console application, it is possible to use the [C++ WindowsSDK](https://github.com/PlayFab/WindowsSDK).
+* **To build a Client**: use the PlayFabClientSDK.
+* **To build a Server**: If your game-server is a separate stand-alone console application, it is possible to use the [C++ WindowsSDK](https://github.com/PlayFab/WindowsSDK).
 If your game-server requires an the game environment, you can also use the PlayFabServerSDK provided with in the Lumberyard SDK.
 Do not mix the client/server/combo files, or your project may not compile.
+* **To build a Client / Server hybrid**: Create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
 
-To implement both client and server in Lumberyard, you must create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
 
 * After you finish the Lumberyard setup steps in the section above, you will need to download the PlayFab gem.
  * If you are reading this document, you probably already have it, but you can also find it here: https://api.playfab.com/sdks/LumberyardSdk/
