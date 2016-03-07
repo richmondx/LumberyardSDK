@@ -42,18 +42,14 @@ If your game-server requires an the game environment, you can also use the PlayF
 Do not mix the client/server/combo files, or your project may not compile.
 * **To build a Client / Server hybrid**: Create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
 
-After you finish the Lumberyard setup steps in the section above, you will need to download the PlayFab gem.
-* The rest of this document assumes you will use the [Client-Api](https://api.playfab.com/Documentation/Client)
- * Server & Hybrid projects will be similar but using the [Server-Api](https://api.playfab.com/Documentation/Server)
-
 #### Importing the PlayFab Gem into your project:
-Download and extract the [Lumberyard SDK](https://github.com/PlayFab/LumberyardSDK) to a temporary folder: {tempPlayFabSdkLocation}
-* Copy/Paste the {tempPlayFabSdkLocation}/PlayFabClientSdk folder into your lumberyard project, specifically to: {LumberyardLocation}/dev/Gems/PlayFabClientSdk
- * Rename {LumberyardLocation}/dev/Gems/PlayFabClientSdk to {LumberyardLocation}/dev/Gems/PlayFabSdk
-* Follow these screenshots to configure lumberyard to include the PlayFabSdk Gem
- * ![1_Launcher](LumberTutorial/1_Launcher.png)
- * ![2_SetupGems](LumberTutorial/2_SetupGems.png)
- * ![3_EnablePlayFab](LumberTutorial/3_EnablePlayFab.png)
+  1. Download and extract the [Lumberyard SDK](https://github.com/PlayFab/LumberyardSDK) to a temporary folder: {tempPlayFabSdkLocation}
+  2. Copy/Paste the {tempPlayFabSdkLocation}/PlayFabClientSdk folder into your lumberyard project, specifically to: {LumberyardLocation}/dev/Gems/PlayFabClientSdk
+  3. Rename {LumberyardLocation}/dev/Gems/PlayFabClientSdk to {LumberyardLocation}/dev/Gems/PlayFabSdk
+  4. Follow these screenshots to configure lumberyard to include the PlayFabSdk Gem
+    * ![1_Launcher](LumberTutorial/1_Launcher.png)
+    * ![2_SetupGems](LumberTutorial/2_SetupGems.png)
+    * ![3_EnablePlayFab](LumberTutorial/3_EnablePlayFab.png)
 
   
 4. Gem-Dependency:
