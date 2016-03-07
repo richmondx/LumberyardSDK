@@ -65,15 +65,16 @@ If you create your own Gem, you can access PlayFab by adding a Gem-dependency in
 * Navigate to: {LumberyardLocation}/dev/Gems/{YourGem}/gem.json
 * Use this guide to add a dependency to PlayFab: http://docs.aws.amazon.com/lumberyard/latest/userguide/gems-system.html
  * Example:
-'''
-"Dependencies": [
+
+```
+    "Dependencies": [
         {
             "Uuid": "9a81e5573c13455b850560486e4e7d05",
             "VersionConstraints": [ ">=0.0.160302" ],
             "_comment": "PlayFab Lumberyard Gem"
         }
     ]
-'''
+```
 
 
 5. Troubleshooting:
