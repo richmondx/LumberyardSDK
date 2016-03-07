@@ -377,41 +377,6 @@ void PlayFabClientAPI::OnLoginWithPlayFabResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabClientAPI::LoginWithPSN(
-    LoginWithPSNRequest& request,
-    ProcessApiCallback<LoginResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-    if (PlayFabSettings::titleId.length() > 0)
-        request.TitleId = PlayFabSettings::titleId;
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/LoginWithPSN"), Aws::Http::HttpMethod::HTTP_POST, "", "", request.toJSONString(), customData, callback, errorCallback, OnLoginWithPSNResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnLoginWithPSNResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        LoginResult* outResult = new LoginResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-        if (outResult->SessionTicket.length() > 0)
-            PlayFabClientAPI::mUserSessionTicket = outResult->SessionTicket;
-        MultiStepClientLogin(outResult->SettingsForUser->NeedsAttribution);
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<LoginResult> successCallback = reinterpret_cast<ProcessApiCallback<LoginResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
 void PlayFabClientAPI::LoginWithSteam(
     LoginWithSteamRequest& request,
     ProcessApiCallback<LoginResult> callback,
@@ -427,41 +392,6 @@ void PlayFabClientAPI::LoginWithSteam(
 }
 
 void PlayFabClientAPI::OnLoginWithSteamResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        LoginResult* outResult = new LoginResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-        if (outResult->SessionTicket.length() > 0)
-            PlayFabClientAPI::mUserSessionTicket = outResult->SessionTicket;
-        MultiStepClientLogin(outResult->SettingsForUser->NeedsAttribution);
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<LoginResult> successCallback = reinterpret_cast<ProcessApiCallback<LoginResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::LoginWithXbox(
-    LoginWithXboxRequest& request,
-    ProcessApiCallback<LoginResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-    if (PlayFabSettings::titleId.length() > 0)
-        request.TitleId = PlayFabSettings::titleId;
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/LoginWithXbox"), Aws::Http::HttpMethod::HTTP_POST, "", "", request.toJSONString(), customData, callback, errorCallback, OnLoginWithXboxResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnLoginWithXboxResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -690,36 +620,6 @@ void PlayFabClientAPI::OnGetPlayFabIDsFromKongregateIDsResult(PlayFabRequest* re
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<GetPlayFabIDsFromKongregateIDsResult> successCallback = reinterpret_cast<ProcessApiCallback<GetPlayFabIDsFromKongregateIDsResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::GetPlayFabIDsFromPSNAccountIDs(
-    GetPlayFabIDsFromPSNAccountIDsRequest& request,
-    ProcessApiCallback<GetPlayFabIDsFromPSNAccountIDsResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/GetPlayFabIDsFromPSNAccountIDs"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnGetPlayFabIDsFromPSNAccountIDsResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnGetPlayFabIDsFromPSNAccountIDsResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        GetPlayFabIDsFromPSNAccountIDsResult* outResult = new GetPlayFabIDsFromPSNAccountIDsResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<GetPlayFabIDsFromPSNAccountIDsResult> successCallback = reinterpret_cast<ProcessApiCallback<GetPlayFabIDsFromPSNAccountIDsResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;
@@ -997,36 +897,6 @@ void PlayFabClientAPI::OnLinkKongregateResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabClientAPI::LinkPSNAccount(
-    LinkPSNAccountRequest& request,
-    ProcessApiCallback<LinkPSNAccountResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/LinkPSNAccount"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnLinkPSNAccountResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnLinkPSNAccountResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        LinkPSNAccountResult* outResult = new LinkPSNAccountResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<LinkPSNAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<LinkPSNAccountResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
 void PlayFabClientAPI::LinkSteamAccount(
     LinkSteamAccountRequest& request,
     ProcessApiCallback<LinkSteamAccountResult> callback,
@@ -1050,36 +920,6 @@ void PlayFabClientAPI::OnLinkSteamAccountResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<LinkSteamAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<LinkSteamAccountResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::LinkXboxAccount(
-    LinkXboxAccountRequest& request,
-    ProcessApiCallback<LinkXboxAccountResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/LinkXboxAccount"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnLinkXboxAccountResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnLinkXboxAccountResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        LinkXboxAccountResult* outResult = new LinkXboxAccountResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<LinkXboxAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<LinkXboxAccountResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;
@@ -1327,36 +1167,6 @@ void PlayFabClientAPI::OnUnlinkKongregateResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabClientAPI::UnlinkPSNAccount(
-    
-    ProcessApiCallback<UnlinkPSNAccountResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/UnlinkPSNAccount"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, "", customData, callback, errorCallback, OnUnlinkPSNAccountResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnUnlinkPSNAccountResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        UnlinkPSNAccountResult* outResult = new UnlinkPSNAccountResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<UnlinkPSNAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<UnlinkPSNAccountResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
 void PlayFabClientAPI::UnlinkSteamAccount(
     
     ProcessApiCallback<UnlinkSteamAccountResult> callback,
@@ -1380,36 +1190,6 @@ void PlayFabClientAPI::OnUnlinkSteamAccountResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<UnlinkSteamAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<UnlinkSteamAccountResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::UnlinkXboxAccount(
-    UnlinkXboxAccountRequest& request,
-    ProcessApiCallback<UnlinkXboxAccountResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/UnlinkXboxAccount"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnUnlinkXboxAccountResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnUnlinkXboxAccountResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        UnlinkXboxAccountResult* outResult = new UnlinkXboxAccountResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<UnlinkXboxAccountResult> successCallback = reinterpret_cast<ProcessApiCallback<UnlinkXboxAccountResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;
@@ -1650,6 +1430,36 @@ void PlayFabClientAPI::OnGetPlayerStatisticsResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<GetPlayerStatisticsResult> successCallback = reinterpret_cast<ProcessApiCallback<GetPlayerStatisticsResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
+void PlayFabClientAPI::GetPlayerStatisticVersions(
+    GetPlayerStatisticVersionsRequest& request,
+    ProcessApiCallback<GetPlayerStatisticVersionsResult> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/GetPlayerStatisticVersions"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnGetPlayerStatisticVersionsResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabClientAPI::OnGetPlayerStatisticVersionsResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        GetPlayerStatisticVersionsResult* outResult = new GetPlayerStatisticVersionsResult;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<GetPlayerStatisticVersionsResult> successCallback = reinterpret_cast<ProcessApiCallback<GetPlayerStatisticVersionsResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;
@@ -3060,66 +2870,6 @@ void PlayFabClientAPI::OnUpdateSharedGroupDataResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<UpdateSharedGroupDataResult> successCallback = reinterpret_cast<ProcessApiCallback<UpdateSharedGroupDataResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::ConsumePSNEntitlements(
-    ConsumePSNEntitlementsRequest& request,
-    ProcessApiCallback<ConsumePSNEntitlementsResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/ConsumePSNEntitlements"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnConsumePSNEntitlementsResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnConsumePSNEntitlementsResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        ConsumePSNEntitlementsResult* outResult = new ConsumePSNEntitlementsResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<ConsumePSNEntitlementsResult> successCallback = reinterpret_cast<ProcessApiCallback<ConsumePSNEntitlementsResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabClientAPI::RefreshPSNAuthToken(
-    RefreshPSNAuthTokenRequest& request,
-    ProcessApiCallback<EmptyResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Client/RefreshPSNAuthToken"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnRefreshPSNAuthTokenResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabClientAPI::OnRefreshPSNAuthTokenResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        EmptyResult* outResult = new EmptyResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<EmptyResult> successCallback = reinterpret_cast<ProcessApiCallback<EmptyResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;

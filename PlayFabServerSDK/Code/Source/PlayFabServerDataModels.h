@@ -41,43 +41,6 @@ namespace PlayFab
             bool readFromValue(const rapidjson::Value& obj) override;
         };
 
-        struct AddFriendRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            Aws::String FriendPlayFabId;
-            Aws::String FriendUsername;
-            Aws::String FriendEmail;
-            Aws::String FriendTitleDisplayName;
-
-            AddFriendRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                FriendPlayFabId(),
-                FriendUsername(),
-                FriendEmail(),
-                FriendTitleDisplayName()
-            {}
-
-            AddFriendRequest(const AddFriendRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                FriendPlayFabId(src.FriendPlayFabId),
-                FriendUsername(src.FriendUsername),
-                FriendEmail(src.FriendEmail),
-                FriendTitleDisplayName(src.FriendTitleDisplayName)
-            {}
-
-            AddFriendRequest(const rapidjson::Value& obj) : AddFriendRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~AddFriendRequest();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
         struct AddSharedGroupMembersRequest : public PlayFabBaseModel
         {
             Aws::String SharedGroupId;
@@ -2033,102 +1996,6 @@ namespace PlayFab
             bool readFromValue(const rapidjson::Value& obj) override;
         };
 
-        struct GetFriendLeaderboardRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            Aws::String StatisticName;
-            Int32 StartPosition;
-            Int32 MaxResultsCount;
-            OptionalBool IncludeSteamFriends;
-            OptionalBool IncludeFacebookFriends;
-
-            GetFriendLeaderboardRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                StatisticName(),
-                StartPosition(0),
-                MaxResultsCount(0),
-                IncludeSteamFriends(),
-                IncludeFacebookFriends()
-            {}
-
-            GetFriendLeaderboardRequest(const GetFriendLeaderboardRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                StatisticName(src.StatisticName),
-                StartPosition(src.StartPosition),
-                MaxResultsCount(src.MaxResultsCount),
-                IncludeSteamFriends(src.IncludeSteamFriends),
-                IncludeFacebookFriends(src.IncludeFacebookFriends)
-            {}
-
-            GetFriendLeaderboardRequest(const rapidjson::Value& obj) : GetFriendLeaderboardRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendLeaderboardRequest();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
-        struct GetFriendsListRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            OptionalBool IncludeSteamFriends;
-            OptionalBool IncludeFacebookFriends;
-
-            GetFriendsListRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                IncludeSteamFriends(),
-                IncludeFacebookFriends()
-            {}
-
-            GetFriendsListRequest(const GetFriendsListRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                IncludeSteamFriends(src.IncludeSteamFriends),
-                IncludeFacebookFriends(src.IncludeFacebookFriends)
-            {}
-
-            GetFriendsListRequest(const rapidjson::Value& obj) : GetFriendsListRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendsListRequest();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
-        struct GetFriendsListResult : public PlayFabBaseModel
-        {
-            std::list<FriendInfo> Friends;
-
-            GetFriendsListResult() :
-                PlayFabBaseModel(),
-                Friends()
-            {}
-
-            GetFriendsListResult(const GetFriendsListResult& src) :
-                PlayFabBaseModel(),
-                Friends(src.Friends)
-            {}
-
-            GetFriendsListResult(const rapidjson::Value& obj) : GetFriendsListResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendsListResult();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
         struct GetLeaderboardAroundCharacterRequest : public PlayFabBaseModel
         {
             Aws::String StatisticName;
@@ -2393,21 +2260,52 @@ namespace PlayFab
             bool readFromValue(const rapidjson::Value& obj) override;
         };
 
+        struct StatisticNameVersion : public PlayFabBaseModel
+        {
+            Aws::String StatisticName;
+            Uint32 Version;
+
+            StatisticNameVersion() :
+                PlayFabBaseModel(),
+                StatisticName(),
+                Version(0)
+            {}
+
+            StatisticNameVersion(const StatisticNameVersion& src) :
+                PlayFabBaseModel(),
+                StatisticName(src.StatisticName),
+                Version(src.Version)
+            {}
+
+            StatisticNameVersion(const rapidjson::Value& obj) : StatisticNameVersion()
+            {
+                readFromValue(obj);
+            }
+
+            ~StatisticNameVersion();
+
+            void writeJSON(PFStringJsonWriter& writer) override;
+            bool readFromValue(const rapidjson::Value& obj) override;
+        };
+
         struct GetPlayerStatisticsRequest : public PlayFabBaseModel
         {
             Aws::String PlayFabId;
             std::list<Aws::String> StatisticNames;
+            std::list<StatisticNameVersion> StatisticNameVersions;
 
             GetPlayerStatisticsRequest() :
                 PlayFabBaseModel(),
                 PlayFabId(),
-                StatisticNames()
+                StatisticNames(),
+                StatisticNameVersions()
             {}
 
             GetPlayerStatisticsRequest(const GetPlayerStatisticsRequest& src) :
                 PlayFabBaseModel(),
                 PlayFabId(src.PlayFabId),
-                StatisticNames(src.StatisticNames)
+                StatisticNames(src.StatisticNames),
+                StatisticNameVersions(src.StatisticNameVersions)
             {}
 
             GetPlayerStatisticsRequest(const rapidjson::Value& obj) : GetPlayerStatisticsRequest()
@@ -2425,13 +2323,13 @@ namespace PlayFab
         {
             Aws::String StatisticName;
             Int32 Value;
-            Aws::String Version;
+            Uint32 Version;
 
             StatisticValue() :
                 PlayFabBaseModel(),
                 StatisticName(),
                 Value(0),
-                Version()
+                Version(0)
             {}
 
             StatisticValue(const StatisticValue& src) :
@@ -2475,6 +2373,96 @@ namespace PlayFab
             }
 
             ~GetPlayerStatisticsResult();
+
+            void writeJSON(PFStringJsonWriter& writer) override;
+            bool readFromValue(const rapidjson::Value& obj) override;
+        };
+
+        struct GetPlayerStatisticVersionsRequest : public PlayFabBaseModel
+        {
+            Aws::String StatisticName;
+
+            GetPlayerStatisticVersionsRequest() :
+                PlayFabBaseModel(),
+                StatisticName()
+            {}
+
+            GetPlayerStatisticVersionsRequest(const GetPlayerStatisticVersionsRequest& src) :
+                PlayFabBaseModel(),
+                StatisticName(src.StatisticName)
+            {}
+
+            GetPlayerStatisticVersionsRequest(const rapidjson::Value& obj) : GetPlayerStatisticVersionsRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~GetPlayerStatisticVersionsRequest();
+
+            void writeJSON(PFStringJsonWriter& writer) override;
+            bool readFromValue(const rapidjson::Value& obj) override;
+        };
+
+        struct PlayerStatisticVersion : public PlayFabBaseModel
+        {
+            Aws::String StatisticName;
+            Uint32 Version;
+            OptionalTime ScheduledActivationTime;
+            time_t ActivationTime;
+            OptionalTime ScheduledDeactivationTime;
+            OptionalTime DeactivationTime;
+
+            PlayerStatisticVersion() :
+                PlayFabBaseModel(),
+                StatisticName(),
+                Version(0),
+                ScheduledActivationTime(),
+                ActivationTime(0),
+                ScheduledDeactivationTime(),
+                DeactivationTime()
+            {}
+
+            PlayerStatisticVersion(const PlayerStatisticVersion& src) :
+                PlayFabBaseModel(),
+                StatisticName(src.StatisticName),
+                Version(src.Version),
+                ScheduledActivationTime(src.ScheduledActivationTime),
+                ActivationTime(src.ActivationTime),
+                ScheduledDeactivationTime(src.ScheduledDeactivationTime),
+                DeactivationTime(src.DeactivationTime)
+            {}
+
+            PlayerStatisticVersion(const rapidjson::Value& obj) : PlayerStatisticVersion()
+            {
+                readFromValue(obj);
+            }
+
+            ~PlayerStatisticVersion();
+
+            void writeJSON(PFStringJsonWriter& writer) override;
+            bool readFromValue(const rapidjson::Value& obj) override;
+        };
+
+        struct GetPlayerStatisticVersionsResult : public PlayFabBaseModel
+        {
+            std::list<PlayerStatisticVersion> StatisticVersions;
+
+            GetPlayerStatisticVersionsResult() :
+                PlayFabBaseModel(),
+                StatisticVersions()
+            {}
+
+            GetPlayerStatisticVersionsResult(const GetPlayerStatisticVersionsResult& src) :
+                PlayFabBaseModel(),
+                StatisticVersions(src.StatisticVersions)
+            {}
+
+            GetPlayerStatisticVersionsResult(const rapidjson::Value& obj) : GetPlayerStatisticVersionsResult()
+            {
+                readFromValue(obj);
+            }
+
+            ~GetPlayerStatisticVersionsResult();
 
             void writeJSON(PFStringJsonWriter& writer) override;
             bool readFromValue(const rapidjson::Value& obj) override;
@@ -4033,34 +4021,6 @@ namespace PlayFab
             bool readFromValue(const rapidjson::Value& obj) override;
         };
 
-        struct RemoveFriendRequest : public PlayFabBaseModel
-        {
-            Aws::String FriendPlayFabId;
-            Aws::String PlayFabId;
-
-            RemoveFriendRequest() :
-                PlayFabBaseModel(),
-                FriendPlayFabId(),
-                PlayFabId()
-            {}
-
-            RemoveFriendRequest(const RemoveFriendRequest& src) :
-                PlayFabBaseModel(),
-                FriendPlayFabId(src.FriendPlayFabId),
-                PlayFabId(src.PlayFabId)
-            {}
-
-            RemoveFriendRequest(const rapidjson::Value& obj) : RemoveFriendRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~RemoveFriendRequest();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
         struct RemoveSharedGroupMembersRequest : public PlayFabBaseModel
         {
             Aws::String SharedGroupId;
@@ -4264,40 +4224,6 @@ namespace PlayFab
             }
 
             ~RunCloudScriptResult();
-
-            void writeJSON(PFStringJsonWriter& writer) override;
-            bool readFromValue(const rapidjson::Value& obj) override;
-        };
-
-        struct RunServerCloudScriptRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            Aws::String ActionId;
-            MultitypeVar Params;
-            Aws::String ParamsEncoded;
-
-            RunServerCloudScriptRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                ActionId(),
-                Params(),
-                ParamsEncoded()
-            {}
-
-            RunServerCloudScriptRequest(const RunServerCloudScriptRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                ActionId(src.ActionId),
-                Params(src.Params),
-                ParamsEncoded(src.ParamsEncoded)
-            {}
-
-            RunServerCloudScriptRequest(const rapidjson::Value& obj) : RunServerCloudScriptRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~RunServerCloudScriptRequest();
 
             void writeJSON(PFStringJsonWriter& writer) override;
             bool readFromValue(const rapidjson::Value& obj) override;

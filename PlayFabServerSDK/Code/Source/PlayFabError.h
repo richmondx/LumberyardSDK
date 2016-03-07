@@ -207,7 +207,8 @@ namespace PlayFab
         PlayFabErrorStatisticVersionAlreadyIncrementedForScheduledInterval = 1202,
         PlayFabErrorStatisticCountLimitExceeded = 1203,
         PlayFabErrorStatisticVersionIncrementRateExceeded = 1204,
-        PlayFabErrorContainerKeyInvalid = 1205
+        PlayFabErrorContainerKeyInvalid = 1205,
+        PlayFabErrorCloudScriptExecutionTimeLimitExceeded = 1206
     };
 
     struct PlayFabError
