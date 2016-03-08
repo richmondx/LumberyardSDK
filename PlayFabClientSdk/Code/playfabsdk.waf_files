@@ -18,13 +18,14 @@
             "Source/PlayFabClientDataModels.cpp",
             "Source/PlayFabClientAPI.cpp",
 
+            "Source/PlayFabApiTestNode_Client.cpp",
+
             "Source/PlayFabBaseModel.h",
             "Source/PlayFabError.h",
             "Source/PlayFabHttp.h",
             "Source/PlayFabSettings.h",
 
             "Source/PlayFabBaseModel.cpp",
-            "Source/PlayFabFlowNode.cpp",
             "Source/PlayFabHttp.cpp",
             "Source/PlayFabSettings.cpp"
         ]

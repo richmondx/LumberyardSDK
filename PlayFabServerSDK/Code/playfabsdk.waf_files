@@ -32,7 +32,6 @@
             "Source/PlayFabSettings.h",
 
             "Source/PlayFabBaseModel.cpp",
-            "Source/PlayFabFlowNode.cpp",
             "Source/PlayFabHttp.cpp",
             "Source/PlayFabSettings.cpp"
         ]
