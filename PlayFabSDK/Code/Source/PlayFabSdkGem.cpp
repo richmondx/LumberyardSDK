@@ -3,17 +3,21 @@
 #include <FlowSystem/Nodes/FlowBaseNode.h>
 #include <platform_impl.h> // Resharper says this is unused, but it's still required in some less direct way
 
+
+#include "PlayFabHttp.h"
 #include "PlayFabSdkGem.h"
+#include "PlayFabAdminApiWrapper.h"
+#include "PlayFabMatchmakerApiWrapper.h"
+#include "PlayFabServerApiWrapper.h"
+#include "PlayFabClientApiWrapper.h"
 
-Aws::String PlayFabSdk::PlayFabSdkGem::lastDebugMessage;
+using namespace PlayFab;
 
-PlayFabSdk::PlayFabSdkGem::PlayFabSdkGem() { }
-PlayFabSdk::PlayFabSdkGem::~PlayFabSdkGem() { }
+PlayFabSdkGem::PlayFabSdkGem() { }
+PlayFabSdkGem::~PlayFabSdkGem() { }
 
-void PlayFabSdk::PlayFabSdkGem::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
+void PlayFabSdkGem::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
 {
-    using namespace PlayFabSdk;
-
     switch (event)
     {
     case ESYSTEM_EVENT_FLOW_SYSTEM_REGISTER_EXTERNAL_NODES:
@@ -33,13 +37,38 @@ void PlayFabSdk::PlayFabSdkGem::OnSystemEvent(ESystemEvent event, UINT_PTR wpara
     }
 }
 
-void PlayFabSdk::PlayFabSdkGem::OnPostUpdate(float fDeltaTime)
+void PlayFabSdkGem::OnPostUpdate(float fDeltaTime)
 {
-    if (lastDebugMessage.length() > 0)
-    {
-        float white[4] = { 1.f, 1.f, 1.f, 1.f };
-        gEnv->pRenderer->Draw2dLabel(32.f, 32.f, 2.f, white, false, lastDebugMessage.c_str());
-    }
 }
 
-GEM_REGISTER(PlayFabSdk::PlayFabSdkGem)
+int PlayFabSdkGem::GetPendingCalls()
+{
+    return PlayFabRequestManager::playFabHttp.GetPendingCalls();
+}
+
+PlayFabSettings* PlayFabSdkGem::GetPlayFabSettings()
+{
+    return &PlayFabSettings::playFabSettings;
+}
+
+IPlayFabAdminApi* PlayFabSdkGem::GetAdminApi()
+{
+    return &PlayFabAdminApiWrapper::globalWrapper;
+}
+
+IPlayFabMatchmakerApi* PlayFabSdkGem::GetMatchmakerApi()
+{
+    return &PlayFabMatchmakerApiWrapper::globalWrapper;
+}
+
+IPlayFabServerApi* PlayFabSdkGem::GetServerApi()
+{
+    return &PlayFabServerApiWrapper::globalWrapper;
+}
+
+IPlayFabClientApi* PlayFabSdkGem::GetClientApi()
+{
+    return &PlayFabClientApiWrapper::globalWrapper;
+}
+
+GEM_REGISTER(PlayFabSdkGem)

@@ -7,33 +7,36 @@
     },
     "none": {
         "Interface": [
-            "Include/PlayFabAdminAPI.h",
-            "Include/PlayFabMatchmakerAPI.h",
-            "Include/PlayFabServerAPI.h",
-            "Include/IPlayFabSdkGem.h"
+            "Include/PlayFabAdminDataModels.h",
+            "Include/IPlayFabAdminApi.h",
+            "Include/PlayFabMatchmakerDataModels.h",
+            "Include/IPlayFabMatchmakerApi.h",
+            "Include/PlayFabServerDataModels.h",
+            "Include/IPlayFabServerApi.h",
+
+            "Include/IPlayFabSdkGem.h",
+            "Include/PlayFabBaseModel.h",
+            "Include/PlayFabError.h",
+            "Include/PlayFabHttp.h",
+            "Include/PlayFabSettings.h"
         ],
         "Implementation": [
-            "Source/PlayFabSdkGem.h",
-            "Source/PlayFabSdkGem.cpp",
+            "Source/PlayFabAdminApi.h",
+            "Source/PlayFabAdminApi.cpp",
+            "Source/PlayFabAdminApiWrapper.h",
+            "Source/PlayFabAdminApiWrapper.cpp",
+            "Source/PlayFabMatchmakerApi.h",
+            "Source/PlayFabMatchmakerApi.cpp",
+            "Source/PlayFabMatchmakerApiWrapper.h",
+            "Source/PlayFabMatchmakerApiWrapper.cpp",
+            "Source/PlayFabServerApi.h",
+            "Source/PlayFabServerApi.cpp",
+            "Source/PlayFabServerApiWrapper.h",
+            "Source/PlayFabServerApiWrapper.cpp",
 
-            "Source/PlayFabAdminDataModels.h",
-            "Source/PlayFabAdminDataModels.cpp",
-            "Source/PlayFabAdminAPI.cpp",
-            "Source/PlayFabMatchmakerDataModels.h",
-            "Source/PlayFabMatchmakerDataModels.cpp",
-            "Source/PlayFabMatchmakerAPI.cpp",
-            "Source/PlayFabServerDataModels.h",
-            "Source/PlayFabServerDataModels.cpp",
-            "Source/PlayFabServerAPI.cpp",
-
-            "Source/PlayFabBaseModel.h",
-            "Source/PlayFabError.h",
-            "Source/PlayFabHttp.h",
-            "Source/PlayFabSettings.h",
-
-            "Source/PlayFabBaseModel.cpp",
-            "Source/PlayFabFlowNode.cpp",
             "Source/PlayFabHttp.cpp",
+            "Source/PlayFabSdkGem.cpp",
+            "Source/PlayFabSdkGem.h",
             "Source/PlayFabSettings.cpp"
         ]
     }

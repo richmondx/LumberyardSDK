@@ -1,15 +1,14 @@
 #include "StdAfx.h"
-#include "PlayFabAdminAPI.h"
+#include "PlayFabAdminApi.h"
 #include "PlayFabSettings.h"
-#include "PlayFabSdkGem.h"
 
 using namespace PlayFab;
-using namespace PlayFab::AdminModels;
+using namespace AdminModels;
 
-// PlayFabAdmin API
-PlayFabAdminAPI::PlayFabAdminAPI() {}
+// PlayFabAdmin Api
+PlayFabAdminApi::PlayFabAdminApi() {}
 
-void PlayFabAdminAPI::GetUserAccountInfo(
+void PlayFabAdminApi::GetUserAccountInfo(
     LookupUserAccountInfoRequest& request,
     ProcessApiCallback<LookupUserAccountInfoResult> callback,
     ErrorCallback errorCallback,
@@ -17,11 +16,11 @@ void PlayFabAdminAPI::GetUserAccountInfo(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserAccountInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserAccountInfoResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserAccountInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserAccountInfoResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserAccountInfoResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserAccountInfoResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -39,7 +38,7 @@ void PlayFabAdminAPI::OnGetUserAccountInfoResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ResetUsers(
+void PlayFabAdminApi::ResetUsers(
     ResetUsersRequest& request,
     ProcessApiCallback<BlankResult> callback,
     ErrorCallback errorCallback,
@@ -47,11 +46,11 @@ void PlayFabAdminAPI::ResetUsers(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ResetUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetUsersResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ResetUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetUsersResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnResetUsersResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnResetUsersResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -69,7 +68,7 @@ void PlayFabAdminAPI::OnResetUsersResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SendAccountRecoveryEmail(
+void PlayFabAdminApi::SendAccountRecoveryEmail(
     SendAccountRecoveryEmailRequest& request,
     ProcessApiCallback<SendAccountRecoveryEmailResult> callback,
     ErrorCallback errorCallback,
@@ -77,11 +76,11 @@ void PlayFabAdminAPI::SendAccountRecoveryEmail(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SendAccountRecoveryEmail"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSendAccountRecoveryEmailResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SendAccountRecoveryEmail"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSendAccountRecoveryEmailResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSendAccountRecoveryEmailResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSendAccountRecoveryEmailResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -99,7 +98,7 @@ void PlayFabAdminAPI::OnSendAccountRecoveryEmailResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateUserTitleDisplayName(
+void PlayFabAdminApi::UpdateUserTitleDisplayName(
     UpdateUserTitleDisplayNameRequest& request,
     ProcessApiCallback<UpdateUserTitleDisplayNameResult> callback,
     ErrorCallback errorCallback,
@@ -107,11 +106,11 @@ void PlayFabAdminAPI::UpdateUserTitleDisplayName(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserTitleDisplayName"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserTitleDisplayNameResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserTitleDisplayName"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserTitleDisplayNameResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserTitleDisplayNameResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserTitleDisplayNameResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -129,7 +128,7 @@ void PlayFabAdminAPI::OnUpdateUserTitleDisplayNameResult(PlayFabRequest* request
     }
 }
 
-void PlayFabAdminAPI::CreatePlayerStatisticDefinition(
+void PlayFabAdminApi::CreatePlayerStatisticDefinition(
     CreatePlayerStatisticDefinitionRequest& request,
     ProcessApiCallback<CreatePlayerStatisticDefinitionResult> callback,
     ErrorCallback errorCallback,
@@ -137,11 +136,11 @@ void PlayFabAdminAPI::CreatePlayerStatisticDefinition(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/CreatePlayerStatisticDefinition"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnCreatePlayerStatisticDefinitionResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/CreatePlayerStatisticDefinition"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnCreatePlayerStatisticDefinitionResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnCreatePlayerStatisticDefinitionResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnCreatePlayerStatisticDefinitionResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -159,7 +158,7 @@ void PlayFabAdminAPI::OnCreatePlayerStatisticDefinitionResult(PlayFabRequest* re
     }
 }
 
-void PlayFabAdminAPI::DeleteUsers(
+void PlayFabAdminApi::DeleteUsers(
     DeleteUsersRequest& request,
     ProcessApiCallback<DeleteUsersResult> callback,
     ErrorCallback errorCallback,
@@ -167,11 +166,11 @@ void PlayFabAdminAPI::DeleteUsers(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/DeleteUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnDeleteUsersResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/DeleteUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnDeleteUsersResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnDeleteUsersResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnDeleteUsersResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -189,7 +188,7 @@ void PlayFabAdminAPI::OnDeleteUsersResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetDataReport(
+void PlayFabAdminApi::GetDataReport(
     GetDataReportRequest& request,
     ProcessApiCallback<GetDataReportResult> callback,
     ErrorCallback errorCallback,
@@ -197,11 +196,11 @@ void PlayFabAdminAPI::GetDataReport(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetDataReport"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetDataReportResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetDataReport"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetDataReportResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetDataReportResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetDataReportResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -219,19 +218,19 @@ void PlayFabAdminAPI::OnGetDataReportResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetPlayerStatisticDefinitions(
-    
+void PlayFabAdminApi::GetPlayerStatisticDefinitions(
+
     ProcessApiCallback<GetPlayerStatisticDefinitionsResult> callback,
     ErrorCallback errorCallback,
     void* customData
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetPlayerStatisticDefinitions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, "", customData, callback, errorCallback, OnGetPlayerStatisticDefinitionsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetPlayerStatisticDefinitions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, "", customData, callback, errorCallback, OnGetPlayerStatisticDefinitionsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetPlayerStatisticDefinitionsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetPlayerStatisticDefinitionsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -249,7 +248,7 @@ void PlayFabAdminAPI::OnGetPlayerStatisticDefinitionsResult(PlayFabRequest* requ
     }
 }
 
-void PlayFabAdminAPI::GetPlayerStatisticVersions(
+void PlayFabAdminApi::GetPlayerStatisticVersions(
     GetPlayerStatisticVersionsRequest& request,
     ProcessApiCallback<GetPlayerStatisticVersionsResult> callback,
     ErrorCallback errorCallback,
@@ -257,11 +256,11 @@ void PlayFabAdminAPI::GetPlayerStatisticVersions(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetPlayerStatisticVersions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetPlayerStatisticVersionsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetPlayerStatisticVersions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetPlayerStatisticVersionsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetPlayerStatisticVersionsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetPlayerStatisticVersionsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -279,7 +278,7 @@ void PlayFabAdminAPI::OnGetPlayerStatisticVersionsResult(PlayFabRequest* request
     }
 }
 
-void PlayFabAdminAPI::GetUserData(
+void PlayFabAdminApi::GetUserData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -287,11 +286,11 @@ void PlayFabAdminAPI::GetUserData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -309,7 +308,7 @@ void PlayFabAdminAPI::OnGetUserDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetUserInternalData(
+void PlayFabAdminApi::GetUserInternalData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -317,11 +316,11 @@ void PlayFabAdminAPI::GetUserInternalData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserInternalDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserInternalDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserInternalDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserInternalDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -339,7 +338,7 @@ void PlayFabAdminAPI::OnGetUserInternalDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetUserPublisherData(
+void PlayFabAdminApi::GetUserPublisherData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -347,11 +346,11 @@ void PlayFabAdminAPI::GetUserPublisherData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserPublisherDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserPublisherDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -369,7 +368,7 @@ void PlayFabAdminAPI::OnGetUserPublisherDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetUserPublisherInternalData(
+void PlayFabAdminApi::GetUserPublisherInternalData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -377,11 +376,11 @@ void PlayFabAdminAPI::GetUserPublisherInternalData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserPublisherInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherInternalDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserPublisherInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherInternalDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserPublisherInternalDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserPublisherInternalDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -399,7 +398,7 @@ void PlayFabAdminAPI::OnGetUserPublisherInternalDataResult(PlayFabRequest* reque
     }
 }
 
-void PlayFabAdminAPI::GetUserPublisherReadOnlyData(
+void PlayFabAdminApi::GetUserPublisherReadOnlyData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -407,11 +406,11 @@ void PlayFabAdminAPI::GetUserPublisherReadOnlyData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserPublisherReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherReadOnlyDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserPublisherReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserPublisherReadOnlyDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserPublisherReadOnlyDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserPublisherReadOnlyDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -429,7 +428,7 @@ void PlayFabAdminAPI::OnGetUserPublisherReadOnlyDataResult(PlayFabRequest* reque
     }
 }
 
-void PlayFabAdminAPI::GetUserReadOnlyData(
+void PlayFabAdminApi::GetUserReadOnlyData(
     GetUserDataRequest& request,
     ProcessApiCallback<GetUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -437,11 +436,11 @@ void PlayFabAdminAPI::GetUserReadOnlyData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserReadOnlyDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserReadOnlyDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserReadOnlyDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserReadOnlyDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -459,7 +458,7 @@ void PlayFabAdminAPI::OnGetUserReadOnlyDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::IncrementPlayerStatisticVersion(
+void PlayFabAdminApi::IncrementPlayerStatisticVersion(
     IncrementPlayerStatisticVersionRequest& request,
     ProcessApiCallback<IncrementPlayerStatisticVersionResult> callback,
     ErrorCallback errorCallback,
@@ -467,11 +466,11 @@ void PlayFabAdminAPI::IncrementPlayerStatisticVersion(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/IncrementPlayerStatisticVersion"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnIncrementPlayerStatisticVersionResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/IncrementPlayerStatisticVersion"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnIncrementPlayerStatisticVersionResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnIncrementPlayerStatisticVersionResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnIncrementPlayerStatisticVersionResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -489,37 +488,7 @@ void PlayFabAdminAPI::OnIncrementPlayerStatisticVersionResult(PlayFabRequest* re
     }
 }
 
-void PlayFabAdminAPI::RefundPurchase(
-    RefundPurchaseRequest& request,
-    ProcessApiCallback<RefundPurchaseResponse> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/RefundPurchase"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRefundPurchaseResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabAdminAPI::OnRefundPurchaseResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        RefundPurchaseResponse* outResult = new RefundPurchaseResponse;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<RefundPurchaseResponse> successCallback = reinterpret_cast<ProcessApiCallback<RefundPurchaseResponse>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabAdminAPI::ResetUserStatistics(
+void PlayFabAdminApi::ResetUserStatistics(
     ResetUserStatisticsRequest& request,
     ProcessApiCallback<ResetUserStatisticsResult> callback,
     ErrorCallback errorCallback,
@@ -527,11 +496,11 @@ void PlayFabAdminAPI::ResetUserStatistics(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ResetUserStatistics"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetUserStatisticsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ResetUserStatistics"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetUserStatisticsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnResetUserStatisticsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnResetUserStatisticsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -549,37 +518,7 @@ void PlayFabAdminAPI::OnResetUserStatisticsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ResolvePurchaseDispute(
-    ResolvePurchaseDisputeRequest& request,
-    ProcessApiCallback<ResolvePurchaseDisputeResponse> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ResolvePurchaseDispute"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResolvePurchaseDisputeResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabAdminAPI::OnResolvePurchaseDisputeResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        ResolvePurchaseDisputeResponse* outResult = new ResolvePurchaseDisputeResponse;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<ResolvePurchaseDisputeResponse> successCallback = reinterpret_cast<ProcessApiCallback<ResolvePurchaseDisputeResponse>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
-void PlayFabAdminAPI::UpdatePlayerStatisticDefinition(
+void PlayFabAdminApi::UpdatePlayerStatisticDefinition(
     UpdatePlayerStatisticDefinitionRequest& request,
     ProcessApiCallback<UpdatePlayerStatisticDefinitionResult> callback,
     ErrorCallback errorCallback,
@@ -587,11 +526,11 @@ void PlayFabAdminAPI::UpdatePlayerStatisticDefinition(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdatePlayerStatisticDefinition"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdatePlayerStatisticDefinitionResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdatePlayerStatisticDefinition"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdatePlayerStatisticDefinitionResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdatePlayerStatisticDefinitionResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdatePlayerStatisticDefinitionResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -609,7 +548,7 @@ void PlayFabAdminAPI::OnUpdatePlayerStatisticDefinitionResult(PlayFabRequest* re
     }
 }
 
-void PlayFabAdminAPI::UpdateUserData(
+void PlayFabAdminApi::UpdateUserData(
     UpdateUserDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -617,11 +556,11 @@ void PlayFabAdminAPI::UpdateUserData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -639,7 +578,7 @@ void PlayFabAdminAPI::OnUpdateUserDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateUserInternalData(
+void PlayFabAdminApi::UpdateUserInternalData(
     UpdateUserInternalDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -647,11 +586,11 @@ void PlayFabAdminAPI::UpdateUserInternalData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserInternalDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserInternalDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserInternalDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserInternalDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -669,7 +608,7 @@ void PlayFabAdminAPI::OnUpdateUserInternalDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateUserPublisherData(
+void PlayFabAdminApi::UpdateUserPublisherData(
     UpdateUserDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -677,11 +616,11 @@ void PlayFabAdminAPI::UpdateUserPublisherData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserPublisherDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserPublisherDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -699,7 +638,7 @@ void PlayFabAdminAPI::OnUpdateUserPublisherDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateUserPublisherInternalData(
+void PlayFabAdminApi::UpdateUserPublisherInternalData(
     UpdateUserInternalDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -707,11 +646,11 @@ void PlayFabAdminAPI::UpdateUserPublisherInternalData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserPublisherInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherInternalDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserPublisherInternalData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherInternalDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserPublisherInternalDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserPublisherInternalDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -729,7 +668,7 @@ void PlayFabAdminAPI::OnUpdateUserPublisherInternalDataResult(PlayFabRequest* re
     }
 }
 
-void PlayFabAdminAPI::UpdateUserPublisherReadOnlyData(
+void PlayFabAdminApi::UpdateUserPublisherReadOnlyData(
     UpdateUserDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -737,11 +676,11 @@ void PlayFabAdminAPI::UpdateUserPublisherReadOnlyData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserPublisherReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherReadOnlyDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserPublisherReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserPublisherReadOnlyDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserPublisherReadOnlyDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserPublisherReadOnlyDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -759,7 +698,7 @@ void PlayFabAdminAPI::OnUpdateUserPublisherReadOnlyDataResult(PlayFabRequest* re
     }
 }
 
-void PlayFabAdminAPI::UpdateUserReadOnlyData(
+void PlayFabAdminApi::UpdateUserReadOnlyData(
     UpdateUserDataRequest& request,
     ProcessApiCallback<UpdateUserDataResult> callback,
     ErrorCallback errorCallback,
@@ -767,11 +706,11 @@ void PlayFabAdminAPI::UpdateUserReadOnlyData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateUserReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserReadOnlyDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateUserReadOnlyData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateUserReadOnlyDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateUserReadOnlyDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateUserReadOnlyDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -789,7 +728,7 @@ void PlayFabAdminAPI::OnUpdateUserReadOnlyDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::AddNews(
+void PlayFabAdminApi::AddNews(
     AddNewsRequest& request,
     ProcessApiCallback<AddNewsResult> callback,
     ErrorCallback errorCallback,
@@ -797,11 +736,11 @@ void PlayFabAdminAPI::AddNews(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/AddNews"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddNewsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/AddNews"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddNewsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnAddNewsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnAddNewsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -819,7 +758,7 @@ void PlayFabAdminAPI::OnAddNewsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::AddVirtualCurrencyTypes(
+void PlayFabAdminApi::AddVirtualCurrencyTypes(
     AddVirtualCurrencyTypesRequest& request,
     ProcessApiCallback<BlankResult> callback,
     ErrorCallback errorCallback,
@@ -827,11 +766,11 @@ void PlayFabAdminAPI::AddVirtualCurrencyTypes(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/AddVirtualCurrencyTypes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddVirtualCurrencyTypesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/AddVirtualCurrencyTypes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddVirtualCurrencyTypesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnAddVirtualCurrencyTypesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnAddVirtualCurrencyTypesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -849,7 +788,7 @@ void PlayFabAdminAPI::OnAddVirtualCurrencyTypesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetCatalogItems(
+void PlayFabAdminApi::GetCatalogItems(
     GetCatalogItemsRequest& request,
     ProcessApiCallback<GetCatalogItemsResult> callback,
     ErrorCallback errorCallback,
@@ -857,11 +796,11 @@ void PlayFabAdminAPI::GetCatalogItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetCatalogItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetCatalogItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetCatalogItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetCatalogItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -879,7 +818,7 @@ void PlayFabAdminAPI::OnGetCatalogItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetRandomResultTables(
+void PlayFabAdminApi::GetRandomResultTables(
     GetRandomResultTablesRequest& request,
     ProcessApiCallback<GetRandomResultTablesResult> callback,
     ErrorCallback errorCallback,
@@ -887,11 +826,11 @@ void PlayFabAdminAPI::GetRandomResultTables(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetRandomResultTables"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetRandomResultTablesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetRandomResultTables"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetRandomResultTablesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetRandomResultTablesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetRandomResultTablesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -909,7 +848,7 @@ void PlayFabAdminAPI::OnGetRandomResultTablesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetStoreItems(
+void PlayFabAdminApi::GetStoreItems(
     GetStoreItemsRequest& request,
     ProcessApiCallback<GetStoreItemsResult> callback,
     ErrorCallback errorCallback,
@@ -917,11 +856,11 @@ void PlayFabAdminAPI::GetStoreItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetStoreItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetStoreItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetStoreItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetStoreItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -939,7 +878,7 @@ void PlayFabAdminAPI::OnGetStoreItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetTitleData(
+void PlayFabAdminApi::GetTitleData(
     GetTitleDataRequest& request,
     ProcessApiCallback<GetTitleDataResult> callback,
     ErrorCallback errorCallback,
@@ -947,11 +886,11 @@ void PlayFabAdminAPI::GetTitleData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetTitleData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetTitleDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetTitleData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetTitleDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetTitleDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetTitleDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -969,19 +908,19 @@ void PlayFabAdminAPI::OnGetTitleDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ListVirtualCurrencyTypes(
-    
+void PlayFabAdminApi::ListVirtualCurrencyTypes(
+
     ProcessApiCallback<ListVirtualCurrencyTypesResult> callback,
     ErrorCallback errorCallback,
     void* customData
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ListVirtualCurrencyTypes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, "", customData, callback, errorCallback, OnListVirtualCurrencyTypesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ListVirtualCurrencyTypes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, "", customData, callback, errorCallback, OnListVirtualCurrencyTypesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnListVirtualCurrencyTypesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnListVirtualCurrencyTypesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -999,7 +938,7 @@ void PlayFabAdminAPI::OnListVirtualCurrencyTypesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetCatalogItems(
+void PlayFabAdminApi::SetCatalogItems(
     UpdateCatalogItemsRequest& request,
     ProcessApiCallback<UpdateCatalogItemsResult> callback,
     ErrorCallback errorCallback,
@@ -1007,11 +946,11 @@ void PlayFabAdminAPI::SetCatalogItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetCatalogItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetCatalogItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetCatalogItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetCatalogItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1029,7 +968,7 @@ void PlayFabAdminAPI::OnSetCatalogItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetStoreItems(
+void PlayFabAdminApi::SetStoreItems(
     UpdateStoreItemsRequest& request,
     ProcessApiCallback<UpdateStoreItemsResult> callback,
     ErrorCallback errorCallback,
@@ -1037,11 +976,11 @@ void PlayFabAdminAPI::SetStoreItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetStoreItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetStoreItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetStoreItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetStoreItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1059,7 +998,7 @@ void PlayFabAdminAPI::OnSetStoreItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetTitleData(
+void PlayFabAdminApi::SetTitleData(
     SetTitleDataRequest& request,
     ProcessApiCallback<SetTitleDataResult> callback,
     ErrorCallback errorCallback,
@@ -1067,11 +1006,11 @@ void PlayFabAdminAPI::SetTitleData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetTitleData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetTitleDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetTitleData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetTitleDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetTitleDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetTitleDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1089,7 +1028,7 @@ void PlayFabAdminAPI::OnSetTitleDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetupPushNotification(
+void PlayFabAdminApi::SetupPushNotification(
     SetupPushNotificationRequest& request,
     ProcessApiCallback<SetupPushNotificationResult> callback,
     ErrorCallback errorCallback,
@@ -1097,11 +1036,11 @@ void PlayFabAdminAPI::SetupPushNotification(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetupPushNotification"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetupPushNotificationResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetupPushNotification"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetupPushNotificationResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetupPushNotificationResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetupPushNotificationResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1119,7 +1058,7 @@ void PlayFabAdminAPI::OnSetupPushNotificationResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateCatalogItems(
+void PlayFabAdminApi::UpdateCatalogItems(
     UpdateCatalogItemsRequest& request,
     ProcessApiCallback<UpdateCatalogItemsResult> callback,
     ErrorCallback errorCallback,
@@ -1127,11 +1066,11 @@ void PlayFabAdminAPI::UpdateCatalogItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateCatalogItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateCatalogItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateCatalogItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateCatalogItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateCatalogItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1149,7 +1088,7 @@ void PlayFabAdminAPI::OnUpdateCatalogItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateRandomResultTables(
+void PlayFabAdminApi::UpdateRandomResultTables(
     UpdateRandomResultTablesRequest& request,
     ProcessApiCallback<UpdateRandomResultTablesResult> callback,
     ErrorCallback errorCallback,
@@ -1157,11 +1096,11 @@ void PlayFabAdminAPI::UpdateRandomResultTables(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateRandomResultTables"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateRandomResultTablesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateRandomResultTables"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateRandomResultTablesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateRandomResultTablesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateRandomResultTablesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1179,7 +1118,7 @@ void PlayFabAdminAPI::OnUpdateRandomResultTablesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateStoreItems(
+void PlayFabAdminApi::UpdateStoreItems(
     UpdateStoreItemsRequest& request,
     ProcessApiCallback<UpdateStoreItemsResult> callback,
     ErrorCallback errorCallback,
@@ -1187,11 +1126,11 @@ void PlayFabAdminAPI::UpdateStoreItems(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateStoreItemsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateStoreItems"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateStoreItemsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateStoreItemsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateStoreItemsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1209,7 +1148,7 @@ void PlayFabAdminAPI::OnUpdateStoreItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::AddUserVirtualCurrency(
+void PlayFabAdminApi::AddUserVirtualCurrency(
     AddUserVirtualCurrencyRequest& request,
     ProcessApiCallback<ModifyUserVirtualCurrencyResult> callback,
     ErrorCallback errorCallback,
@@ -1217,11 +1156,11 @@ void PlayFabAdminAPI::AddUserVirtualCurrency(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/AddUserVirtualCurrency"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddUserVirtualCurrencyResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/AddUserVirtualCurrency"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddUserVirtualCurrencyResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnAddUserVirtualCurrencyResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnAddUserVirtualCurrencyResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1239,7 +1178,7 @@ void PlayFabAdminAPI::OnAddUserVirtualCurrencyResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetUserInventory(
+void PlayFabAdminApi::GetUserInventory(
     GetUserInventoryRequest& request,
     ProcessApiCallback<GetUserInventoryResult> callback,
     ErrorCallback errorCallback,
@@ -1247,11 +1186,11 @@ void PlayFabAdminAPI::GetUserInventory(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetUserInventory"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserInventoryResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetUserInventory"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetUserInventoryResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetUserInventoryResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetUserInventoryResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1269,7 +1208,7 @@ void PlayFabAdminAPI::OnGetUserInventoryResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GrantItemsToUsers(
+void PlayFabAdminApi::GrantItemsToUsers(
     GrantItemsToUsersRequest& request,
     ProcessApiCallback<GrantItemsToUsersResult> callback,
     ErrorCallback errorCallback,
@@ -1277,11 +1216,11 @@ void PlayFabAdminAPI::GrantItemsToUsers(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GrantItemsToUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGrantItemsToUsersResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GrantItemsToUsers"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGrantItemsToUsersResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGrantItemsToUsersResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGrantItemsToUsersResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1299,7 +1238,7 @@ void PlayFabAdminAPI::OnGrantItemsToUsersResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::RevokeInventoryItem(
+void PlayFabAdminApi::RevokeInventoryItem(
     RevokeInventoryItemRequest& request,
     ProcessApiCallback<RevokeInventoryResult> callback,
     ErrorCallback errorCallback,
@@ -1307,11 +1246,11 @@ void PlayFabAdminAPI::RevokeInventoryItem(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/RevokeInventoryItem"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRevokeInventoryItemResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/RevokeInventoryItem"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRevokeInventoryItemResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnRevokeInventoryItemResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnRevokeInventoryItemResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1329,7 +1268,7 @@ void PlayFabAdminAPI::OnRevokeInventoryItemResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SubtractUserVirtualCurrency(
+void PlayFabAdminApi::SubtractUserVirtualCurrency(
     SubtractUserVirtualCurrencyRequest& request,
     ProcessApiCallback<ModifyUserVirtualCurrencyResult> callback,
     ErrorCallback errorCallback,
@@ -1337,11 +1276,11 @@ void PlayFabAdminAPI::SubtractUserVirtualCurrency(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SubtractUserVirtualCurrency"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSubtractUserVirtualCurrencyResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SubtractUserVirtualCurrency"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSubtractUserVirtualCurrencyResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSubtractUserVirtualCurrencyResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSubtractUserVirtualCurrencyResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1359,7 +1298,7 @@ void PlayFabAdminAPI::OnSubtractUserVirtualCurrencyResult(PlayFabRequest* reques
     }
 }
 
-void PlayFabAdminAPI::GetMatchmakerGameInfo(
+void PlayFabAdminApi::GetMatchmakerGameInfo(
     GetMatchmakerGameInfoRequest& request,
     ProcessApiCallback<GetMatchmakerGameInfoResult> callback,
     ErrorCallback errorCallback,
@@ -1367,11 +1306,11 @@ void PlayFabAdminAPI::GetMatchmakerGameInfo(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetMatchmakerGameInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetMatchmakerGameInfoResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetMatchmakerGameInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetMatchmakerGameInfoResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetMatchmakerGameInfoResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetMatchmakerGameInfoResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1389,7 +1328,7 @@ void PlayFabAdminAPI::OnGetMatchmakerGameInfoResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetMatchmakerGameModes(
+void PlayFabAdminApi::GetMatchmakerGameModes(
     GetMatchmakerGameModesRequest& request,
     ProcessApiCallback<GetMatchmakerGameModesResult> callback,
     ErrorCallback errorCallback,
@@ -1397,11 +1336,11 @@ void PlayFabAdminAPI::GetMatchmakerGameModes(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetMatchmakerGameModes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetMatchmakerGameModesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetMatchmakerGameModes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetMatchmakerGameModesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetMatchmakerGameModesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetMatchmakerGameModesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1419,7 +1358,7 @@ void PlayFabAdminAPI::OnGetMatchmakerGameModesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ModifyMatchmakerGameModes(
+void PlayFabAdminApi::ModifyMatchmakerGameModes(
     ModifyMatchmakerGameModesRequest& request,
     ProcessApiCallback<ModifyMatchmakerGameModesResult> callback,
     ErrorCallback errorCallback,
@@ -1427,11 +1366,11 @@ void PlayFabAdminAPI::ModifyMatchmakerGameModes(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ModifyMatchmakerGameModes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnModifyMatchmakerGameModesResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ModifyMatchmakerGameModes"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnModifyMatchmakerGameModesResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnModifyMatchmakerGameModesResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnModifyMatchmakerGameModesResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1449,7 +1388,7 @@ void PlayFabAdminAPI::OnModifyMatchmakerGameModesResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::AddServerBuild(
+void PlayFabAdminApi::AddServerBuild(
     AddServerBuildRequest& request,
     ProcessApiCallback<AddServerBuildResult> callback,
     ErrorCallback errorCallback,
@@ -1457,11 +1396,11 @@ void PlayFabAdminAPI::AddServerBuild(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/AddServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddServerBuildResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/AddServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnAddServerBuildResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnAddServerBuildResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnAddServerBuildResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1479,7 +1418,7 @@ void PlayFabAdminAPI::OnAddServerBuildResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetServerBuildInfo(
+void PlayFabAdminApi::GetServerBuildInfo(
     GetServerBuildInfoRequest& request,
     ProcessApiCallback<GetServerBuildInfoResult> callback,
     ErrorCallback errorCallback,
@@ -1487,11 +1426,11 @@ void PlayFabAdminAPI::GetServerBuildInfo(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetServerBuildInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetServerBuildInfoResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetServerBuildInfo"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetServerBuildInfoResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetServerBuildInfoResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetServerBuildInfoResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1509,7 +1448,7 @@ void PlayFabAdminAPI::OnGetServerBuildInfoResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetServerBuildUploadUrl(
+void PlayFabAdminApi::GetServerBuildUploadUrl(
     GetServerBuildUploadURLRequest& request,
     ProcessApiCallback<GetServerBuildUploadURLResult> callback,
     ErrorCallback errorCallback,
@@ -1517,11 +1456,11 @@ void PlayFabAdminAPI::GetServerBuildUploadUrl(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetServerBuildUploadUrl"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetServerBuildUploadUrlResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetServerBuildUploadUrl"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetServerBuildUploadUrlResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetServerBuildUploadUrlResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetServerBuildUploadUrlResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1539,19 +1478,19 @@ void PlayFabAdminAPI::OnGetServerBuildUploadUrlResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ListServerBuilds(
-    
+void PlayFabAdminApi::ListServerBuilds(
+
     ProcessApiCallback<ListBuildsResult> callback,
     ErrorCallback errorCallback,
     void* customData
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ListServerBuilds"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, "", customData, callback, errorCallback, OnListServerBuildsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ListServerBuilds"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, "", customData, callback, errorCallback, OnListServerBuildsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnListServerBuildsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnListServerBuildsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1569,7 +1508,7 @@ void PlayFabAdminAPI::OnListServerBuildsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ModifyServerBuild(
+void PlayFabAdminApi::ModifyServerBuild(
     ModifyServerBuildRequest& request,
     ProcessApiCallback<ModifyServerBuildResult> callback,
     ErrorCallback errorCallback,
@@ -1577,11 +1516,11 @@ void PlayFabAdminAPI::ModifyServerBuild(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ModifyServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnModifyServerBuildResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ModifyServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnModifyServerBuildResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnModifyServerBuildResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnModifyServerBuildResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1599,7 +1538,7 @@ void PlayFabAdminAPI::OnModifyServerBuildResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::RemoveServerBuild(
+void PlayFabAdminApi::RemoveServerBuild(
     RemoveServerBuildRequest& request,
     ProcessApiCallback<RemoveServerBuildResult> callback,
     ErrorCallback errorCallback,
@@ -1607,11 +1546,11 @@ void PlayFabAdminAPI::RemoveServerBuild(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/RemoveServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRemoveServerBuildResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/RemoveServerBuild"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRemoveServerBuildResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnRemoveServerBuildResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnRemoveServerBuildResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1629,7 +1568,7 @@ void PlayFabAdminAPI::OnRemoveServerBuildResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetPublisherData(
+void PlayFabAdminApi::GetPublisherData(
     GetPublisherDataRequest& request,
     ProcessApiCallback<GetPublisherDataResult> callback,
     ErrorCallback errorCallback,
@@ -1637,11 +1576,11 @@ void PlayFabAdminAPI::GetPublisherData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetPublisherDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetPublisherDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetPublisherDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetPublisherDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1659,7 +1598,7 @@ void PlayFabAdminAPI::OnGetPublisherDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetPublisherData(
+void PlayFabAdminApi::SetPublisherData(
     SetPublisherDataRequest& request,
     ProcessApiCallback<SetPublisherDataResult> callback,
     ErrorCallback errorCallback,
@@ -1667,11 +1606,11 @@ void PlayFabAdminAPI::SetPublisherData(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetPublisherDataResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetPublisherData"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetPublisherDataResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetPublisherDataResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetPublisherDataResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1689,7 +1628,7 @@ void PlayFabAdminAPI::OnSetPublisherDataResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetCloudScriptRevision(
+void PlayFabAdminApi::GetCloudScriptRevision(
     GetCloudScriptRevisionRequest& request,
     ProcessApiCallback<GetCloudScriptRevisionResult> callback,
     ErrorCallback errorCallback,
@@ -1697,11 +1636,11 @@ void PlayFabAdminAPI::GetCloudScriptRevision(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetCloudScriptRevision"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetCloudScriptRevisionResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetCloudScriptRevision"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetCloudScriptRevisionResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetCloudScriptRevisionResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetCloudScriptRevisionResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1719,19 +1658,19 @@ void PlayFabAdminAPI::OnGetCloudScriptRevisionResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetCloudScriptVersions(
-    
+void PlayFabAdminApi::GetCloudScriptVersions(
+
     ProcessApiCallback<GetCloudScriptVersionsResult> callback,
     ErrorCallback errorCallback,
     void* customData
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetCloudScriptVersions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, "", customData, callback, errorCallback, OnGetCloudScriptVersionsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetCloudScriptVersions"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, "", customData, callback, errorCallback, OnGetCloudScriptVersionsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetCloudScriptVersionsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetCloudScriptVersionsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1749,7 +1688,7 @@ void PlayFabAdminAPI::OnGetCloudScriptVersionsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::SetPublishedRevision(
+void PlayFabAdminApi::SetPublishedRevision(
     SetPublishedRevisionRequest& request,
     ProcessApiCallback<SetPublishedRevisionResult> callback,
     ErrorCallback errorCallback,
@@ -1757,11 +1696,11 @@ void PlayFabAdminAPI::SetPublishedRevision(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/SetPublishedRevision"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetPublishedRevisionResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetPublishedRevision"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetPublishedRevisionResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnSetPublishedRevisionResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnSetPublishedRevisionResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1779,7 +1718,7 @@ void PlayFabAdminAPI::OnSetPublishedRevisionResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::UpdateCloudScript(
+void PlayFabAdminApi::UpdateCloudScript(
     UpdateCloudScriptRequest& request,
     ProcessApiCallback<UpdateCloudScriptResult> callback,
     ErrorCallback errorCallback,
@@ -1787,11 +1726,11 @@ void PlayFabAdminAPI::UpdateCloudScript(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/UpdateCloudScript"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateCloudScriptResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/UpdateCloudScript"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnUpdateCloudScriptResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnUpdateCloudScriptResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnUpdateCloudScriptResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1809,7 +1748,7 @@ void PlayFabAdminAPI::OnUpdateCloudScriptResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::DeleteContent(
+void PlayFabAdminApi::DeleteContent(
     DeleteContentRequest& request,
     ProcessApiCallback<BlankResult> callback,
     ErrorCallback errorCallback,
@@ -1817,11 +1756,11 @@ void PlayFabAdminAPI::DeleteContent(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/DeleteContent"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnDeleteContentResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/DeleteContent"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnDeleteContentResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnDeleteContentResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnDeleteContentResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1839,7 +1778,7 @@ void PlayFabAdminAPI::OnDeleteContentResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetContentList(
+void PlayFabAdminApi::GetContentList(
     GetContentListRequest& request,
     ProcessApiCallback<GetContentListResult> callback,
     ErrorCallback errorCallback,
@@ -1847,11 +1786,11 @@ void PlayFabAdminAPI::GetContentList(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetContentList"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetContentListResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetContentList"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetContentListResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetContentListResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetContentListResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1869,7 +1808,7 @@ void PlayFabAdminAPI::OnGetContentListResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::GetContentUploadUrl(
+void PlayFabAdminApi::GetContentUploadUrl(
     GetContentUploadUrlRequest& request,
     ProcessApiCallback<GetContentUploadUrlResult> callback,
     ErrorCallback errorCallback,
@@ -1877,11 +1816,11 @@ void PlayFabAdminAPI::GetContentUploadUrl(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/GetContentUploadUrl"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetContentUploadUrlResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/GetContentUploadUrl"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnGetContentUploadUrlResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnGetContentUploadUrlResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnGetContentUploadUrlResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1899,7 +1838,7 @@ void PlayFabAdminAPI::OnGetContentUploadUrlResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminAPI::ResetCharacterStatistics(
+void PlayFabAdminApi::ResetCharacterStatistics(
     ResetCharacterStatisticsRequest& request,
     ProcessApiCallback<ResetCharacterStatisticsResult> callback,
     ErrorCallback errorCallback,
@@ -1907,11 +1846,11 @@ void PlayFabAdminAPI::ResetCharacterStatistics(
     )
 {
 
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::getURL("/Admin/ResetCharacterStatistics"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFab::PlayFabSettings::developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetCharacterStatisticsResult);
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ResetCharacterStatistics"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResetCharacterStatisticsResult);
     PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
 }
 
-void PlayFabAdminAPI::OnResetCharacterStatisticsResult(PlayFabRequest* request)
+void PlayFabAdminApi::OnResetCharacterStatisticsResult(PlayFabRequest* request)
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
@@ -1928,5 +1867,4 @@ void PlayFabAdminAPI::OnResetCharacterStatisticsResult(PlayFabRequest* request)
         delete request;
     }
 }
-
 

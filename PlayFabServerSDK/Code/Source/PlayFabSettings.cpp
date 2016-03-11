@@ -3,14 +3,16 @@
 
 using namespace PlayFab;
 
-const Aws::String PlayFabSettings::playFabSDKVersion = "0.0.160302";
-const Aws::String PlayFabSettings::playFabVersionString = "LumberyardSDK-0.0.160302";
+PlayFabSettings PlayFabSettings::playFabSettings; // Global settings for all Apis
 
-bool PlayFabSettings::useDevelopmentEnvironment = false;
-Aws::String PlayFabSettings::serverURL;
-Aws::String PlayFabSettings::developmentEnvironmentURL = ".playfabsandbox.com";
-Aws::String PlayFabSettings::productionEnvironmentURL = ".playfabapi.com";
-Aws::String PlayFabSettings::titleId;
-ErrorCallback PlayFabSettings::globalErrorHandler = nullptr;
-Aws::String PlayFabSettings::developerSecretKey;
-
+PlayFabSettings::PlayFabSettings() :
+playFabSDKVersion("0.0.160302"),
+playFabVersionString("LumberyardSDK-0.0.160302"),
+useDevelopmentEnvironment(false),
+developmentEnvironmentURL(".playfabsandbox.com"),
+productionEnvironmentURL(".playfabapi.com"),
+titleId(), // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
+globalErrorHandler(nullptr),
+developerSecretKey(), // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
+serverURL()
+{};
