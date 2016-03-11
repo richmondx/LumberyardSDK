@@ -87,9 +87,9 @@ namespace PlayFabApiTest
     class PlayFabApiTestGem : public IPlayFabApiTestGem, IGameFrameworkListener
     {
         ... other gem header code ...
-        static void LoginWithEmail(Aws::String email, Aws::String password); // <--------- ADD THIS LINE
-        static void LoginWithEmailSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData); // <--------- ADD THIS LINE
-        static void LoginWithEmailFail(const PlayFab::PlayFabError& error, void* customData); // <--------- ADD THIS LINE
+        static void PlayFabLogin(); // <--------- ADD THIS LINE
+        static void LoginSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData); // <--------- ADD THIS LINE
+        static void LoginFail(const PlayFab::PlayFabError& error, void* customData); // <--------- ADD THIS LINE
     };
 } // namespace PlayFabApiTest
 ```
@@ -99,7 +99,7 @@ PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
 ... other gem code ...
 
 // ---------------- Add all of this code to your gem.cpp file ---------------- 
-void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmail(Aws::String email, Aws::String password)
+void PlayFabApiTest::PlayFabApiTestGem::PlayFabLogin()
 {
     auto playFabSdkGem = GetISystem()->GetGemManager()->GetGem<PlayFab::IPlayFabSdkGem>();
     if (!playFabSdkGem)
@@ -109,18 +109,34 @@ void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmail(Aws::String email, Aws::S
     }
     auto clientApi = playFabSdkGem->GetClientApi();
 
-    PlayFab::ClientModels::LoginWithEmailAddressRequest request;
-    request.Email = email;
-    request.Password = password;
-    clientApi->LoginWithEmailAddress(request, PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailSuccess, PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailFail);
+    PlayFab::ClientModels::LoginWithCustomIDRequest request;
+    request.CreateAccount = true;
+    request.CustomId = "PlayFabSdkTutorial";
+    clientApi->LoginWithCustomID(request, LoginSuccess, LoginFail);
 }
-void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData)
+void PlayFabApiTest::PlayFabApiTestGem::LoginSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData)
 {
     lastDebugMessage = "Login success: " + result.PlayFabId;
 }
-void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailFail(const PlayFab::PlayFabError& error, void* customData)
+void PlayFabApiTest::PlayFabApiTestGem::LoginFail(const PlayFab::PlayFabError& error, void* customData)
 {
     lastDebugMessage = "Login failed: " + error.ErrorMessage;
+}
+```
+
+Lastly, you will need to call the login function (replace "my@email.com" and "myPassword")
+PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
+```
+... other gem code ...
+void PlayFabApiTest::PlayFabApiTestGem::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
+{
+    ... other gem code ...
+    case ESYSTEM_EVENT_GAME_POST_INIT:
+        if (gEnv->pGame->GetIGameFramework())
+            gEnv->pGame->GetIGameFramework()->RegisterListener(this, "PlayFabSdk Gem", FRAMEWORKLISTENERPRIORITY_HUD);
+        LoginWithEmail("my@email.com", "myPassword"); // <--------- ADD THIS LINE
+        break;
+    ... other gem code ...
 }
 ```
 
@@ -132,6 +148,8 @@ Finally, build and run your project:
 * Dropdown->Build->Build solution.  The first time you do this, it will take a long time.
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
 * TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
+
+Finally, the customId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client)
 
 4. Troubleshooting:
 ----
