@@ -73,7 +73,65 @@ void PlayFabApiTest::PlayFabApiTestGem::OnPostUpdate(float fDeltaTime) // <-----
 4. Adding a login Api call to your gem:
 ----
 
-TODO: Almost done - This section will be complete very soon.
+In this section we will add the code that makes an API call, and activate that code from the setup function of our Gem.
+
+PlayFabApiTestGem.h (Rename "PlayFabApiTestGem" with your own gem name)
+```
+#pragma once
+
+... Other includes ...
+#include <PlayFabClientDataModels.h> // <--------- ADD THIS LINE
+
+namespace PlayFabApiTest
+{
+    class PlayFabApiTestGem : public IPlayFabApiTestGem, IGameFrameworkListener
+    {
+        ... other gem header code ...
+        static void LoginWithEmail(Aws::String email, Aws::String password); // <--------- ADD THIS LINE
+        static void LoginWithEmailSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData); // <--------- ADD THIS LINE
+        static void LoginWithEmailFail(const PlayFab::PlayFabError& error, void* customData); // <--------- ADD THIS LINE
+    };
+} // namespace PlayFabApiTest
+```
+
+PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
+```
+... other gem code ...
+
+// ---------------- Add all of this code to your gem.cpp file ---------------- 
+void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmail(Aws::String email, Aws::String password)
+{
+    auto playFabSdkGem = GetISystem()->GetGemManager()->GetGem<PlayFab::IPlayFabSdkGem>();
+    if (!playFabSdkGem)
+    {
+        lastDebugMessage = "Error in project: Cannot find PlayFab Gem";
+        return;
+    }
+    auto clientApi = playFabSdkGem->GetClientApi();
+
+    PlayFab::ClientModels::LoginWithEmailAddressRequest request;
+    request.Email = email;
+    request.Password = password;
+    clientApi->LoginWithEmailAddress(request, PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailSuccess, PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailFail);
+}
+void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData)
+{
+    lastDebugMessage = "Login success: " + result.PlayFabId;
+}
+void PlayFabApiTest::PlayFabApiTestGem::LoginWithEmailFail(const PlayFab::PlayFabError& error, void* customData)
+{
+    lastDebugMessage = "Login failed: " + error.ErrorMessage;
+}
+```
+
+While following the Amazon tutorial instructions you should have already done several steps.  Double check them now:
+* Your build configuration should be:  "[All] Debug" or "[All] Release"
+* Your build platform should be: "x64"
+Finally, build and run your project:
+* You should have set the "Sandbox/Editor" project as your startup project (under the solutuion, Editor project should be bold)
+* Dropdown->Build->Build solution.  The first time you do this, it will take a long time.
+* Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
+* TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
 
 4. Troubleshooting:
 ----
