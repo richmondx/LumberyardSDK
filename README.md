@@ -50,8 +50,13 @@ Do not mix the client/server/combo files, or your project may not compile.
     * ![1_Launcher](LumberTutorial/1_Launcher.png)
     * ![2_SetupGems](LumberTutorial/2_SetupGems.png)
     * ![3_EnablePlayFab](LumberTutorial/3_EnablePlayFab.png)
+  5. [Optional] Expert Setup
+    * In windows, instead of copying the sdk, you can use a directory symbolic link, with the mklink windows command
+    * git clone the PlayFab LumberyardSdk directly from [GitHub](https://github.com/PlayFab/LumberyardSDK) to a permanent folder: {permPlayFabSdkLocation}
+    * mklink /D {LumberyardLocation}\dev\Gems\PlayFabSdk {permPlayFabSdkLocation}\PlayFabClientSdk
+    * (You must have administrator access on your machine)
+    * This will make it easier to integrate future PlayFab updates
 
-  
 4. Gem-Dependency:
 ----
 If you create your own Gem, you can access PlayFab by adding a Gem-dependency in your gem.json file.
