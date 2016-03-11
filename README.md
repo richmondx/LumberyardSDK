@@ -38,7 +38,7 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 ----
 * **To build a Client**: use the PlayFabClientSDK.
 * **To build a Server**: If your game-server is a separate stand-alone console application, it is possible to use the [C++ WindowsSDK](https://github.com/PlayFab/WindowsSDK).
-If your game-server requires an the game environment, you can also use the PlayFabServerSDK provided with in the Lumberyard SDK.
+If your game-server requires a fully-loaded Lumberyard environment, you can also use the PlayFabServerSDK provided with in the Lumberyard SDK.
 Do not mix the client/server/combo files, or your project may not compile.
 * **To build a Client / Server hybrid**: Create two separate projects, and install each gem separately.  Do not publish any project containing your DeveloperSecretKey - For security reasons you must never expose this value to players
 
