@@ -124,7 +124,6 @@ void PlayFabApiTest::PlayFabApiTestGem::LoginFail(const PlayFab::PlayFabError& e
 }
 ```
 
-Lastly, you will need to call the login function (replace "my@email.com" and "myPassword")
 PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
 ```
 ... other gem code ...
@@ -134,7 +133,7 @@ void PlayFabApiTest::PlayFabApiTestGem::OnSystemEvent(ESystemEvent event, UINT_P
     case ESYSTEM_EVENT_GAME_POST_INIT:
         if (gEnv->pGame->GetIGameFramework())
             gEnv->pGame->GetIGameFramework()->RegisterListener(this, "PlayFabSdk Gem", FRAMEWORKLISTENERPRIORITY_HUD);
-        LoginWithEmail("my@email.com", "myPassword"); // <--------- ADD THIS LINE
+        PlayFabLogin(); // <--------- ADD THIS LINE
         break;
     ... other gem code ...
 }
@@ -149,7 +148,7 @@ Finally, build and run your project:
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
 * TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
 
-Finally, the customId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client)
+Finally, the request.CustomId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.
 
 4. Troubleshooting:
 ----
