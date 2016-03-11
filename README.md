@@ -73,6 +73,7 @@ If you create your own Gem, you can access PlayFab by adding a Gem-dependency in
         }
     ]
 ```
+ * A working example can be found here: https://github.com/PlayFab/LumberyardSDK/blob/master/TestGemClient/gem.json
 
 
 5. Troubleshooting:
