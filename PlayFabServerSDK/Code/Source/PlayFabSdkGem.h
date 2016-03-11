@@ -2,16 +2,8 @@
 
 #include "IPlayFabSdkGem.h"
 #include "IGameFramework.h"
-#include <aws/core/utils/memory/stl/AWSString.h>
 
-//#include <IFlowSystem.h>
-//#include "../FlowSystem.h"
-//#include "../FlowSerialize.h"
-//#include <IActorSystem.h>
-//#include <FlowSystem/LambdaFlowGraph/BaseLambdaFlowNode.h>
-//#include <sstream>
-
-namespace PlayFabSdk
+namespace PlayFab
 {
     class PlayFabSdkGem : public IPlayFabSdkGem, IGameFrameworkListener
     {
@@ -21,6 +13,10 @@ namespace PlayFabSdk
         void OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam) override;
         void OnPostUpdate(float fDeltaTime) override;
 
-        static Aws::String lastDebugMessage;
+        int GetPendingCalls() override;
+        PlayFabSettings* GetPlayFabSettings() override;
+        IPlayFabAdminApi* GetAdminApi() override;
+        IPlayFabMatchmakerApi* GetMatchmakerApi() override;
+        IPlayFabServerApi* GetServerApi() override;
     };
-} // namespace PlayFabSdk
+} // namespace PlayFab
