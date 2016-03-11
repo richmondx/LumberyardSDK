@@ -9,18 +9,20 @@ In this guide, we will describe making your first PlayFab Api call using the Pla
 
 1. [Install lumberyard](https://aws.amazon.com/lumberyard/downloads/)
 2. Read and finish the "Programming" section in this link to learn how to set up your Lumberyard development environment: https://gamedev.amazon.com/forums/tutorials
-3. Please follow steps 2 and 3 in the  to get Lumberyard and the PlayFab Sdk installed
+3. Please follow steps 2 and 3 in the Readme to get Lumberyard and the PlayFab Sdk installed:
+ * https://github.com/PlayFab/LumberyardSDK/blob/master/README.md#2-prerequisites
+ * https://github.com/PlayFab/LumberyardSDK/blob/master/README.md#3-gem-installation
 4. It is expected that you have read and understand all "Programming" tutorials on this page: https://gamedev.amazon.com/forums/tutorials
 
 2. Your Lumberyard Gem
 ----
 
-There is an excellent tutorial on creating your own gem labeled "Creating A Gem With Code" on this page: https://gamedev.amazon.com/forums/tutorials
-Before you proceed, you must have your own gem set up, and it is highly suggested you have a OnPostUpdate function printing text to the screen.
-
-After you have set up your own gem, Follow step 4 in the [Readme](README.md) to add a dependency to the PlayFabSdk gem, and enable PlayFab api calls in your gem.
-
-At this point you are ready to make your first api call
+* There is an excellent tutorial on creating your own gem labeled "Creating A Gem With Code" on this page:
+ * https://gamedev.amazon.com/forums/tutorials
+* Before you proceed, you must have your own gem set up, and it is highly suggested you have a OnPostUpdate function printing text to the screen.
+* After you have set up your own gem, Follow step 4 in the Readme to add a dependency to the PlayFabSdk gem, and enable PlayFab api calls in your gem:
+ * https://github.com/PlayFab/LumberyardSDK/blob/master/README.md#4-gem-dependency
+* At this point you are ready to make your first api call
 
 3. Prepare your gem to report API-Call results:
 ----
