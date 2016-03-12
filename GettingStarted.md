@@ -123,14 +123,17 @@ public:
     static void PlayFabLogin()
     {
         auto playFabSdkGem = GetISystem()->GetGemManager()->GetGem<PlayFab::IPlayFabSdkGem>();
-        if (!playFabSdkGem)
+        auto apiTestGem = GetISystem()->GetGemManager()->GetGem<PlayFabApiTest::IPlayFabApiTestGem>();
+        if (!playFabSdkGem || !apiTestGem)
         {
             PlayFabApiTest::PlayFabApiTestGem::lastDebugMessage = "Error in project: Cannot find PlayFab Gem";
             return;
         }
         auto clientApi = playFabSdkGem->GetClientApi();
 
-        PlayFab::ClientModels::LoginWithCustomIDRequest request;
+        playFabSdkGem->GetPlayFabSettings()->titleId = "6195"; // <-------------- Use your PlayFab titleId here
+        PlayFabApiTest::PlayFabApiTestGem::lastDebugMessage = "Logging in...";
+            PlayFab::ClientModels::LoginWithCustomIDRequest request;
         request.CreateAccount = true;
         request.CustomId = "PlayFabSdkTutorial";
         clientApi->LoginWithCustomID(request, LoginSuccess, LoginFail);
@@ -156,7 +159,24 @@ While following the Amazon tutorial instructions you should have already done se
 Finally, build and run your project:
 * Dropdown->Build->Build solution.  The first time you do this, it will take a long time.
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
-* TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
+
+These last steps are done in-editor.  We will be borrowing Amazon's existing UiDemo project, and slightly modifying it to perform our login.
+
+* Use the screenshot below to open the Amazon UiDemo project:
+* ![GetStarted1](LumberTutorial/GetStarted1.png)
+* Ignore and close any popup windows, errors, or warnings.  If you have not modified or broken the UiDemo project in other tutorials, they shouldn't affect this tutorial
+* Select the dropdown menu: View->Open View Pane->Flow Graph.  This will open a new window.
+* Use the screenshot below to open the UiDemoFlowGraph
+* ![GetStarted2](LumberTutorial/GetStarted2.png)
+* Use the screenshot below to a PlayFabLogin flow node (This is the node we defined with the CFlowNode_LoginTest class)
+* ![GetStarted3](LumberTutorial/GetStarted3.png)
+* Use the screenshot below to activate our PlayFabLogin flow node immediately when the game starts
+* ![GetStarted4](LumberTutorial/GetStarted4.png)
+* Close the Flow Graph window, and return to the main editor window
+* Press Ctrl+G to start the game
+* If you see the text in the following screenshot, you have successfully logged a client into PlayFab using the LumberyardSdk
+* ![GetStarted5](LumberTutorial/GetStarted5.png)
+* Congratulations!
 
 You should note, the "request.CustomId" for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.  Editors note: I usually prefer [LoginWithEmailAddress](https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress), but Facebook, or device-specific logins are also very common/useful when possible.  You should only use [LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID) for testing, or when you can provide a guaranteed unique (and secure) string for every client running the game.  It is not suitable to use username as customID.  For that pattern, use [LoginWithPlayFab](https://api.playfab.com/Documentation/Client/method/LoginWithPlayFab).
 
