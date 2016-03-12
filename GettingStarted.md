@@ -158,7 +158,7 @@ Finally, build and run your project:
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
 * TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
 
-You should note, the request.CustomId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.  Editors note: I usually prefer [LoginWithEmailAddress](https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress), but Facebook, or device-specific logins are also very common/useful when possible.
+You should note, the "request.CustomId" for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.  Editors note: I usually prefer [LoginWithEmailAddress](https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress), but Facebook, or device-specific logins are also very common/useful when possible.  You should only use [LoginWithCustomID](https://api.playfab.com/Documentation/Client/method/LoginWithCustomID) for testing, or when you can provide a guaranteed unique (and secure) string for every client running the game.  It is not suitable to use username as customID.  For that pattern, use [LoginWithPlayFab](https://api.playfab.com/Documentation/Client/method/LoginWithPlayFab).
 
 
 5. Troubleshooting:
