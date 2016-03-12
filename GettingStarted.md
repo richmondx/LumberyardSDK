@@ -70,87 +70,97 @@ void PlayFabApiTest::PlayFabApiTestGem::OnPostUpdate(float fDeltaTime) // <-----
 }
 ```
 
+
 4. Adding a login Api call to your gem:
 ----
 
-In this section we will add the code that makes an API call, and activate that code from the setup function of our Gem.
+In this section we will add the code that makes an API call, and activate that code.
 
-PlayFabApiTestGem.h (Rename "PlayFabApiTestGem" with your own gem name)
+* The documentation for how to build a flow node can be found here:
+ * http://docs.cryengine.com/display/SDKDOC4/Creating+a+New+Flow+Node
+* Note the Lumberyard eqivalent of this page does not exist yet, but these instructions are valid for the current release of Lumberyard.
+ * You do not need in-depth familiarity of this document, as all the necessary code is provided below.
+
+Modify your Gem.cpp file again, and add the following code:
+
+PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
 ```
-#pragma once
-
-... Other includes ...
+... other #includes at the top of your file ...
 #include <PlayFabClientDataModels.h> // <--------- ADD THIS LINE
 
-namespace PlayFabApiTest
-{
-    class PlayFabApiTestGem : public IPlayFabApiTestGem, IGameFrameworkListener
-    {
-        ... other gem header code ...
-        static void PlayFabLogin(); // <--------- ADD THIS LINE
-        static void LoginSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData); // <--------- ADD THIS LINE
-        static void LoginFail(const PlayFab::PlayFabError& error, void* customData); // <--------- ADD THIS LINE
-    };
-} // namespace PlayFabApiTest
-```
+... other gem code (the rest of the current file) ...
 
-PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
-```
-... other gem code ...
+// ---------------- Add all of the code below to the end of your gem.cpp file ----------------
+// (Optional/Advanced) If you are familiar with how to manage your waf-files, you can also create a new file
 
-// ---------------- Add all of this code to your gem.cpp file ---------------- 
-void PlayFabApiTest::PlayFabApiTestGem::PlayFabLogin()
+class CFlowNode_LoginTest : public CFlowBaseNode<eNCT_Instanced>
 {
-    auto playFabSdkGem = GetISystem()->GetGemManager()->GetGem<PlayFab::IPlayFabSdkGem>();
-    if (!playFabSdkGem)
+public:
+    CFlowNode_LoginTest(SActivationInfo* pActInfo) {}
+    virtual IFlowNodePtr Clone(SActivationInfo *pActInfo) override { return new CFlowNode_LoginTest(pActInfo); }
+    virtual void GetMemoryUsage(ICrySizer* s) const override { s->Add(*this); }
+    virtual void GetConfiguration(SFlowNodeConfig& config) override
     {
-        lastDebugMessage = "Error in project: Cannot find PlayFab Gem";
-        return;
+        static const SInputPortConfig in_config[] = {
+            InputPortConfig<SFlowSystemVoid>("Activate", _HELP("Activate PlayFab Gem")),
+            { 0 }
+        };
+        static const SOutputPortConfig out_config[] = { { 0 } };
+        config.sDescription = _HELP("PlayFab LoginTest Gem");
+        config.pInputPorts = in_config;
+        config.pOutputPorts = out_config;
+        config.SetCategory(EFLN_APPROVED);
     }
-    auto clientApi = playFabSdkGem->GetClientApi();
+    virtual void ProcessEvent(EFlowEvent event, SActivationInfo* pActInfo) override
+    {
+        switch (event)
+        {
+        case eFE_Activate:
+            PlayFabLogin();
+            break;
+        }
+    }
+    static void PlayFabLogin()
+    {
+        auto playFabSdkGem = GetISystem()->GetGemManager()->GetGem<PlayFab::IPlayFabSdkGem>();
+        if (!playFabSdkGem)
+        {
+            PlayFabApiTest::PlayFabApiTestGem::lastDebugMessage = "Error in project: Cannot find PlayFab Gem";
+            return;
+        }
+        auto clientApi = playFabSdkGem->GetClientApi();
 
-    PlayFab::ClientModels::LoginWithCustomIDRequest request;
-    request.CreateAccount = true;
-    request.CustomId = "PlayFabSdkTutorial";
-    clientApi->LoginWithCustomID(request, LoginSuccess, LoginFail);
-}
-void PlayFabApiTest::PlayFabApiTestGem::LoginSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData)
-{
-    lastDebugMessage = "Login success: " + result.PlayFabId;
-}
-void PlayFabApiTest::PlayFabApiTestGem::LoginFail(const PlayFab::PlayFabError& error, void* customData)
-{
-    lastDebugMessage = "Login failed: " + error.ErrorMessage;
-}
-```
+        PlayFab::ClientModels::LoginWithCustomIDRequest request;
+        request.CreateAccount = true;
+        request.CustomId = "PlayFabSdkTutorial";
+        clientApi->LoginWithCustomID(request, LoginSuccess, LoginFail);
+    }
+    static void LoginSuccess(const PlayFab::ClientModels::LoginResult& result, void* customData)
+    {
+        PlayFabApiTest::PlayFabApiTestGem::lastDebugMessage = "Login success: " + result.PlayFabId;
+    }
+    static void LoginFail(const PlayFab::PlayFabError& error, void* customData)
+    {
+        PlayFabApiTest::PlayFabApiTestGem::lastDebugMessage = "Login failed: " + error.ErrorMessage;
+    }
+};
 
-PlayFabApiTestGem.cpp (Rename "PlayFabApiTestGem" with your own gem name)
-```
-... other gem code ...
-void PlayFabApiTest::PlayFabApiTestGem::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lparam)
-{
-    ... other gem code ...
-    case ESYSTEM_EVENT_GAME_POST_INIT:
-        if (gEnv->pGame->GetIGameFramework())
-            gEnv->pGame->GetIGameFramework()->RegisterListener(this, "PlayFabSdk Gem", FRAMEWORKLISTENERPRIORITY_HUD);
-        PlayFabLogin(); // <--------- ADD THIS LINE
-        break;
-    ... other gem code ...
-}
+REGISTER_FLOW_NODE("LoginTest:PlayFabLogin", CFlowNode_LoginTest);
 ```
 
 While following the Amazon tutorial instructions you should have already done several steps.  Double check them now:
 * Your build configuration should be:  "[All] Debug" or "[All] Release"
 * Your build platform should be: "x64"
 Finally, build and run your project:
-* You should have set the "Sandbox/Editor" project as your startup project (under the solutuion, Editor project should be bold)
+* You should have set the "Sandbox/Editor" project as your startup project (in the the Solution/Sandbox folder, "Editor" project should be bold)
 * Dropdown->Build->Build solution.  The first time you do this, it will take a long time.
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
 * TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
 
-Finally, the request.CustomId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.
+You should note, the request.CustomId for this example is hard-coded.  For a real game, you may want to use a unique string as the customId for each player, or use one of our other [Client authentication apis](https://api.playfab.com/Documentation/Client) with proper information.  Editors note: I usually prefer [LoginWithEmailAddress](https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress), but Facebook, or device-specific logins are also very common/useful when possible.
 
-4. Troubleshooting:
+
+5. Troubleshooting:
 ----
 
 #### Contact Us
@@ -162,7 +172,7 @@ Our Developer Success Team can assist with answering any questions as well as pr
 [Forums, Support and Knowledge Base](https://community.playfab.com/hc/en-us)
 
 
-5. Copyright and Licensing Information:
+6. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004
