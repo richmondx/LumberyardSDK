@@ -151,8 +151,9 @@ REGISTER_FLOW_NODE("LoginTest:PlayFabLogin", CFlowNode_LoginTest);
 While following the Amazon tutorial instructions you should have already done several steps.  Double check them now:
 * Your build configuration should be:  "[All] Debug" or "[All] Release"
 * Your build platform should be: "x64"
-Finally, build and run your project:
 * You should have set the "Sandbox/Editor" project as your startup project (in the the Solution/Sandbox folder, "Editor" project should be bold)
+
+Finally, build and run your project:
 * Dropdown->Build->Build solution.  The first time you do this, it will take a long time.
 * Run the Editor project (Usually F5).  The first time you do this, the Asset Processor will appear, and will also take a long time.
 * TODO: Almost done - This section will be complete very soon. ADD STEPS HERE: load a project, Ctrl+G to start, verify text output
