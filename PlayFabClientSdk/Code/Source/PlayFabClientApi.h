@@ -107,6 +107,7 @@ namespace PlayFab
         static void GetSharedGroupData(ClientModels::GetSharedGroupDataRequest& request, ProcessApiCallback<ClientModels::GetSharedGroupDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void RemoveSharedGroupMembers(ClientModels::RemoveSharedGroupMembersRequest& request, ProcessApiCallback<ClientModels::RemoveSharedGroupMembersResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateSharedGroupData(ClientModels::UpdateSharedGroupDataRequest& request, ProcessApiCallback<ClientModels::UpdateSharedGroupDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void ExecuteCloudScript(ClientModels::ExecuteCloudScriptRequest& request, ProcessApiCallback<ClientModels::ExecuteCloudScriptResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetCloudScriptUrl(ClientModels::GetCloudScriptUrlRequest& request, ProcessApiCallback<ClientModels::GetCloudScriptUrlResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void RunCloudScript(ClientModels::RunCloudScriptRequest& request, ProcessApiCallback<ClientModels::RunCloudScriptResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetContentDownloadUrl(ClientModels::GetContentDownloadUrlRequest& request, ProcessApiCallback<ClientModels::GetContentDownloadUrlResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -226,6 +227,7 @@ namespace PlayFab
         static void OnGetSharedGroupDataResult(PlayFabRequest* request);
         static void OnRemoveSharedGroupMembersResult(PlayFabRequest* request);
         static void OnUpdateSharedGroupDataResult(PlayFabRequest* request);
+        static void OnExecuteCloudScriptResult(PlayFabRequest* request);
         static void OnGetCloudScriptUrlResult(PlayFabRequest* request);
         static void OnRunCloudScriptResult(PlayFabRequest* request);
         static void OnGetContentDownloadUrlResult(PlayFabRequest* request);
