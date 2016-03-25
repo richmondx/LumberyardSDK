@@ -257,7 +257,7 @@ void PlayFabServerApiWrapper::UnlockContainerItem(ServerModels::UnlockContainerI
     PlayFabServerApi::UnlockContainerItem(request, callback, errorCallback, customData);
 }
 
-void PlayFabServerApiWrapper::UpdateUserInventoryItemCustomData(ServerModels::UpdateUserInventoryItemDataRequest& request, ProcessApiCallback<ServerModels::UpdateUserInventoryItemDataResult> callback, ErrorCallback errorCallback, void* customData)
+void PlayFabServerApiWrapper::UpdateUserInventoryItemCustomData(ServerModels::UpdateUserInventoryItemDataRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::UpdateUserInventoryItemCustomData(request, callback, errorCallback, customData);
 }

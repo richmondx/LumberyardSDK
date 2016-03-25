@@ -3235,7 +3235,7 @@ namespace PlayFab
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
                 writer.String("CharacterId"); writer.String(CharacterId.c_str());
                 if (CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
                 writer.EndObject();
@@ -9474,16 +9474,16 @@ namespace PlayFab
 
         struct UpdateUserInventoryItemDataRequest : public PlayFabBaseModel
         {
-            Aws::String CharacterId;
             Aws::String PlayFabId;
+            Aws::String CharacterId;
             Aws::String ItemInstanceId;
             std::map<Aws::String, Aws::String> Data;
             std::list<Aws::String> KeysToRemove;
 
             UpdateUserInventoryItemDataRequest() :
                 PlayFabBaseModel(),
-                CharacterId(),
                 PlayFabId(),
+                CharacterId(),
                 ItemInstanceId(),
                 Data(),
                 KeysToRemove()
@@ -9491,8 +9491,8 @@ namespace PlayFab
 
             UpdateUserInventoryItemDataRequest(const UpdateUserInventoryItemDataRequest& src) :
                 PlayFabBaseModel(),
-                CharacterId(src.CharacterId),
                 PlayFabId(src.PlayFabId),
+                CharacterId(src.CharacterId),
                 ItemInstanceId(src.ItemInstanceId),
                 Data(src.Data),
                 KeysToRemove(src.KeysToRemove)
@@ -9511,8 +9511,8 @@ namespace PlayFab
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (CharacterId.length() > 0) { writer.String("CharacterId"); writer.String(CharacterId.c_str()); }
                 writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+                if (CharacterId.length() > 0) { writer.String("CharacterId"); writer.String(CharacterId.c_str()); }
                 writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str());
                 if (!Data.empty()) {
     writer.String("Data");
@@ -9535,10 +9535,10 @@ namespace PlayFab
 
             bool readFromValue(const rapidjson::Value& obj) override
             {
-                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
-                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
                 const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
                 if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
+                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
+                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
                 const Value::ConstMemberIterator ItemInstanceId_member = obj.FindMember("ItemInstanceId");
                 if (ItemInstanceId_member != obj.MemberEnd() && !ItemInstanceId_member->value.IsNull()) ItemInstanceId = ItemInstanceId_member->value.GetString();
                 const Value::ConstMemberIterator Data_member = obj.FindMember("Data");
@@ -9554,40 +9554,6 @@ namespace PlayFab
             KeysToRemove.push_back(memberList[i].GetString());
         }
     }
-
-                return true;
-            }
-        };
-
-        struct UpdateUserInventoryItemDataResult : public PlayFabBaseModel
-        {
-
-            UpdateUserInventoryItemDataResult() :
-                PlayFabBaseModel()
-            {}
-
-            UpdateUserInventoryItemDataResult(const UpdateUserInventoryItemDataResult& src) :
-                PlayFabBaseModel()
-            {}
-
-            UpdateUserInventoryItemDataResult(const rapidjson::Value& obj) : UpdateUserInventoryItemDataResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateUserInventoryItemDataResult()
-            {
-
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
 
                 return true;
             }
