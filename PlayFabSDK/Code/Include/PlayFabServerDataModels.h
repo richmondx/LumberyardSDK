@@ -3235,7 +3235,7 @@ namespace PlayFab
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
+                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
                 writer.String("CharacterId"); writer.String(CharacterId.c_str());
                 if (CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
                 writer.EndObject();
@@ -7575,6 +7575,58 @@ namespace PlayFab
             }
         };
 
+        struct PlayStreamEventHistory : public PlayFabBaseModel
+        {
+            Aws::String ParentTriggerId;
+            Aws::String ParentEventId;
+            bool TriggeredEvents;
+
+            PlayStreamEventHistory() :
+                PlayFabBaseModel(),
+                ParentTriggerId(),
+                ParentEventId(),
+                TriggeredEvents(false)
+            {}
+
+            PlayStreamEventHistory(const PlayStreamEventHistory& src) :
+                PlayFabBaseModel(),
+                ParentTriggerId(src.ParentTriggerId),
+                ParentEventId(src.ParentEventId),
+                TriggeredEvents(src.TriggeredEvents)
+            {}
+
+            PlayStreamEventHistory(const rapidjson::Value& obj) : PlayStreamEventHistory()
+            {
+                readFromValue(obj);
+            }
+
+            ~PlayStreamEventHistory()
+            {
+
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                if (ParentTriggerId.length() > 0) { writer.String("ParentTriggerId"); writer.String(ParentTriggerId.c_str()); }
+                if (ParentEventId.length() > 0) { writer.String("ParentEventId"); writer.String(ParentEventId.c_str()); }
+                writer.String("TriggeredEvents"); writer.Bool(TriggeredEvents);
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator ParentTriggerId_member = obj.FindMember("ParentTriggerId");
+                if (ParentTriggerId_member != obj.MemberEnd() && !ParentTriggerId_member->value.IsNull()) ParentTriggerId = ParentTriggerId_member->value.GetString();
+                const Value::ConstMemberIterator ParentEventId_member = obj.FindMember("ParentEventId");
+                if (ParentEventId_member != obj.MemberEnd() && !ParentEventId_member->value.IsNull()) ParentEventId = ParentEventId_member->value.GetString();
+                const Value::ConstMemberIterator TriggeredEvents_member = obj.FindMember("TriggeredEvents");
+                if (TriggeredEvents_member != obj.MemberEnd() && !TriggeredEvents_member->value.IsNull()) TriggeredEvents = TriggeredEvents_member->value.GetBool();
+
+                return true;
+            }
+        };
+
         struct RedeemCouponRequest : public PlayFabBaseModel
         {
             Aws::String CouponCode;
@@ -8381,6 +8433,52 @@ namespace PlayFab
                 return true;
             }
         };
+
+        enum SourceType
+        {
+            SourceTypeAdmin,
+            SourceTypeBackEnd,
+            SourceTypeGameClient,
+            SourceTypeGameServer,
+            SourceTypePartner,
+            SourceTypeStream
+        };
+
+        inline void writeSourceTypeEnumJSON(SourceType enumVal, PFStringJsonWriter& writer)
+        {
+            switch (enumVal)
+            {
+            case SourceTypeAdmin: writer.String("Admin"); break;
+            case SourceTypeBackEnd: writer.String("BackEnd"); break;
+            case SourceTypeGameClient: writer.String("GameClient"); break;
+            case SourceTypeGameServer: writer.String("GameServer"); break;
+            case SourceTypePartner: writer.String("Partner"); break;
+            case SourceTypeStream: writer.String("Stream"); break;
+
+            }
+        }
+
+        inline SourceType readSourceTypeFromValue(const rapidjson::Value& obj)
+        {
+            static std::map<Aws::String, SourceType> _SourceTypeMap;
+            if (_SourceTypeMap.size() == 0)
+            {
+                // Auto-generate the map on the first use
+                _SourceTypeMap["Admin"] = SourceTypeAdmin;
+                _SourceTypeMap["BackEnd"] = SourceTypeBackEnd;
+                _SourceTypeMap["GameClient"] = SourceTypeGameClient;
+                _SourceTypeMap["GameServer"] = SourceTypeGameServer;
+                _SourceTypeMap["Partner"] = SourceTypePartner;
+                _SourceTypeMap["Stream"] = SourceTypeStream;
+
+            }
+
+            auto output = _SourceTypeMap.find(obj.GetString());
+            if (output != _SourceTypeMap.end())
+                return output->second;
+
+            return SourceTypeAdmin; // Basically critical fail
+        }
 
         struct StatisticUpdate : public PlayFabBaseModel
         {
@@ -9376,16 +9474,16 @@ namespace PlayFab
 
         struct UpdateUserInventoryItemDataRequest : public PlayFabBaseModel
         {
-            Aws::String CharacterId;
             Aws::String PlayFabId;
+            Aws::String CharacterId;
             Aws::String ItemInstanceId;
             std::map<Aws::String, Aws::String> Data;
             std::list<Aws::String> KeysToRemove;
 
             UpdateUserInventoryItemDataRequest() :
                 PlayFabBaseModel(),
-                CharacterId(),
                 PlayFabId(),
+                CharacterId(),
                 ItemInstanceId(),
                 Data(),
                 KeysToRemove()
@@ -9393,8 +9491,8 @@ namespace PlayFab
 
             UpdateUserInventoryItemDataRequest(const UpdateUserInventoryItemDataRequest& src) :
                 PlayFabBaseModel(),
-                CharacterId(src.CharacterId),
                 PlayFabId(src.PlayFabId),
+                CharacterId(src.CharacterId),
                 ItemInstanceId(src.ItemInstanceId),
                 Data(src.Data),
                 KeysToRemove(src.KeysToRemove)
@@ -9413,8 +9511,8 @@ namespace PlayFab
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (CharacterId.length() > 0) { writer.String("CharacterId"); writer.String(CharacterId.c_str()); }
                 writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+                if (CharacterId.length() > 0) { writer.String("CharacterId"); writer.String(CharacterId.c_str()); }
                 writer.String("ItemInstanceId"); writer.String(ItemInstanceId.c_str());
                 if (!Data.empty()) {
     writer.String("Data");
@@ -9437,10 +9535,10 @@ namespace PlayFab
 
             bool readFromValue(const rapidjson::Value& obj) override
             {
-                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
-                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
                 const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
                 if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
+                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
+                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
                 const Value::ConstMemberIterator ItemInstanceId_member = obj.FindMember("ItemInstanceId");
                 if (ItemInstanceId_member != obj.MemberEnd() && !ItemInstanceId_member->value.IsNull()) ItemInstanceId = ItemInstanceId_member->value.GetString();
                 const Value::ConstMemberIterator Data_member = obj.FindMember("Data");
@@ -9456,40 +9554,6 @@ namespace PlayFab
             KeysToRemove.push_back(memberList[i].GetString());
         }
     }
-
-                return true;
-            }
-        };
-
-        struct UpdateUserInventoryItemDataResult : public PlayFabBaseModel
-        {
-
-            UpdateUserInventoryItemDataResult() :
-                PlayFabBaseModel()
-            {}
-
-            UpdateUserInventoryItemDataResult(const UpdateUserInventoryItemDataResult& src) :
-                PlayFabBaseModel()
-            {}
-
-            UpdateUserInventoryItemDataResult(const rapidjson::Value& obj) : UpdateUserInventoryItemDataResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateUserInventoryItemDataResult()
-            {
-
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
 
                 return true;
             }

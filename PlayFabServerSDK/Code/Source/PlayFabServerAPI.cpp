@@ -1510,7 +1510,7 @@ void PlayFabServerApi::OnUnlockContainerItemResult(PlayFabRequest* request)
 
 void PlayFabServerApi::UpdateUserInventoryItemCustomData(
     UpdateUserInventoryItemDataRequest& request,
-    ProcessApiCallback<UpdateUserInventoryItemDataResult> callback,
+    ProcessApiCallback<EmptyResult> callback,
     ErrorCallback errorCallback,
     void* customData
     )
@@ -1524,13 +1524,13 @@ void PlayFabServerApi::OnUpdateUserInventoryItemCustomDataResult(PlayFabRequest*
 {
     if (PlayFabBaseModel::DecodeRequest(request))
     {
-        UpdateUserInventoryItemDataResult* outResult = new UpdateUserInventoryItemDataResult;
+        EmptyResult* outResult = new EmptyResult;
         outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
 
 
         if (request->mResultCallback != nullptr)
         {
-            ProcessApiCallback<UpdateUserInventoryItemDataResult> successCallback = reinterpret_cast<ProcessApiCallback<UpdateUserInventoryItemDataResult>>(request->mResultCallback);
+            ProcessApiCallback<EmptyResult> successCallback = reinterpret_cast<ProcessApiCallback<EmptyResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;

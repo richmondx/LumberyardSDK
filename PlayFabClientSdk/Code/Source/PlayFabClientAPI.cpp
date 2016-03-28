@@ -2876,6 +2876,36 @@ void PlayFabClientApi::OnUpdateSharedGroupDataResult(PlayFabRequest* request)
     }
 }
 
+void PlayFabClientApi::ExecuteCloudScript(
+    ExecuteCloudScriptRequest& request,
+    ProcessApiCallback<ExecuteCloudScriptResult> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Client/ExecuteCloudScript"), Aws::Http::HttpMethod::HTTP_POST, "X-Authorization", mUserSessionTicket, request.toJSONString(), customData, callback, errorCallback, OnExecuteCloudScriptResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabClientApi::OnExecuteCloudScriptResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        ExecuteCloudScriptResult* outResult = new ExecuteCloudScriptResult;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<ExecuteCloudScriptResult> successCallback = reinterpret_cast<ProcessApiCallback<ExecuteCloudScriptResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
 void PlayFabClientApi::GetCloudScriptUrl(
     GetCloudScriptUrlRequest& request,
     ProcessApiCallback<GetCloudScriptUrlResult> callback,
