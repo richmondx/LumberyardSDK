@@ -322,6 +322,11 @@ void PlayFabServerApiWrapper::UpdateSharedGroupData(ServerModels::UpdateSharedGr
     PlayFabServerApi::UpdateSharedGroupData(request, callback, errorCallback, customData);
 }
 
+void PlayFabServerApiWrapper::ExecuteCloudScript(ServerModels::ExecuteCloudScriptServerRequest& request, ProcessApiCallback<ServerModels::ExecuteCloudScriptResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::ExecuteCloudScript(request, callback, errorCallback, customData);
+}
+
 void PlayFabServerApiWrapper::GetContentDownloadUrl(ServerModels::GetContentDownloadUrlRequest& request, ProcessApiCallback<ServerModels::GetContentDownloadUrlResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetContentDownloadUrl(request, callback, errorCallback, customData);

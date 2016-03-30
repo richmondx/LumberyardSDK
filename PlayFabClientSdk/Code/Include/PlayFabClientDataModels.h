@@ -2842,7 +2842,7 @@ namespace PlayFab
             MultitypeVar FunctionParameter;
             Boxed<CloudScriptRevisionOption> RevisionSelection;
             OptionalInt32 SpecificRevision;
-            bool GeneratePlayStreamEvent;
+            OptionalBool GeneratePlayStreamEvent;
 
             ExecuteCloudScriptRequest() :
                 PlayFabBaseModel(),
@@ -2850,7 +2850,7 @@ namespace PlayFab
                 FunctionParameter(),
                 RevisionSelection(),
                 SpecificRevision(),
-                GeneratePlayStreamEvent(false)
+                GeneratePlayStreamEvent()
             {}
 
             ExecuteCloudScriptRequest(const ExecuteCloudScriptRequest& src) :
@@ -2879,7 +2879,7 @@ namespace PlayFab
                 if (FunctionParameter.notNull()) { writer.String("FunctionParameter"); FunctionParameter.writeJSON(writer); }
                 if (RevisionSelection.notNull()) { writer.String("RevisionSelection"); writeCloudScriptRevisionOptionEnumJSON(RevisionSelection, writer); }
                 if (SpecificRevision.notNull()) { writer.String("SpecificRevision"); writer.Int(SpecificRevision); }
-                writer.String("GeneratePlayStreamEvent"); writer.Bool(GeneratePlayStreamEvent);
+                if (GeneratePlayStreamEvent.notNull()) { writer.String("GeneratePlayStreamEvent"); writer.Bool(GeneratePlayStreamEvent); }
                 writer.EndObject();
             }
 
