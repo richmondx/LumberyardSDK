@@ -137,6 +137,11 @@ void PlayFabServerApiWrapper::GetCatalogItems(ServerModels::GetCatalogItemsReque
     PlayFabServerApi::GetCatalogItems(request, callback, errorCallback, customData);
 }
 
+void PlayFabServerApiWrapper::GetPublisherData(ServerModels::GetPublisherDataRequest& request, ProcessApiCallback<ServerModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::GetPublisherData(request, callback, errorCallback, customData);
+}
+
 void PlayFabServerApiWrapper::GetTitleData(ServerModels::GetTitleDataRequest& request, ProcessApiCallback<ServerModels::GetTitleDataResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetTitleData(request, callback, errorCallback, customData);
@@ -150,6 +155,11 @@ void PlayFabServerApiWrapper::GetTitleInternalData(ServerModels::GetTitleDataReq
 void PlayFabServerApiWrapper::GetTitleNews(ServerModels::GetTitleNewsRequest& request, ProcessApiCallback<ServerModels::GetTitleNewsResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetTitleNews(request, callback, errorCallback, customData);
+}
+
+void PlayFabServerApiWrapper::SetPublisherData(ServerModels::SetPublisherDataRequest& request, ProcessApiCallback<ServerModels::SetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::SetPublisherData(request, callback, errorCallback, customData);
 }
 
 void PlayFabServerApiWrapper::SetTitleData(ServerModels::SetTitleDataRequest& request, ProcessApiCallback<ServerModels::SetTitleDataResult> callback, ErrorCallback errorCallback, void* customData)
@@ -297,11 +307,6 @@ void PlayFabServerApiWrapper::DeleteSharedGroup(ServerModels::DeleteSharedGroupR
     PlayFabServerApi::DeleteSharedGroup(request, callback, errorCallback, customData);
 }
 
-void PlayFabServerApiWrapper::GetPublisherData(ServerModels::GetPublisherDataRequest& request, ProcessApiCallback<ServerModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetPublisherData(request, callback, errorCallback, customData);
-}
-
 void PlayFabServerApiWrapper::GetSharedGroupData(ServerModels::GetSharedGroupDataRequest& request, ProcessApiCallback<ServerModels::GetSharedGroupDataResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetSharedGroupData(request, callback, errorCallback, customData);
@@ -310,11 +315,6 @@ void PlayFabServerApiWrapper::GetSharedGroupData(ServerModels::GetSharedGroupDat
 void PlayFabServerApiWrapper::RemoveSharedGroupMembers(ServerModels::RemoveSharedGroupMembersRequest& request, ProcessApiCallback<ServerModels::RemoveSharedGroupMembersResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::RemoveSharedGroupMembers(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::SetPublisherData(ServerModels::SetPublisherDataRequest& request, ProcessApiCallback<ServerModels::SetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::SetPublisherData(request, callback, errorCallback, customData);
 }
 
 void PlayFabServerApiWrapper::UpdateSharedGroupData(ServerModels::UpdateSharedGroupDataRequest& request, ProcessApiCallback<ServerModels::UpdateSharedGroupDataResult> callback, ErrorCallback errorCallback, void* customData)
