@@ -142,6 +142,11 @@ void PlayFabAdminApiWrapper::GetCatalogItems(AdminModels::GetCatalogItemsRequest
     PlayFabAdminApi::GetCatalogItems(request, callback, errorCallback, customData);
 }
 
+void PlayFabAdminApiWrapper::GetPublisherData(AdminModels::GetPublisherDataRequest& request, ProcessApiCallback<AdminModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabAdminApi::GetPublisherData(request, callback, errorCallback, customData);
+}
+
 void PlayFabAdminApiWrapper::GetRandomResultTables(AdminModels::GetRandomResultTablesRequest& request, ProcessApiCallback<AdminModels::GetRandomResultTablesResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabAdminApi::GetRandomResultTables(request, callback, errorCallback, customData);
@@ -265,11 +270,6 @@ void PlayFabAdminApiWrapper::ModifyServerBuild(AdminModels::ModifyServerBuildReq
 void PlayFabAdminApiWrapper::RemoveServerBuild(AdminModels::RemoveServerBuildRequest& request, ProcessApiCallback<AdminModels::RemoveServerBuildResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabAdminApi::RemoveServerBuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabAdminApiWrapper::GetPublisherData(AdminModels::GetPublisherDataRequest& request, ProcessApiCallback<AdminModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabAdminApi::GetPublisherData(request, callback, errorCallback, customData);
 }
 
 void PlayFabAdminApiWrapper::SetPublisherData(AdminModels::SetPublisherDataRequest& request, ProcessApiCallback<AdminModels::SetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)

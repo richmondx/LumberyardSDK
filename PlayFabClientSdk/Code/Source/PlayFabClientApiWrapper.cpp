@@ -153,6 +153,11 @@ void PlayFabClientApiWrapper::LinkSteamAccount(ClientModels::LinkSteamAccountReq
     PlayFabClientApi::LinkSteamAccount(request, callback, errorCallback, customData);
 }
 
+void PlayFabClientApiWrapper::ReportPlayer(ClientModels::ReportPlayerClientRequest& request, ProcessApiCallback<ClientModels::ReportPlayerClientResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabClientApi::ReportPlayer(request, callback, errorCallback, customData);
+}
+
 void PlayFabClientApiWrapper::SendAccountRecoveryEmail(ClientModels::SendAccountRecoveryEmailRequest& request, ProcessApiCallback<ClientModels::SendAccountRecoveryEmailResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::SendAccountRecoveryEmail(request, callback, errorCallback, customData);
@@ -293,6 +298,11 @@ void PlayFabClientApiWrapper::GetCatalogItems(ClientModels::GetCatalogItemsReque
     PlayFabClientApi::GetCatalogItems(request, callback, errorCallback, customData);
 }
 
+void PlayFabClientApiWrapper::GetPublisherData(ClientModels::GetPublisherDataRequest& request, ProcessApiCallback<ClientModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabClientApi::GetPublisherData(request, callback, errorCallback, customData);
+}
+
 void PlayFabClientApiWrapper::GetStoreItems(ClientModels::GetStoreItemsRequest& request, ProcessApiCallback<ClientModels::GetStoreItemsResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::GetStoreItems(request, callback, errorCallback, customData);
@@ -351,11 +361,6 @@ void PlayFabClientApiWrapper::PurchaseItem(ClientModels::PurchaseItemRequest& re
 void PlayFabClientApiWrapper::RedeemCoupon(ClientModels::RedeemCouponRequest& request, ProcessApiCallback<ClientModels::RedeemCouponResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::RedeemCoupon(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ReportPlayer(ClientModels::ReportPlayerClientRequest& request, ProcessApiCallback<ClientModels::ReportPlayerClientResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ReportPlayer(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::StartPurchase(ClientModels::StartPurchaseRequest& request, ProcessApiCallback<ClientModels::StartPurchaseResult> callback, ErrorCallback errorCallback, void* customData)
@@ -456,11 +461,6 @@ void PlayFabClientApiWrapper::AddSharedGroupMembers(ClientModels::AddSharedGroup
 void PlayFabClientApiWrapper::CreateSharedGroup(ClientModels::CreateSharedGroupRequest& request, ProcessApiCallback<ClientModels::CreateSharedGroupResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::CreateSharedGroup(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetPublisherData(ClientModels::GetPublisherDataRequest& request, ProcessApiCallback<ClientModels::GetPublisherDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetPublisherData(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::GetSharedGroupData(ClientModels::GetSharedGroupDataRequest& request, ProcessApiCallback<ClientModels::GetSharedGroupDataResult> callback, ErrorCallback errorCallback, void* customData)

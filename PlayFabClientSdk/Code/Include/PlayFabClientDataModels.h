@@ -36,7 +36,6 @@ namespace PlayFab
 
             ~AcceptTradeRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -179,7 +178,6 @@ namespace PlayFab
 
             ~TradeInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -300,12 +298,12 @@ namespace PlayFab
 
             AcceptTradeResponse() :
                 PlayFabBaseModel(),
-                Trade(NULL)
+                Trade(nullptr)
             {}
 
             AcceptTradeResponse(const AcceptTradeResponse& src) :
                 PlayFabBaseModel(),
-                Trade(src.Trade ? new TradeInfo(*src.Trade) : NULL)
+                Trade(src.Trade ? new TradeInfo(*src.Trade) : nullptr)
             {}
 
             AcceptTradeResponse(const rapidjson::Value& obj) : AcceptTradeResponse()
@@ -315,14 +313,13 @@ namespace PlayFab
 
             ~AcceptTradeResponse()
             {
-                if (Trade != NULL) delete Trade;
-
+                if (Trade != nullptr) delete Trade;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (Trade != NULL) { writer.String("Trade"); Trade->writeJSON(writer); }
+                if (Trade != nullptr) { writer.String("Trade"); Trade->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -365,7 +362,6 @@ namespace PlayFab
 
             ~AddFriendRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -414,7 +410,6 @@ namespace PlayFab
 
             ~AddFriendResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -457,7 +452,6 @@ namespace PlayFab
 
             ~AddSharedGroupMembersRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -508,7 +502,6 @@ namespace PlayFab
 
             ~AddSharedGroupMembersResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -551,7 +544,6 @@ namespace PlayFab
 
             ~AddUsernamePasswordRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -597,7 +589,6 @@ namespace PlayFab
 
             ~AddUsernamePasswordResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -640,7 +631,6 @@ namespace PlayFab
 
             ~AddUserVirtualCurrencyRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -689,7 +679,6 @@ namespace PlayFab
 
             ~AndroidDevicePushNotificationRegistrationRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -732,7 +721,6 @@ namespace PlayFab
 
             ~AndroidDevicePushNotificationRegistrationResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -772,7 +760,6 @@ namespace PlayFab
 
             ~AttributeInstallRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -812,7 +799,6 @@ namespace PlayFab
 
             ~AttributeInstallResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -849,7 +835,6 @@ namespace PlayFab
 
             ~CancelTradeRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -874,12 +859,12 @@ namespace PlayFab
 
             CancelTradeResponse() :
                 PlayFabBaseModel(),
-                Trade(NULL)
+                Trade(nullptr)
             {}
 
             CancelTradeResponse(const CancelTradeResponse& src) :
                 PlayFabBaseModel(),
-                Trade(src.Trade ? new TradeInfo(*src.Trade) : NULL)
+                Trade(src.Trade ? new TradeInfo(*src.Trade) : nullptr)
             {}
 
             CancelTradeResponse(const rapidjson::Value& obj) : CancelTradeResponse()
@@ -889,14 +874,13 @@ namespace PlayFab
 
             ~CancelTradeResponse()
             {
-                if (Trade != NULL) delete Trade;
-
+                if (Trade != nullptr) delete Trade;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (Trade != NULL) { writer.String("Trade"); Trade->writeJSON(writer); }
+                if (Trade != nullptr) { writer.String("Trade"); Trade->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -951,7 +935,6 @@ namespace PlayFab
 
             ~CartItem()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1051,7 +1034,6 @@ namespace PlayFab
 
             ~CatalogItemConsumableInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1106,7 +1088,6 @@ namespace PlayFab
 
             ~CatalogItemContainerInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1196,7 +1177,6 @@ namespace PlayFab
 
             ~CatalogItemBundleInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1286,9 +1266,9 @@ namespace PlayFab
                 RealCurrencyPrices(),
                 Tags(),
                 CustomData(),
-                Consumable(NULL),
-                Container(NULL),
-                Bundle(NULL),
+                Consumable(nullptr),
+                Container(nullptr),
+                Bundle(nullptr),
                 CanBecomeCharacter(false),
                 IsStackable(false),
                 IsTradable(false),
@@ -1306,9 +1286,9 @@ namespace PlayFab
                 RealCurrencyPrices(src.RealCurrencyPrices),
                 Tags(src.Tags),
                 CustomData(src.CustomData),
-                Consumable(src.Consumable ? new CatalogItemConsumableInfo(*src.Consumable) : NULL),
-                Container(src.Container ? new CatalogItemContainerInfo(*src.Container) : NULL),
-                Bundle(src.Bundle ? new CatalogItemBundleInfo(*src.Bundle) : NULL),
+                Consumable(src.Consumable ? new CatalogItemConsumableInfo(*src.Consumable) : nullptr),
+                Container(src.Container ? new CatalogItemContainerInfo(*src.Container) : nullptr),
+                Bundle(src.Bundle ? new CatalogItemBundleInfo(*src.Bundle) : nullptr),
                 CanBecomeCharacter(src.CanBecomeCharacter),
                 IsStackable(src.IsStackable),
                 IsTradable(src.IsTradable),
@@ -1322,10 +1302,9 @@ namespace PlayFab
 
             ~CatalogItem()
             {
-                if (Consumable != NULL) delete Consumable;
-                if (Container != NULL) delete Container;
-                if (Bundle != NULL) delete Bundle;
-
+                if (Consumable != nullptr) delete Consumable;
+                if (Container != nullptr) delete Container;
+                if (Bundle != nullptr) delete Bundle;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1361,9 +1340,9 @@ namespace PlayFab
     writer.EndArray();
      }
                 if (CustomData.length() > 0) { writer.String("CustomData"); writer.String(CustomData.c_str()); }
-                if (Consumable != NULL) { writer.String("Consumable"); Consumable->writeJSON(writer); }
-                if (Container != NULL) { writer.String("Container"); Container->writeJSON(writer); }
-                if (Bundle != NULL) { writer.String("Bundle"); Bundle->writeJSON(writer); }
+                if (Consumable != nullptr) { writer.String("Consumable"); Consumable->writeJSON(writer); }
+                if (Container != nullptr) { writer.String("Container"); Container->writeJSON(writer); }
+                if (Bundle != nullptr) { writer.String("Bundle"); Bundle->writeJSON(writer); }
                 writer.String("CanBecomeCharacter"); writer.Bool(CanBecomeCharacter);
                 writer.String("IsStackable"); writer.Bool(IsStackable);
                 writer.String("IsTradable"); writer.Bool(IsTradable);
@@ -1462,7 +1441,6 @@ namespace PlayFab
 
             ~CharacterLeaderboardEntry()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1526,7 +1504,6 @@ namespace PlayFab
 
             ~CharacterResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1609,7 +1586,6 @@ namespace PlayFab
 
             ~ConfirmPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1691,7 +1667,6 @@ namespace PlayFab
 
             ~ItemInstance()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1802,7 +1777,6 @@ namespace PlayFab
 
             ~ConfirmPurchaseResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1866,7 +1840,6 @@ namespace PlayFab
 
             ~ConsumeItemRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1915,7 +1888,6 @@ namespace PlayFab
 
             ~ConsumeItemResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1958,7 +1930,6 @@ namespace PlayFab
 
             ~CreateSharedGroupRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -1998,7 +1969,6 @@ namespace PlayFab
 
             ~CreateSharedGroupResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2610,7 +2580,6 @@ namespace PlayFab
 
             ~CurrentGamesRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2683,7 +2652,6 @@ namespace PlayFab
 
             ~GameInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2765,7 +2733,6 @@ namespace PlayFab
 
             ~CurrentGamesResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2820,7 +2787,6 @@ namespace PlayFab
 
             ~EmptyResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2842,7 +2808,7 @@ namespace PlayFab
             MultitypeVar FunctionParameter;
             Boxed<CloudScriptRevisionOption> RevisionSelection;
             OptionalInt32 SpecificRevision;
-            bool GeneratePlayStreamEvent;
+            OptionalBool GeneratePlayStreamEvent;
 
             ExecuteCloudScriptRequest() :
                 PlayFabBaseModel(),
@@ -2850,7 +2816,7 @@ namespace PlayFab
                 FunctionParameter(),
                 RevisionSelection(),
                 SpecificRevision(),
-                GeneratePlayStreamEvent(false)
+                GeneratePlayStreamEvent()
             {}
 
             ExecuteCloudScriptRequest(const ExecuteCloudScriptRequest& src) :
@@ -2869,7 +2835,6 @@ namespace PlayFab
 
             ~ExecuteCloudScriptRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2879,7 +2844,7 @@ namespace PlayFab
                 if (FunctionParameter.notNull()) { writer.String("FunctionParameter"); FunctionParameter.writeJSON(writer); }
                 if (RevisionSelection.notNull()) { writer.String("RevisionSelection"); writeCloudScriptRevisionOptionEnumJSON(RevisionSelection, writer); }
                 if (SpecificRevision.notNull()) { writer.String("SpecificRevision"); writer.Int(SpecificRevision); }
-                writer.String("GeneratePlayStreamEvent"); writer.Bool(GeneratePlayStreamEvent);
+                if (GeneratePlayStreamEvent.notNull()) { writer.String("GeneratePlayStreamEvent"); writer.Bool(GeneratePlayStreamEvent); }
                 writer.EndObject();
             }
 
@@ -2927,7 +2892,6 @@ namespace PlayFab
 
             ~LogStatement()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -2979,7 +2943,6 @@ namespace PlayFab
 
             ~ScriptExecutionError()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3026,7 +2989,7 @@ namespace PlayFab
                 MemoryConsumedBytes(0),
                 APIRequestsIssued(0),
                 HttpRequestsIssued(0),
-                Error(NULL)
+                Error(nullptr)
             {}
 
             ExecuteCloudScriptResult(const ExecuteCloudScriptResult& src) :
@@ -3039,7 +3002,7 @@ namespace PlayFab
                 MemoryConsumedBytes(src.MemoryConsumedBytes),
                 APIRequestsIssued(src.APIRequestsIssued),
                 HttpRequestsIssued(src.HttpRequestsIssued),
-                Error(src.Error ? new ScriptExecutionError(*src.Error) : NULL)
+                Error(src.Error ? new ScriptExecutionError(*src.Error) : nullptr)
             {}
 
             ExecuteCloudScriptResult(const rapidjson::Value& obj) : ExecuteCloudScriptResult()
@@ -3049,8 +3012,7 @@ namespace PlayFab
 
             ~ExecuteCloudScriptResult()
             {
-                if (Error != NULL) delete Error;
-
+                if (Error != nullptr) delete Error;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3071,7 +3033,7 @@ namespace PlayFab
                 writer.String("MemoryConsumedBytes"); writer.Uint(MemoryConsumedBytes);
                 writer.String("APIRequestsIssued"); writer.Int(APIRequestsIssued);
                 writer.String("HttpRequestsIssued"); writer.Int(HttpRequestsIssued);
-                if (Error != NULL) { writer.String("Error"); Error->writeJSON(writer); }
+                if (Error != nullptr) { writer.String("Error"); Error->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -3129,7 +3091,6 @@ namespace PlayFab
 
             ~FacebookPlayFabIdPair()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3175,7 +3136,6 @@ namespace PlayFab
 
             ~UserFacebookInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3270,7 +3230,6 @@ namespace PlayFab
 
             ~UserSteamInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3319,7 +3278,6 @@ namespace PlayFab
 
             ~UserGameCenterInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3356,9 +3314,9 @@ namespace PlayFab
                 TitleDisplayName(),
                 Tags(),
                 CurrentMatchmakerLobbyId(),
-                FacebookInfo(NULL),
-                SteamInfo(NULL),
-                GameCenterInfo(NULL)
+                FacebookInfo(nullptr),
+                SteamInfo(nullptr),
+                GameCenterInfo(nullptr)
             {}
 
             FriendInfo(const FriendInfo& src) :
@@ -3368,9 +3326,9 @@ namespace PlayFab
                 TitleDisplayName(src.TitleDisplayName),
                 Tags(src.Tags),
                 CurrentMatchmakerLobbyId(src.CurrentMatchmakerLobbyId),
-                FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : NULL),
-                SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : NULL),
-                GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : NULL)
+                FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : nullptr),
+                SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : nullptr),
+                GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : nullptr)
             {}
 
             FriendInfo(const rapidjson::Value& obj) : FriendInfo()
@@ -3380,10 +3338,9 @@ namespace PlayFab
 
             ~FriendInfo()
             {
-                if (FacebookInfo != NULL) delete FacebookInfo;
-                if (SteamInfo != NULL) delete SteamInfo;
-                if (GameCenterInfo != NULL) delete GameCenterInfo;
-
+                if (FacebookInfo != nullptr) delete FacebookInfo;
+                if (SteamInfo != nullptr) delete SteamInfo;
+                if (GameCenterInfo != nullptr) delete GameCenterInfo;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3401,9 +3358,9 @@ namespace PlayFab
     writer.EndArray();
      }
                 if (CurrentMatchmakerLobbyId.length() > 0) { writer.String("CurrentMatchmakerLobbyId"); writer.String(CurrentMatchmakerLobbyId.c_str()); }
-                if (FacebookInfo != NULL) { writer.String("FacebookInfo"); FacebookInfo->writeJSON(writer); }
-                if (SteamInfo != NULL) { writer.String("SteamInfo"); SteamInfo->writeJSON(writer); }
-                if (GameCenterInfo != NULL) { writer.String("GameCenterInfo"); GameCenterInfo->writeJSON(writer); }
+                if (FacebookInfo != nullptr) { writer.String("FacebookInfo"); FacebookInfo->writeJSON(writer); }
+                if (SteamInfo != nullptr) { writer.String("SteamInfo"); SteamInfo->writeJSON(writer); }
+                if (GameCenterInfo != nullptr) { writer.String("GameCenterInfo"); GameCenterInfo->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -3459,7 +3416,6 @@ namespace PlayFab
 
             ~GameCenterPlayFabIdPair()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3505,7 +3461,6 @@ namespace PlayFab
 
             ~GameServerRegionsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3557,7 +3512,6 @@ namespace PlayFab
 
             ~RegionInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3606,7 +3560,6 @@ namespace PlayFab
 
             ~GameServerRegionsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3667,7 +3620,6 @@ namespace PlayFab
 
             ~GetAccountInfoRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3807,7 +3759,6 @@ namespace PlayFab
 
             ~UserTitleInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3862,7 +3813,6 @@ namespace PlayFab
 
             ~UserPrivateAccountInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3902,7 +3852,6 @@ namespace PlayFab
 
             ~UserIosDeviceInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3942,7 +3891,6 @@ namespace PlayFab
 
             ~UserAndroidDeviceInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -3985,7 +3933,6 @@ namespace PlayFab
 
             ~UserKongregateInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4031,7 +3978,6 @@ namespace PlayFab
 
             ~UserPsnInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4083,7 +4029,6 @@ namespace PlayFab
 
             ~UserGoogleInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4132,7 +4077,6 @@ namespace PlayFab
 
             ~UserXboxInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4172,7 +4116,6 @@ namespace PlayFab
 
             ~UserCustomIdInfo()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4214,18 +4157,18 @@ namespace PlayFab
                 PlayFabId(),
                 Created(0),
                 Username(),
-                TitleInfo(NULL),
-                PrivateInfo(NULL),
-                FacebookInfo(NULL),
-                SteamInfo(NULL),
-                GameCenterInfo(NULL),
-                IosDeviceInfo(NULL),
-                AndroidDeviceInfo(NULL),
-                KongregateInfo(NULL),
-                PsnInfo(NULL),
-                GoogleInfo(NULL),
-                XboxInfo(NULL),
-                CustomIdInfo(NULL)
+                TitleInfo(nullptr),
+                PrivateInfo(nullptr),
+                FacebookInfo(nullptr),
+                SteamInfo(nullptr),
+                GameCenterInfo(nullptr),
+                IosDeviceInfo(nullptr),
+                AndroidDeviceInfo(nullptr),
+                KongregateInfo(nullptr),
+                PsnInfo(nullptr),
+                GoogleInfo(nullptr),
+                XboxInfo(nullptr),
+                CustomIdInfo(nullptr)
             {}
 
             UserAccountInfo(const UserAccountInfo& src) :
@@ -4233,18 +4176,18 @@ namespace PlayFab
                 PlayFabId(src.PlayFabId),
                 Created(src.Created),
                 Username(src.Username),
-                TitleInfo(src.TitleInfo ? new UserTitleInfo(*src.TitleInfo) : NULL),
-                PrivateInfo(src.PrivateInfo ? new UserPrivateAccountInfo(*src.PrivateInfo) : NULL),
-                FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : NULL),
-                SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : NULL),
-                GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : NULL),
-                IosDeviceInfo(src.IosDeviceInfo ? new UserIosDeviceInfo(*src.IosDeviceInfo) : NULL),
-                AndroidDeviceInfo(src.AndroidDeviceInfo ? new UserAndroidDeviceInfo(*src.AndroidDeviceInfo) : NULL),
-                KongregateInfo(src.KongregateInfo ? new UserKongregateInfo(*src.KongregateInfo) : NULL),
-                PsnInfo(src.PsnInfo ? new UserPsnInfo(*src.PsnInfo) : NULL),
-                GoogleInfo(src.GoogleInfo ? new UserGoogleInfo(*src.GoogleInfo) : NULL),
-                XboxInfo(src.XboxInfo ? new UserXboxInfo(*src.XboxInfo) : NULL),
-                CustomIdInfo(src.CustomIdInfo ? new UserCustomIdInfo(*src.CustomIdInfo) : NULL)
+                TitleInfo(src.TitleInfo ? new UserTitleInfo(*src.TitleInfo) : nullptr),
+                PrivateInfo(src.PrivateInfo ? new UserPrivateAccountInfo(*src.PrivateInfo) : nullptr),
+                FacebookInfo(src.FacebookInfo ? new UserFacebookInfo(*src.FacebookInfo) : nullptr),
+                SteamInfo(src.SteamInfo ? new UserSteamInfo(*src.SteamInfo) : nullptr),
+                GameCenterInfo(src.GameCenterInfo ? new UserGameCenterInfo(*src.GameCenterInfo) : nullptr),
+                IosDeviceInfo(src.IosDeviceInfo ? new UserIosDeviceInfo(*src.IosDeviceInfo) : nullptr),
+                AndroidDeviceInfo(src.AndroidDeviceInfo ? new UserAndroidDeviceInfo(*src.AndroidDeviceInfo) : nullptr),
+                KongregateInfo(src.KongregateInfo ? new UserKongregateInfo(*src.KongregateInfo) : nullptr),
+                PsnInfo(src.PsnInfo ? new UserPsnInfo(*src.PsnInfo) : nullptr),
+                GoogleInfo(src.GoogleInfo ? new UserGoogleInfo(*src.GoogleInfo) : nullptr),
+                XboxInfo(src.XboxInfo ? new UserXboxInfo(*src.XboxInfo) : nullptr),
+                CustomIdInfo(src.CustomIdInfo ? new UserCustomIdInfo(*src.CustomIdInfo) : nullptr)
             {}
 
             UserAccountInfo(const rapidjson::Value& obj) : UserAccountInfo()
@@ -4254,19 +4197,18 @@ namespace PlayFab
 
             ~UserAccountInfo()
             {
-                if (TitleInfo != NULL) delete TitleInfo;
-                if (PrivateInfo != NULL) delete PrivateInfo;
-                if (FacebookInfo != NULL) delete FacebookInfo;
-                if (SteamInfo != NULL) delete SteamInfo;
-                if (GameCenterInfo != NULL) delete GameCenterInfo;
-                if (IosDeviceInfo != NULL) delete IosDeviceInfo;
-                if (AndroidDeviceInfo != NULL) delete AndroidDeviceInfo;
-                if (KongregateInfo != NULL) delete KongregateInfo;
-                if (PsnInfo != NULL) delete PsnInfo;
-                if (GoogleInfo != NULL) delete GoogleInfo;
-                if (XboxInfo != NULL) delete XboxInfo;
-                if (CustomIdInfo != NULL) delete CustomIdInfo;
-
+                if (TitleInfo != nullptr) delete TitleInfo;
+                if (PrivateInfo != nullptr) delete PrivateInfo;
+                if (FacebookInfo != nullptr) delete FacebookInfo;
+                if (SteamInfo != nullptr) delete SteamInfo;
+                if (GameCenterInfo != nullptr) delete GameCenterInfo;
+                if (IosDeviceInfo != nullptr) delete IosDeviceInfo;
+                if (AndroidDeviceInfo != nullptr) delete AndroidDeviceInfo;
+                if (KongregateInfo != nullptr) delete KongregateInfo;
+                if (PsnInfo != nullptr) delete PsnInfo;
+                if (GoogleInfo != nullptr) delete GoogleInfo;
+                if (XboxInfo != nullptr) delete XboxInfo;
+                if (CustomIdInfo != nullptr) delete CustomIdInfo;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4275,18 +4217,18 @@ namespace PlayFab
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
                 writer.String("Created"); writeDatetime(Created, writer);
                 if (Username.length() > 0) { writer.String("Username"); writer.String(Username.c_str()); }
-                if (TitleInfo != NULL) { writer.String("TitleInfo"); TitleInfo->writeJSON(writer); }
-                if (PrivateInfo != NULL) { writer.String("PrivateInfo"); PrivateInfo->writeJSON(writer); }
-                if (FacebookInfo != NULL) { writer.String("FacebookInfo"); FacebookInfo->writeJSON(writer); }
-                if (SteamInfo != NULL) { writer.String("SteamInfo"); SteamInfo->writeJSON(writer); }
-                if (GameCenterInfo != NULL) { writer.String("GameCenterInfo"); GameCenterInfo->writeJSON(writer); }
-                if (IosDeviceInfo != NULL) { writer.String("IosDeviceInfo"); IosDeviceInfo->writeJSON(writer); }
-                if (AndroidDeviceInfo != NULL) { writer.String("AndroidDeviceInfo"); AndroidDeviceInfo->writeJSON(writer); }
-                if (KongregateInfo != NULL) { writer.String("KongregateInfo"); KongregateInfo->writeJSON(writer); }
-                if (PsnInfo != NULL) { writer.String("PsnInfo"); PsnInfo->writeJSON(writer); }
-                if (GoogleInfo != NULL) { writer.String("GoogleInfo"); GoogleInfo->writeJSON(writer); }
-                if (XboxInfo != NULL) { writer.String("XboxInfo"); XboxInfo->writeJSON(writer); }
-                if (CustomIdInfo != NULL) { writer.String("CustomIdInfo"); CustomIdInfo->writeJSON(writer); }
+                if (TitleInfo != nullptr) { writer.String("TitleInfo"); TitleInfo->writeJSON(writer); }
+                if (PrivateInfo != nullptr) { writer.String("PrivateInfo"); PrivateInfo->writeJSON(writer); }
+                if (FacebookInfo != nullptr) { writer.String("FacebookInfo"); FacebookInfo->writeJSON(writer); }
+                if (SteamInfo != nullptr) { writer.String("SteamInfo"); SteamInfo->writeJSON(writer); }
+                if (GameCenterInfo != nullptr) { writer.String("GameCenterInfo"); GameCenterInfo->writeJSON(writer); }
+                if (IosDeviceInfo != nullptr) { writer.String("IosDeviceInfo"); IosDeviceInfo->writeJSON(writer); }
+                if (AndroidDeviceInfo != nullptr) { writer.String("AndroidDeviceInfo"); AndroidDeviceInfo->writeJSON(writer); }
+                if (KongregateInfo != nullptr) { writer.String("KongregateInfo"); KongregateInfo->writeJSON(writer); }
+                if (PsnInfo != nullptr) { writer.String("PsnInfo"); PsnInfo->writeJSON(writer); }
+                if (GoogleInfo != nullptr) { writer.String("GoogleInfo"); GoogleInfo->writeJSON(writer); }
+                if (XboxInfo != nullptr) { writer.String("XboxInfo"); XboxInfo->writeJSON(writer); }
+                if (CustomIdInfo != nullptr) { writer.String("CustomIdInfo"); CustomIdInfo->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -4333,12 +4275,12 @@ namespace PlayFab
 
             GetAccountInfoResult() :
                 PlayFabBaseModel(),
-                AccountInfo(NULL)
+                AccountInfo(nullptr)
             {}
 
             GetAccountInfoResult(const GetAccountInfoResult& src) :
                 PlayFabBaseModel(),
-                AccountInfo(src.AccountInfo ? new UserAccountInfo(*src.AccountInfo) : NULL)
+                AccountInfo(src.AccountInfo ? new UserAccountInfo(*src.AccountInfo) : nullptr)
             {}
 
             GetAccountInfoResult(const rapidjson::Value& obj) : GetAccountInfoResult()
@@ -4348,14 +4290,13 @@ namespace PlayFab
 
             ~GetAccountInfoResult()
             {
-                if (AccountInfo != NULL) delete AccountInfo;
-
+                if (AccountInfo != nullptr) delete AccountInfo;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (AccountInfo != NULL) { writer.String("AccountInfo"); AccountInfo->writeJSON(writer); }
+                if (AccountInfo != nullptr) { writer.String("AccountInfo"); AccountInfo->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -4389,7 +4330,6 @@ namespace PlayFab
 
             ~GetCatalogItemsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4429,7 +4369,6 @@ namespace PlayFab
 
             ~GetCatalogItemsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4490,7 +4429,6 @@ namespace PlayFab
 
             ~GetCharacterDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4591,7 +4529,6 @@ namespace PlayFab
 
             ~UserDataRecord()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4643,7 +4580,6 @@ namespace PlayFab
 
             ~GetCharacterDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4703,7 +4639,6 @@ namespace PlayFab
 
             ~GetCharacterInventoryRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4752,7 +4687,6 @@ namespace PlayFab
 
             ~VirtualCurrencyRechargeTime()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4807,7 +4741,6 @@ namespace PlayFab
 
             ~GetCharacterInventoryResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4899,7 +4832,6 @@ namespace PlayFab
 
             ~GetCharacterLeaderboardRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -4948,7 +4880,6 @@ namespace PlayFab
 
             ~GetCharacterLeaderboardResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5000,7 +4931,6 @@ namespace PlayFab
 
             ~GetCharacterStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5040,7 +4970,6 @@ namespace PlayFab
 
             ~GetCharacterStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5094,7 +5023,6 @@ namespace PlayFab
 
             ~GetCloudScriptUrlRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5137,7 +5065,6 @@ namespace PlayFab
 
             ~GetCloudScriptUrlResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5183,7 +5110,6 @@ namespace PlayFab
 
             ~GetContentDownloadUrlRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5229,7 +5155,6 @@ namespace PlayFab
 
             ~GetContentDownloadUrlResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5278,7 +5203,6 @@ namespace PlayFab
 
             ~GetFriendLeaderboardAroundCurrentUserRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5336,7 +5260,6 @@ namespace PlayFab
 
             ~PlayerLeaderboardEntry()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5385,7 +5308,6 @@ namespace PlayFab
 
             ~GetFriendLeaderboardAroundCurrentUserResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5449,7 +5371,6 @@ namespace PlayFab
 
             ~GetFriendLeaderboardAroundPlayerRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5501,7 +5422,6 @@ namespace PlayFab
 
             ~GetFriendLeaderboardAroundPlayerResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5565,7 +5485,6 @@ namespace PlayFab
 
             ~GetFriendLeaderboardRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5620,7 +5539,6 @@ namespace PlayFab
 
             ~GetFriendsListRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5663,7 +5581,6 @@ namespace PlayFab
 
             ~GetFriendsListResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5724,7 +5641,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundCharacterRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5773,7 +5689,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundCharacterResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5828,7 +5743,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundCurrentUserRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5871,7 +5785,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundCurrentUserResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5929,7 +5842,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundPlayerRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -5975,7 +5887,6 @@ namespace PlayFab
 
             ~GetLeaderboardAroundPlayerResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6030,7 +5941,6 @@ namespace PlayFab
 
             ~GetLeaderboardForUsersCharactersRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6073,7 +5983,6 @@ namespace PlayFab
 
             ~GetLeaderboardForUsersCharactersResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6131,7 +6040,6 @@ namespace PlayFab
 
             ~GetLeaderboardRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6177,7 +6085,6 @@ namespace PlayFab
 
             ~GetLeaderboardResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6229,7 +6136,6 @@ namespace PlayFab
 
             ~GetPhotonAuthenticationTokenRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6269,7 +6175,6 @@ namespace PlayFab
 
             ~GetPhotonAuthenticationTokenResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6312,7 +6217,6 @@ namespace PlayFab
 
             ~StatisticNameVersion()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6358,7 +6262,6 @@ namespace PlayFab
 
             ~GetPlayerStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6431,7 +6334,6 @@ namespace PlayFab
 
             ~StatisticValue()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6477,7 +6379,6 @@ namespace PlayFab
 
             ~GetPlayerStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6529,7 +6430,6 @@ namespace PlayFab
 
             ~GetPlayerStatisticVersionsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6584,7 +6484,6 @@ namespace PlayFab
 
             ~PlayerStatisticVersion()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6639,7 +6538,6 @@ namespace PlayFab
 
             ~GetPlayerStatisticVersionsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6691,7 +6589,6 @@ namespace PlayFab
 
             ~GetPlayerTradesRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6734,7 +6631,6 @@ namespace PlayFab
 
             ~GetPlayerTradesResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6801,7 +6697,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromFacebookIDsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6852,7 +6747,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromFacebookIDsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6904,7 +6798,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromGameCenterIDsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -6955,7 +6848,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromGameCenterIDsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7007,7 +6899,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromGoogleIDsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7061,7 +6952,6 @@ namespace PlayFab
 
             ~GooglePlayFabIdPair()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7104,7 +6994,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromGoogleIDsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7156,7 +7045,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromKongregateIDsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7210,7 +7098,6 @@ namespace PlayFab
 
             ~KongregatePlayFabIdPair()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7253,7 +7140,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromKongregateIDsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7308,7 +7194,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromSteamIDsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7381,7 +7266,6 @@ namespace PlayFab
 
             ~SteamPlayFabIdPair()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7427,7 +7311,6 @@ namespace PlayFab
 
             ~GetPlayFabIDsFromSteamIDsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7479,7 +7362,6 @@ namespace PlayFab
 
             ~GetPublisherDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7530,7 +7412,6 @@ namespace PlayFab
 
             ~GetPublisherDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7581,7 +7462,6 @@ namespace PlayFab
 
             ~GetPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7636,7 +7516,6 @@ namespace PlayFab
 
             ~GetPurchaseResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7709,7 +7588,6 @@ namespace PlayFab
 
             ~GetSharedGroupDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7776,7 +7654,6 @@ namespace PlayFab
 
             ~SharedGroupDataRecord()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7828,7 +7705,6 @@ namespace PlayFab
 
             ~GetSharedGroupDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7897,7 +7773,6 @@ namespace PlayFab
 
             ~GetStoreItemsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -7946,7 +7821,6 @@ namespace PlayFab
 
             ~StoreItem()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8014,7 +7888,6 @@ namespace PlayFab
 
             ~GetStoreItemsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8066,7 +7939,6 @@ namespace PlayFab
 
             ~GetTitleDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8118,7 +7990,6 @@ namespace PlayFab
 
             ~GetTitleDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8169,7 +8040,6 @@ namespace PlayFab
 
             ~GetTitleNewsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8218,7 +8088,6 @@ namespace PlayFab
 
             ~TitleNewsItem()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8267,7 +8136,6 @@ namespace PlayFab
 
             ~GetTitleNewsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8322,7 +8190,6 @@ namespace PlayFab
 
             ~GetTradeStatusRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8350,12 +8217,12 @@ namespace PlayFab
 
             GetTradeStatusResponse() :
                 PlayFabBaseModel(),
-                Trade(NULL)
+                Trade(nullptr)
             {}
 
             GetTradeStatusResponse(const GetTradeStatusResponse& src) :
                 PlayFabBaseModel(),
-                Trade(src.Trade ? new TradeInfo(*src.Trade) : NULL)
+                Trade(src.Trade ? new TradeInfo(*src.Trade) : nullptr)
             {}
 
             GetTradeStatusResponse(const rapidjson::Value& obj) : GetTradeStatusResponse()
@@ -8365,14 +8232,13 @@ namespace PlayFab
 
             ~GetTradeStatusResponse()
             {
-                if (Trade != NULL) delete Trade;
-
+                if (Trade != nullptr) delete Trade;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (Trade != NULL) { writer.String("Trade"); Trade->writeJSON(writer); }
+                if (Trade != nullptr) { writer.String("Trade"); Trade->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -8436,7 +8302,6 @@ namespace PlayFab
 
             ~GetUserCombinedInfoRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8524,7 +8389,7 @@ namespace PlayFab
             GetUserCombinedInfoResult() :
                 PlayFabBaseModel(),
                 PlayFabId(),
-                AccountInfo(NULL),
+                AccountInfo(nullptr),
                 Inventory(),
                 VirtualCurrency(),
                 VirtualCurrencyRechargeTimes(),
@@ -8537,7 +8402,7 @@ namespace PlayFab
             GetUserCombinedInfoResult(const GetUserCombinedInfoResult& src) :
                 PlayFabBaseModel(),
                 PlayFabId(src.PlayFabId),
-                AccountInfo(src.AccountInfo ? new UserAccountInfo(*src.AccountInfo) : NULL),
+                AccountInfo(src.AccountInfo ? new UserAccountInfo(*src.AccountInfo) : nullptr),
                 Inventory(src.Inventory),
                 VirtualCurrency(src.VirtualCurrency),
                 VirtualCurrencyRechargeTimes(src.VirtualCurrencyRechargeTimes),
@@ -8554,15 +8419,14 @@ namespace PlayFab
 
             ~GetUserCombinedInfoResult()
             {
-                if (AccountInfo != NULL) delete AccountInfo;
-
+                if (AccountInfo != nullptr) delete AccountInfo;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
-                if (AccountInfo != NULL) { writer.String("AccountInfo"); AccountInfo->writeJSON(writer); }
+                if (AccountInfo != nullptr) { writer.String("AccountInfo"); AccountInfo->writeJSON(writer); }
                 if (!Inventory.empty()) {
     writer.String("Inventory");
     writer.StartArray();
@@ -8681,7 +8545,6 @@ namespace PlayFab
 
             ~GetUserDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8742,7 +8605,6 @@ namespace PlayFab
 
             ~GetUserDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8793,7 +8655,6 @@ namespace PlayFab
 
             ~GetUserInventoryRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8836,7 +8697,6 @@ namespace PlayFab
 
             ~GetUserInventoryResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8913,7 +8773,6 @@ namespace PlayFab
 
             ~GetUserStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -8950,7 +8809,6 @@ namespace PlayFab
 
             ~GetUserStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9007,7 +8865,6 @@ namespace PlayFab
 
             ~GrantCharacterToUserRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9059,7 +8916,6 @@ namespace PlayFab
 
             ~GrantCharacterToUserResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9114,7 +8970,6 @@ namespace PlayFab
 
             ~ItemPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9181,7 +9036,6 @@ namespace PlayFab
 
             ~LinkAndroidDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9224,7 +9078,6 @@ namespace PlayFab
 
             ~LinkAndroidDeviceIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9261,7 +9114,6 @@ namespace PlayFab
 
             ~LinkCustomIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9298,7 +9150,6 @@ namespace PlayFab
 
             ~LinkCustomIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9338,7 +9189,6 @@ namespace PlayFab
 
             ~LinkFacebookAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9378,7 +9228,6 @@ namespace PlayFab
 
             ~LinkFacebookAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9415,7 +9264,6 @@ namespace PlayFab
 
             ~LinkGameCenterAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9452,7 +9300,6 @@ namespace PlayFab
 
             ~LinkGameCenterAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9489,7 +9336,6 @@ namespace PlayFab
 
             ~LinkGoogleAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9526,7 +9372,6 @@ namespace PlayFab
 
             ~LinkGoogleAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9569,7 +9414,6 @@ namespace PlayFab
 
             ~LinkIOSDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9612,7 +9456,6 @@ namespace PlayFab
 
             ~LinkIOSDeviceIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9652,7 +9495,6 @@ namespace PlayFab
 
             ~LinkKongregateAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9692,7 +9534,6 @@ namespace PlayFab
 
             ~LinkKongregateAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9729,7 +9570,6 @@ namespace PlayFab
 
             ~LinkSteamAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9766,7 +9606,6 @@ namespace PlayFab
 
             ~LinkSteamAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9803,7 +9642,6 @@ namespace PlayFab
 
             ~ListUsersCharactersRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9843,7 +9681,6 @@ namespace PlayFab
 
             ~ListUsersCharactersResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9904,7 +9741,6 @@ namespace PlayFab
 
             ~LogEventRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9961,7 +9797,6 @@ namespace PlayFab
 
             ~LogEventResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -9998,7 +9833,6 @@ namespace PlayFab
 
             ~UserSettings()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10030,7 +9864,7 @@ namespace PlayFab
                 SessionTicket(),
                 PlayFabId(),
                 NewlyCreated(false),
-                SettingsForUser(NULL),
+                SettingsForUser(nullptr),
                 LastLoginTime()
             {}
 
@@ -10039,7 +9873,7 @@ namespace PlayFab
                 SessionTicket(src.SessionTicket),
                 PlayFabId(src.PlayFabId),
                 NewlyCreated(src.NewlyCreated),
-                SettingsForUser(src.SettingsForUser ? new UserSettings(*src.SettingsForUser) : NULL),
+                SettingsForUser(src.SettingsForUser ? new UserSettings(*src.SettingsForUser) : nullptr),
                 LastLoginTime(src.LastLoginTime)
             {}
 
@@ -10050,8 +9884,7 @@ namespace PlayFab
 
             ~LoginResult()
             {
-                if (SettingsForUser != NULL) delete SettingsForUser;
-
+                if (SettingsForUser != nullptr) delete SettingsForUser;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10060,7 +9893,7 @@ namespace PlayFab
                 if (SessionTicket.length() > 0) { writer.String("SessionTicket"); writer.String(SessionTicket.c_str()); }
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
                 writer.String("NewlyCreated"); writer.Bool(NewlyCreated);
-                if (SettingsForUser != NULL) { writer.String("SettingsForUser"); SettingsForUser->writeJSON(writer); }
+                if (SettingsForUser != nullptr) { writer.String("SettingsForUser"); SettingsForUser->writeJSON(writer); }
                 if (LastLoginTime.notNull()) { writer.String("LastLoginTime"); writeDatetime(LastLoginTime, writer); }
                 writer.EndObject();
             }
@@ -10115,7 +9948,6 @@ namespace PlayFab
 
             ~LoginWithAndroidDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10173,7 +10005,6 @@ namespace PlayFab
 
             ~LoginWithCustomIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10225,7 +10056,6 @@ namespace PlayFab
 
             ~LoginWithEmailAddressRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10277,7 +10107,6 @@ namespace PlayFab
 
             ~LoginWithFacebookRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10329,7 +10158,6 @@ namespace PlayFab
 
             ~LoginWithGameCenterRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10384,7 +10212,6 @@ namespace PlayFab
 
             ~LoginWithGoogleAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10445,7 +10272,6 @@ namespace PlayFab
 
             ~LoginWithIOSDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10506,7 +10332,6 @@ namespace PlayFab
 
             ~LoginWithKongregateRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10561,7 +10386,6 @@ namespace PlayFab
 
             ~LoginWithPlayFabRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10613,7 +10437,6 @@ namespace PlayFab
 
             ~LoginWithSteamRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10677,7 +10500,6 @@ namespace PlayFab
 
             ~MatchmakeRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10790,7 +10612,6 @@ namespace PlayFab
 
             ~MatchmakeResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10857,7 +10678,6 @@ namespace PlayFab
 
             ~ModifyUserVirtualCurrencyResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10912,7 +10732,6 @@ namespace PlayFab
 
             ~OpenTradeRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -10979,12 +10798,12 @@ namespace PlayFab
 
             OpenTradeResponse() :
                 PlayFabBaseModel(),
-                Trade(NULL)
+                Trade(nullptr)
             {}
 
             OpenTradeResponse(const OpenTradeResponse& src) :
                 PlayFabBaseModel(),
-                Trade(src.Trade ? new TradeInfo(*src.Trade) : NULL)
+                Trade(src.Trade ? new TradeInfo(*src.Trade) : nullptr)
             {}
 
             OpenTradeResponse(const rapidjson::Value& obj) : OpenTradeResponse()
@@ -10994,14 +10813,13 @@ namespace PlayFab
 
             ~OpenTradeResponse()
             {
-                if (Trade != NULL) delete Trade;
-
+                if (Trade != nullptr) delete Trade;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (Trade != NULL) { writer.String("Trade"); Trade->writeJSON(writer); }
+                if (Trade != nullptr) { writer.String("Trade"); Trade->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -11044,7 +10862,6 @@ namespace PlayFab
 
             ~PayForPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11205,7 +11022,6 @@ namespace PlayFab
 
             ~PayForPurchaseResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11300,7 +11116,6 @@ namespace PlayFab
 
             ~PaymentOption()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11323,58 +11138,6 @@ namespace PlayFab
                 if (Price_member != obj.MemberEnd() && !Price_member->value.IsNull()) Price = Price_member->value.GetUint();
                 const Value::ConstMemberIterator StoreCredit_member = obj.FindMember("StoreCredit");
                 if (StoreCredit_member != obj.MemberEnd() && !StoreCredit_member->value.IsNull()) StoreCredit = StoreCredit_member->value.GetUint();
-
-                return true;
-            }
-        };
-
-        struct PlayStreamEventHistory : public PlayFabBaseModel
-        {
-            Aws::String ParentTriggerId;
-            Aws::String ParentEventId;
-            bool TriggeredEvents;
-
-            PlayStreamEventHistory() :
-                PlayFabBaseModel(),
-                ParentTriggerId(),
-                ParentEventId(),
-                TriggeredEvents(false)
-            {}
-
-            PlayStreamEventHistory(const PlayStreamEventHistory& src) :
-                PlayFabBaseModel(),
-                ParentTriggerId(src.ParentTriggerId),
-                ParentEventId(src.ParentEventId),
-                TriggeredEvents(src.TriggeredEvents)
-            {}
-
-            PlayStreamEventHistory(const rapidjson::Value& obj) : PlayStreamEventHistory()
-            {
-                readFromValue(obj);
-            }
-
-            ~PlayStreamEventHistory()
-            {
-
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (ParentTriggerId.length() > 0) { writer.String("ParentTriggerId"); writer.String(ParentTriggerId.c_str()); }
-                if (ParentEventId.length() > 0) { writer.String("ParentEventId"); writer.String(ParentEventId.c_str()); }
-                writer.String("TriggeredEvents"); writer.Bool(TriggeredEvents);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator ParentTriggerId_member = obj.FindMember("ParentTriggerId");
-                if (ParentTriggerId_member != obj.MemberEnd() && !ParentTriggerId_member->value.IsNull()) ParentTriggerId = ParentTriggerId_member->value.GetString();
-                const Value::ConstMemberIterator ParentEventId_member = obj.FindMember("ParentEventId");
-                if (ParentEventId_member != obj.MemberEnd() && !ParentEventId_member->value.IsNull()) ParentEventId = ParentEventId_member->value.GetString();
-                const Value::ConstMemberIterator TriggeredEvents_member = obj.FindMember("TriggeredEvents");
-                if (TriggeredEvents_member != obj.MemberEnd() && !TriggeredEvents_member->value.IsNull()) TriggeredEvents = TriggeredEvents_member->value.GetBool();
 
                 return true;
             }
@@ -11416,7 +11179,6 @@ namespace PlayFab
 
             ~PurchaseItemRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11471,7 +11233,6 @@ namespace PlayFab
 
             ~PurchaseItemResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11526,7 +11287,6 @@ namespace PlayFab
 
             ~RedeemCouponRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11569,7 +11329,6 @@ namespace PlayFab
 
             ~RedeemCouponResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11627,7 +11386,6 @@ namespace PlayFab
 
             ~RegisterForIOSPushNotificationRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11670,7 +11428,6 @@ namespace PlayFab
 
             ~RegisterForIOSPushNotificationResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11725,7 +11482,6 @@ namespace PlayFab
 
             ~RegisterPlayFabUserRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11774,7 +11530,7 @@ namespace PlayFab
                 PlayFabId(),
                 SessionTicket(),
                 Username(),
-                SettingsForUser(NULL)
+                SettingsForUser(nullptr)
             {}
 
             RegisterPlayFabUserResult(const RegisterPlayFabUserResult& src) :
@@ -11782,7 +11538,7 @@ namespace PlayFab
                 PlayFabId(src.PlayFabId),
                 SessionTicket(src.SessionTicket),
                 Username(src.Username),
-                SettingsForUser(src.SettingsForUser ? new UserSettings(*src.SettingsForUser) : NULL)
+                SettingsForUser(src.SettingsForUser ? new UserSettings(*src.SettingsForUser) : nullptr)
             {}
 
             RegisterPlayFabUserResult(const rapidjson::Value& obj) : RegisterPlayFabUserResult()
@@ -11792,8 +11548,7 @@ namespace PlayFab
 
             ~RegisterPlayFabUserResult()
             {
-                if (SettingsForUser != NULL) delete SettingsForUser;
-
+                if (SettingsForUser != nullptr) delete SettingsForUser;
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11802,7 +11557,7 @@ namespace PlayFab
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
                 if (SessionTicket.length() > 0) { writer.String("SessionTicket"); writer.String(SessionTicket.c_str()); }
                 if (Username.length() > 0) { writer.String("Username"); writer.String(Username.c_str()); }
-                if (SettingsForUser != NULL) { writer.String("SettingsForUser"); SettingsForUser->writeJSON(writer); }
+                if (SettingsForUser != nullptr) { writer.String("SettingsForUser"); SettingsForUser->writeJSON(writer); }
                 writer.EndObject();
             }
 
@@ -11842,7 +11597,6 @@ namespace PlayFab
 
             ~RemoveFriendRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11879,7 +11633,6 @@ namespace PlayFab
 
             ~RemoveFriendResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11919,7 +11672,6 @@ namespace PlayFab
 
             ~RemoveSharedGroupMembersRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -11970,7 +11722,6 @@ namespace PlayFab
 
             ~RemoveSharedGroupMembersResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12010,7 +11761,6 @@ namespace PlayFab
 
             ~ReportPlayerClientRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12056,7 +11806,6 @@ namespace PlayFab
 
             ~ReportPlayerClientResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12099,7 +11848,6 @@ namespace PlayFab
 
             ~RestoreIOSPurchasesRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12136,7 +11884,6 @@ namespace PlayFab
 
             ~RestoreIOSPurchasesResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12179,7 +11926,6 @@ namespace PlayFab
 
             ~RunCloudScriptRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12243,7 +11989,6 @@ namespace PlayFab
 
             ~RunCloudScriptResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12307,7 +12052,6 @@ namespace PlayFab
 
             ~SendAccountRecoveryEmailRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12350,7 +12094,6 @@ namespace PlayFab
 
             ~SendAccountRecoveryEmailResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12390,7 +12133,6 @@ namespace PlayFab
 
             ~SetFriendTagsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12441,7 +12183,6 @@ namespace PlayFab
 
             ~SetFriendTagsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12456,52 +12197,6 @@ namespace PlayFab
                 return true;
             }
         };
-
-        enum SourceType
-        {
-            SourceTypeAdmin,
-            SourceTypeBackEnd,
-            SourceTypeGameClient,
-            SourceTypeGameServer,
-            SourceTypePartner,
-            SourceTypeStream
-        };
-
-        inline void writeSourceTypeEnumJSON(SourceType enumVal, PFStringJsonWriter& writer)
-        {
-            switch (enumVal)
-            {
-            case SourceTypeAdmin: writer.String("Admin"); break;
-            case SourceTypeBackEnd: writer.String("BackEnd"); break;
-            case SourceTypeGameClient: writer.String("GameClient"); break;
-            case SourceTypeGameServer: writer.String("GameServer"); break;
-            case SourceTypePartner: writer.String("Partner"); break;
-            case SourceTypeStream: writer.String("Stream"); break;
-
-            }
-        }
-
-        inline SourceType readSourceTypeFromValue(const rapidjson::Value& obj)
-        {
-            static std::map<Aws::String, SourceType> _SourceTypeMap;
-            if (_SourceTypeMap.size() == 0)
-            {
-                // Auto-generate the map on the first use
-                _SourceTypeMap["Admin"] = SourceTypeAdmin;
-                _SourceTypeMap["BackEnd"] = SourceTypeBackEnd;
-                _SourceTypeMap["GameClient"] = SourceTypeGameClient;
-                _SourceTypeMap["GameServer"] = SourceTypeGameServer;
-                _SourceTypeMap["Partner"] = SourceTypePartner;
-                _SourceTypeMap["Stream"] = SourceTypeStream;
-
-            }
-
-            auto output = _SourceTypeMap.find(obj.GetString());
-            if (output != _SourceTypeMap.end())
-                return output->second;
-
-            return SourceTypeAdmin; // Basically critical fail
-        }
 
         struct StartGameRequest : public PlayFabBaseModel
         {
@@ -12539,7 +12234,6 @@ namespace PlayFab
 
             ~StartGameRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12609,7 +12303,6 @@ namespace PlayFab
 
             ~StartGameResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12670,7 +12363,6 @@ namespace PlayFab
 
             ~StartPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12736,7 +12428,6 @@ namespace PlayFab
 
             ~StartPurchaseResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12826,7 +12517,6 @@ namespace PlayFab
 
             ~StatisticUpdate()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12875,7 +12565,6 @@ namespace PlayFab
 
             ~SubtractUserVirtualCurrencyRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12918,7 +12607,6 @@ namespace PlayFab
 
             ~UnlinkAndroidDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12955,7 +12643,6 @@ namespace PlayFab
 
             ~UnlinkAndroidDeviceIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -12992,7 +12679,6 @@ namespace PlayFab
 
             ~UnlinkCustomIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13029,7 +12715,6 @@ namespace PlayFab
 
             ~UnlinkCustomIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13063,7 +12748,6 @@ namespace PlayFab
 
             ~UnlinkFacebookAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13097,7 +12781,6 @@ namespace PlayFab
 
             ~UnlinkFacebookAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13131,7 +12814,6 @@ namespace PlayFab
 
             ~UnlinkGameCenterAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13165,7 +12847,6 @@ namespace PlayFab
 
             ~UnlinkGameCenterAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13199,7 +12880,6 @@ namespace PlayFab
 
             ~UnlinkGoogleAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13233,7 +12913,6 @@ namespace PlayFab
 
             ~UnlinkGoogleAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13270,7 +12949,6 @@ namespace PlayFab
 
             ~UnlinkIOSDeviceIDRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13307,7 +12985,6 @@ namespace PlayFab
 
             ~UnlinkIOSDeviceIDResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13341,7 +13018,6 @@ namespace PlayFab
 
             ~UnlinkKongregateAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13375,7 +13051,6 @@ namespace PlayFab
 
             ~UnlinkKongregateAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13409,7 +13084,6 @@ namespace PlayFab
 
             ~UnlinkSteamAccountRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13443,7 +13117,6 @@ namespace PlayFab
 
             ~UnlinkSteamAccountResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13489,7 +13162,6 @@ namespace PlayFab
 
             ~UnlockContainerInstanceRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13544,7 +13216,6 @@ namespace PlayFab
 
             ~UnlockContainerItemRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13599,7 +13270,6 @@ namespace PlayFab
 
             ~UnlockContainerItemResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13680,7 +13350,6 @@ namespace PlayFab
 
             ~UpdateCharacterDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13752,7 +13421,6 @@ namespace PlayFab
 
             ~UpdateCharacterDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13795,7 +13463,6 @@ namespace PlayFab
 
             ~UpdateCharacterStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13846,7 +13513,6 @@ namespace PlayFab
 
             ~UpdateCharacterStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13883,7 +13549,6 @@ namespace PlayFab
 
             ~UpdatePlayerStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13932,7 +13597,6 @@ namespace PlayFab
 
             ~UpdatePlayerStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -13978,7 +13642,6 @@ namespace PlayFab
 
             ~UpdateSharedGroupDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14047,7 +13710,6 @@ namespace PlayFab
 
             ~UpdateSharedGroupDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14090,7 +13752,6 @@ namespace PlayFab
 
             ~UpdateUserDataRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14159,7 +13820,6 @@ namespace PlayFab
 
             ~UpdateUserDataResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14199,7 +13859,6 @@ namespace PlayFab
 
             ~UpdateUserStatisticsRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14247,7 +13906,6 @@ namespace PlayFab
 
             ~UpdateUserStatisticsResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14284,7 +13942,6 @@ namespace PlayFab
 
             ~UpdateUserTitleDisplayNameRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14324,7 +13981,6 @@ namespace PlayFab
 
             ~UpdateUserTitleDisplayNameResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14376,7 +14032,6 @@ namespace PlayFab
 
             ~ValidateAmazonReceiptRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14425,7 +14080,6 @@ namespace PlayFab
 
             ~ValidateAmazonReceiptResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14471,7 +14125,6 @@ namespace PlayFab
 
             ~ValidateGooglePlayPurchaseRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14517,7 +14170,6 @@ namespace PlayFab
 
             ~ValidateGooglePlayPurchaseResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14560,7 +14212,6 @@ namespace PlayFab
 
             ~ValidateIOSReceiptRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -14603,7 +14254,6 @@ namespace PlayFab
 
             ~ValidateIOSReceiptResult()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override

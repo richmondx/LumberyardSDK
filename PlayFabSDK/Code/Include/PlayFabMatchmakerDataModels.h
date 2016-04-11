@@ -30,7 +30,6 @@ namespace PlayFab
 
             ~AuthUserRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -73,7 +72,6 @@ namespace PlayFab
 
             ~AuthUserResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -158,7 +156,6 @@ namespace PlayFab
 
             ~ItemInstance()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -266,7 +263,6 @@ namespace PlayFab
 
             ~PlayerJoinedRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -306,7 +302,6 @@ namespace PlayFab
 
             ~PlayerJoinedResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -346,7 +341,6 @@ namespace PlayFab
 
             ~PlayerLeftRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -386,7 +380,6 @@ namespace PlayFab
 
             ~PlayerLeftResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -484,7 +477,6 @@ namespace PlayFab
 
             ~StartGameRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -542,7 +534,6 @@ namespace PlayFab
 
             ~StartGameResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -591,7 +582,6 @@ namespace PlayFab
 
             ~UserInfoRequest()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -640,7 +630,6 @@ namespace PlayFab
 
             ~VirtualCurrencyRechargeTime()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
@@ -707,7 +696,6 @@ namespace PlayFab
 
             ~UserInfoResponse()
             {
-
             }
 
             void writeJSON(PFStringJsonWriter& writer) override
