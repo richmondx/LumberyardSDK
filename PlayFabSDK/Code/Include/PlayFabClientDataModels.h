@@ -14269,6 +14269,186 @@ namespace PlayFab
             }
         };
 
+        struct WriteClientCharacterEventRequest : public PlayFabBaseModel
+        {
+            Aws::String CharacterId;
+            Aws::String EventName;
+            OptionalTime Timestamp;
+
+            WriteClientCharacterEventRequest() :
+                PlayFabBaseModel(),
+                CharacterId(),
+                EventName(),
+                Timestamp()
+            {}
+
+            WriteClientCharacterEventRequest(const WriteClientCharacterEventRequest& src) :
+                PlayFabBaseModel(),
+                CharacterId(src.CharacterId),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp)
+            {}
+
+            WriteClientCharacterEventRequest(const rapidjson::Value& obj) : WriteClientCharacterEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteClientCharacterEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("CharacterId"); writer.String(CharacterId.c_str());
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
+                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+
+                return true;
+            }
+        };
+
+        struct WriteClientPlayerEventRequest : public PlayFabBaseModel
+        {
+            Aws::String EventName;
+            OptionalTime Timestamp;
+
+            WriteClientPlayerEventRequest() :
+                PlayFabBaseModel(),
+                EventName(),
+                Timestamp()
+            {}
+
+            WriteClientPlayerEventRequest(const WriteClientPlayerEventRequest& src) :
+                PlayFabBaseModel(),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp)
+            {}
+
+            WriteClientPlayerEventRequest(const rapidjson::Value& obj) : WriteClientPlayerEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteClientPlayerEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+
+                return true;
+            }
+        };
+
+        struct WriteEventResponse : public PlayFabBaseModel
+        {
+            Aws::String EventId;
+
+            WriteEventResponse() :
+                PlayFabBaseModel(),
+                EventId()
+            {}
+
+            WriteEventResponse(const WriteEventResponse& src) :
+                PlayFabBaseModel(),
+                EventId(src.EventId)
+            {}
+
+            WriteEventResponse(const rapidjson::Value& obj) : WriteEventResponse()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteEventResponse()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                if (EventId.length() > 0) { writer.String("EventId"); writer.String(EventId.c_str()); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator EventId_member = obj.FindMember("EventId");
+                if (EventId_member != obj.MemberEnd() && !EventId_member->value.IsNull()) EventId = EventId_member->value.GetString();
+
+                return true;
+            }
+        };
+
+        struct WriteTitleEventRequest : public PlayFabBaseModel
+        {
+            Aws::String EventName;
+            OptionalTime Timestamp;
+
+            WriteTitleEventRequest() :
+                PlayFabBaseModel(),
+                EventName(),
+                Timestamp()
+            {}
+
+            WriteTitleEventRequest(const WriteTitleEventRequest& src) :
+                PlayFabBaseModel(),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp)
+            {}
+
+            WriteTitleEventRequest(const rapidjson::Value& obj) : WriteTitleEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteTitleEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+
+                return true;
+            }
+        };
+
 
     }
 }

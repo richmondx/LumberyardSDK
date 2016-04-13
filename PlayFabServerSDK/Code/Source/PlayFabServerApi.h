@@ -67,6 +67,9 @@ namespace PlayFab
         static void RedeemMatchmakerTicket(ServerModels::RedeemMatchmakerTicketRequest& request, ProcessApiCallback<ServerModels::RedeemMatchmakerTicketResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void AwardSteamAchievement(ServerModels::AwardSteamAchievementRequest& request, ProcessApiCallback<ServerModels::AwardSteamAchievementResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void LogEvent(ServerModels::LogEventRequest& request, ProcessApiCallback<ServerModels::LogEventResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WriteCharacterEvent(ServerModels::WriteServerCharacterEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WritePlayerEvent(ServerModels::WriteServerPlayerEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WriteTitleEvent(ServerModels::WriteTitleEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void AddSharedGroupMembers(ServerModels::AddSharedGroupMembersRequest& request, ProcessApiCallback<ServerModels::AddSharedGroupMembersResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void CreateSharedGroup(ServerModels::CreateSharedGroupRequest& request, ProcessApiCallback<ServerModels::CreateSharedGroupResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void DeleteSharedGroup(ServerModels::DeleteSharedGroupRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -152,6 +155,9 @@ namespace PlayFab
         static void OnRedeemMatchmakerTicketResult(PlayFabRequest* request);
         static void OnAwardSteamAchievementResult(PlayFabRequest* request);
         static void OnLogEventResult(PlayFabRequest* request);
+        static void OnWriteCharacterEventResult(PlayFabRequest* request);
+        static void OnWritePlayerEventResult(PlayFabRequest* request);
+        static void OnWriteTitleEventResult(PlayFabRequest* request);
         static void OnAddSharedGroupMembersResult(PlayFabRequest* request);
         static void OnCreateSharedGroupResult(PlayFabRequest* request);
         static void OnDeleteSharedGroupResult(PlayFabRequest* request);

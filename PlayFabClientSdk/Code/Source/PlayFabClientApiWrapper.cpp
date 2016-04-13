@@ -453,6 +453,21 @@ void PlayFabClientApiWrapper::LogEvent(ClientModels::LogEventRequest& request, P
     PlayFabClientApi::LogEvent(request, callback, errorCallback, customData);
 }
 
+void PlayFabClientApiWrapper::WriteCharacterEvent(ClientModels::WriteClientCharacterEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabClientApi::WriteCharacterEvent(request, callback, errorCallback, customData);
+}
+
+void PlayFabClientApiWrapper::WritePlayerEvent(ClientModels::WriteClientPlayerEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabClientApi::WritePlayerEvent(request, callback, errorCallback, customData);
+}
+
+void PlayFabClientApiWrapper::WriteTitleEvent(ClientModels::WriteTitleEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabClientApi::WriteTitleEvent(request, callback, errorCallback, customData);
+}
+
 void PlayFabClientApiWrapper::AddSharedGroupMembers(ClientModels::AddSharedGroupMembersRequest& request, ProcessApiCallback<ClientModels::AddSharedGroupMembersResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::AddSharedGroupMembers(request, callback, errorCallback, customData);
