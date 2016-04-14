@@ -102,6 +102,9 @@ namespace PlayFab
         static void AndroidDevicePushNotificationRegistration(ClientModels::AndroidDevicePushNotificationRegistrationRequest& request, ProcessApiCallback<ClientModels::AndroidDevicePushNotificationRegistrationResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void ValidateGooglePlayPurchase(ClientModels::ValidateGooglePlayPurchaseRequest& request, ProcessApiCallback<ClientModels::ValidateGooglePlayPurchaseResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void LogEvent(ClientModels::LogEventRequest& request, ProcessApiCallback<ClientModels::LogEventResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WriteCharacterEvent(ClientModels::WriteClientCharacterEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WritePlayerEvent(ClientModels::WriteClientPlayerEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void WriteTitleEvent(ClientModels::WriteTitleEventRequest& request, ProcessApiCallback<ClientModels::WriteEventResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void AddSharedGroupMembers(ClientModels::AddSharedGroupMembersRequest& request, ProcessApiCallback<ClientModels::AddSharedGroupMembersResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void CreateSharedGroup(ClientModels::CreateSharedGroupRequest& request, ProcessApiCallback<ClientModels::CreateSharedGroupResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetSharedGroupData(ClientModels::GetSharedGroupDataRequest& request, ProcessApiCallback<ClientModels::GetSharedGroupDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -222,6 +225,9 @@ namespace PlayFab
         static void OnAndroidDevicePushNotificationRegistrationResult(PlayFabRequest* request);
         static void OnValidateGooglePlayPurchaseResult(PlayFabRequest* request);
         static void OnLogEventResult(PlayFabRequest* request);
+        static void OnWriteCharacterEventResult(PlayFabRequest* request);
+        static void OnWritePlayerEventResult(PlayFabRequest* request);
+        static void OnWriteTitleEventResult(PlayFabRequest* request);
         static void OnAddSharedGroupMembersResult(PlayFabRequest* request);
         static void OnCreateSharedGroupResult(PlayFabRequest* request);
         static void OnGetSharedGroupDataResult(PlayFabRequest* request);

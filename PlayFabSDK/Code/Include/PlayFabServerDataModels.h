@@ -9542,6 +9542,249 @@ namespace PlayFab
             }
         };
 
+        struct WriteEventResponse : public PlayFabBaseModel
+        {
+            Aws::String EventId;
+
+            WriteEventResponse() :
+                PlayFabBaseModel(),
+                EventId()
+            {}
+
+            WriteEventResponse(const WriteEventResponse& src) :
+                PlayFabBaseModel(),
+                EventId(src.EventId)
+            {}
+
+            WriteEventResponse(const rapidjson::Value& obj) : WriteEventResponse()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteEventResponse()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                if (EventId.length() > 0) { writer.String("EventId"); writer.String(EventId.c_str()); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator EventId_member = obj.FindMember("EventId");
+                if (EventId_member != obj.MemberEnd() && !EventId_member->value.IsNull()) EventId = EventId_member->value.GetString();
+
+                return true;
+            }
+        };
+
+        struct WriteServerCharacterEventRequest : public PlayFabBaseModel
+        {
+            Aws::String PlayFabId;
+            Aws::String CharacterId;
+            Aws::String EventName;
+            OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
+
+            WriteServerCharacterEventRequest() :
+                PlayFabBaseModel(),
+                PlayFabId(),
+                CharacterId(),
+                EventName(),
+                Timestamp(),
+                Body()
+            {}
+
+            WriteServerCharacterEventRequest(const WriteServerCharacterEventRequest& src) :
+                PlayFabBaseModel(),
+                PlayFabId(src.PlayFabId),
+                CharacterId(src.CharacterId),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp),
+                Body(src.Body)
+            {}
+
+            WriteServerCharacterEventRequest(const rapidjson::Value& obj) : WriteServerCharacterEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteServerCharacterEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+                writer.String("CharacterId"); writer.String(CharacterId.c_str());
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
+                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
+                const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
+                if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
+
+                return true;
+            }
+        };
+
+        struct WriteServerPlayerEventRequest : public PlayFabBaseModel
+        {
+            Aws::String PlayFabId;
+            Aws::String EventName;
+            OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
+
+            WriteServerPlayerEventRequest() :
+                PlayFabBaseModel(),
+                PlayFabId(),
+                EventName(),
+                Timestamp(),
+                Body()
+            {}
+
+            WriteServerPlayerEventRequest(const WriteServerPlayerEventRequest& src) :
+                PlayFabBaseModel(),
+                PlayFabId(src.PlayFabId),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp),
+                Body(src.Body)
+            {}
+
+            WriteServerPlayerEventRequest(const rapidjson::Value& obj) : WriteServerPlayerEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteServerPlayerEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
+                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
+
+                return true;
+            }
+        };
+
+        struct WriteTitleEventRequest : public PlayFabBaseModel
+        {
+            Aws::String EventName;
+            OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
+
+            WriteTitleEventRequest() :
+                PlayFabBaseModel(),
+                EventName(),
+                Timestamp(),
+                Body()
+            {}
+
+            WriteTitleEventRequest(const WriteTitleEventRequest& src) :
+                PlayFabBaseModel(),
+                EventName(src.EventName),
+                Timestamp(src.Timestamp),
+                Body(src.Body)
+            {}
+
+            WriteTitleEventRequest(const rapidjson::Value& obj) : WriteTitleEventRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~WriteTitleEventRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("EventName"); writer.String(EventName.c_str());
+                if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator EventName_member = obj.FindMember("EventName");
+                if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
+                const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
+                if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
+
+                return true;
+            }
+        };
+
 
     }
 }

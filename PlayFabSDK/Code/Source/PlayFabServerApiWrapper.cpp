@@ -292,6 +292,21 @@ void PlayFabServerApiWrapper::LogEvent(ServerModels::LogEventRequest& request, P
     PlayFabServerApi::LogEvent(request, callback, errorCallback, customData);
 }
 
+void PlayFabServerApiWrapper::WriteCharacterEvent(ServerModels::WriteServerCharacterEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::WriteCharacterEvent(request, callback, errorCallback, customData);
+}
+
+void PlayFabServerApiWrapper::WritePlayerEvent(ServerModels::WriteServerPlayerEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::WritePlayerEvent(request, callback, errorCallback, customData);
+}
+
+void PlayFabServerApiWrapper::WriteTitleEvent(ServerModels::WriteTitleEventRequest& request, ProcessApiCallback<ServerModels::WriteEventResponse> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::WriteTitleEvent(request, callback, errorCallback, customData);
+}
+
 void PlayFabServerApiWrapper::AddSharedGroupMembers(ServerModels::AddSharedGroupMembersRequest& request, ProcessApiCallback<ServerModels::AddSharedGroupMembersResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::AddSharedGroupMembers(request, callback, errorCallback, customData);
