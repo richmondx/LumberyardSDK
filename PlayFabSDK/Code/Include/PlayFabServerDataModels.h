@@ -9587,13 +9587,15 @@ namespace PlayFab
             Aws::String CharacterId;
             Aws::String EventName;
             OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
 
             WriteServerCharacterEventRequest() :
                 PlayFabBaseModel(),
                 PlayFabId(),
                 CharacterId(),
                 EventName(),
-                Timestamp()
+                Timestamp(),
+                Body()
             {}
 
             WriteServerCharacterEventRequest(const WriteServerCharacterEventRequest& src) :
@@ -9601,7 +9603,8 @@ namespace PlayFab
                 PlayFabId(src.PlayFabId),
                 CharacterId(src.CharacterId),
                 EventName(src.EventName),
-                Timestamp(src.Timestamp)
+                Timestamp(src.Timestamp),
+                Body(src.Body)
             {}
 
             WriteServerCharacterEventRequest(const rapidjson::Value& obj) : WriteServerCharacterEventRequest()
@@ -9620,6 +9623,14 @@ namespace PlayFab
                 writer.String("CharacterId"); writer.String(CharacterId.c_str());
                 writer.String("EventName"); writer.String(EventName.c_str());
                 if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
                 writer.EndObject();
             }
 
@@ -9633,6 +9644,12 @@ namespace PlayFab
                 if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
                 const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
                 if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
 
                 return true;
             }
@@ -9643,19 +9660,22 @@ namespace PlayFab
             Aws::String PlayFabId;
             Aws::String EventName;
             OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
 
             WriteServerPlayerEventRequest() :
                 PlayFabBaseModel(),
                 PlayFabId(),
                 EventName(),
-                Timestamp()
+                Timestamp(),
+                Body()
             {}
 
             WriteServerPlayerEventRequest(const WriteServerPlayerEventRequest& src) :
                 PlayFabBaseModel(),
                 PlayFabId(src.PlayFabId),
                 EventName(src.EventName),
-                Timestamp(src.Timestamp)
+                Timestamp(src.Timestamp),
+                Body(src.Body)
             {}
 
             WriteServerPlayerEventRequest(const rapidjson::Value& obj) : WriteServerPlayerEventRequest()
@@ -9673,6 +9693,14 @@ namespace PlayFab
                 writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
                 writer.String("EventName"); writer.String(EventName.c_str());
                 if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
                 writer.EndObject();
             }
 
@@ -9684,6 +9712,12 @@ namespace PlayFab
                 if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
                 const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
                 if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
 
                 return true;
             }
@@ -9693,17 +9727,20 @@ namespace PlayFab
         {
             Aws::String EventName;
             OptionalTime Timestamp;
+            std::map<Aws::String, MultitypeVar> Body;
 
             WriteTitleEventRequest() :
                 PlayFabBaseModel(),
                 EventName(),
-                Timestamp()
+                Timestamp(),
+                Body()
             {}
 
             WriteTitleEventRequest(const WriteTitleEventRequest& src) :
                 PlayFabBaseModel(),
                 EventName(src.EventName),
-                Timestamp(src.Timestamp)
+                Timestamp(src.Timestamp),
+                Body(src.Body)
             {}
 
             WriteTitleEventRequest(const rapidjson::Value& obj) : WriteTitleEventRequest()
@@ -9720,6 +9757,14 @@ namespace PlayFab
                 writer.StartObject();
                 writer.String("EventName"); writer.String(EventName.c_str());
                 if (Timestamp.notNull()) { writer.String("Timestamp"); writeDatetime(Timestamp, writer); }
+                if (!Body.empty()) {
+    writer.String("Body");
+    writer.StartObject();
+    for (std::map<Aws::String, MultitypeVar>::iterator iter = Body.begin(); iter != Body.end(); ++iter) {
+        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
+    }
+    writer.EndObject();
+     }
                 writer.EndObject();
             }
 
@@ -9729,6 +9774,12 @@ namespace PlayFab
                 if (EventName_member != obj.MemberEnd() && !EventName_member->value.IsNull()) EventName = EventName_member->value.GetString();
                 const Value::ConstMemberIterator Timestamp_member = obj.FindMember("Timestamp");
                 if (Timestamp_member != obj.MemberEnd() && !Timestamp_member->value.IsNull()) Timestamp = readDatetime(Timestamp_member->value);
+                const Value::ConstMemberIterator Body_member = obj.FindMember("Body");
+    if (Body_member != obj.MemberEnd()) {
+        for (Value::ConstMemberIterator iter = Body_member->value.MemberBegin(); iter != Body_member->value.MemberEnd(); ++iter) {
+            Body[iter->name.GetString()] = MultitypeVar(iter->value);
+        }
+    }
 
                 return true;
             }
