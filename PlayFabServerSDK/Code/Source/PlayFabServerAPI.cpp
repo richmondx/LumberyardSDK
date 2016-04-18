@@ -1088,6 +1088,36 @@ void PlayFabServerApi::OnConsumeItemResult(PlayFabRequest* request)
     }
 }
 
+void PlayFabServerApi::EvaluateRandomResultTable(
+    EvaluateRandomResultTableRequest& request,
+    ProcessApiCallback<EvaluateRandomResultTableResult> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Server/EvaluateRandomResultTable"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnEvaluateRandomResultTableResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabServerApi::OnEvaluateRandomResultTableResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        EvaluateRandomResultTableResult* outResult = new EvaluateRandomResultTableResult;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<EvaluateRandomResultTableResult> successCallback = reinterpret_cast<ProcessApiCallback<EvaluateRandomResultTableResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
 void PlayFabServerApi::GetCharacterInventory(
     GetCharacterInventoryRequest& request,
     ProcessApiCallback<GetCharacterInventoryResult> callback,

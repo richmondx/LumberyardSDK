@@ -187,6 +187,11 @@ void PlayFabServerApiWrapper::ConsumeItem(ServerModels::ConsumeItemRequest& requ
     PlayFabServerApi::ConsumeItem(request, callback, errorCallback, customData);
 }
 
+void PlayFabServerApiWrapper::EvaluateRandomResultTable(ServerModels::EvaluateRandomResultTableRequest& request, ProcessApiCallback<ServerModels::EvaluateRandomResultTableResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::EvaluateRandomResultTable(request, callback, errorCallback, customData);
+}
+
 void PlayFabServerApiWrapper::GetCharacterInventory(ServerModels::GetCharacterInventoryRequest& request, ProcessApiCallback<ServerModels::GetCharacterInventoryResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetCharacterInventory(request, callback, errorCallback, customData);
