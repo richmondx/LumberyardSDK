@@ -3032,7 +3032,7 @@ namespace PlayFab
             Aws::String PlayFabId;
             Aws::String FunctionName;
             MultitypeVar FunctionParameter;
-            CloudScriptRevisionOption RevisionSelection;
+            Boxed<CloudScriptRevisionOption> RevisionSelection;
             OptionalInt32 SpecificRevision;
             OptionalBool GeneratePlayStreamEvent;
 
@@ -3071,7 +3071,7 @@ namespace PlayFab
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
                 writer.String("FunctionName"); writer.String(FunctionName.c_str());
                 if (FunctionParameter.notNull()) { writer.String("FunctionParameter"); FunctionParameter.writeJSON(writer); }
-                writer.String("RevisionSelection"); writeCloudScriptRevisionOptionEnumJSON(RevisionSelection, writer);
+                if (RevisionSelection.notNull()) { writer.String("RevisionSelection"); writeCloudScriptRevisionOptionEnumJSON(RevisionSelection, writer); }
                 if (SpecificRevision.notNull()) { writer.String("SpecificRevision"); writer.Int(SpecificRevision); }
                 if (GeneratePlayStreamEvent.notNull()) { writer.String("GeneratePlayStreamEvent"); writer.Bool(GeneratePlayStreamEvent); }
                 writer.EndObject();
