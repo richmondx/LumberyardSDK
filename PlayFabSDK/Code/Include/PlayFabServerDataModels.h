@@ -2741,6 +2741,90 @@ namespace PlayFab
             }
         };
 
+        struct EvaluateRandomResultTableRequest : public PlayFabBaseModel
+        {
+            Aws::String TableId;
+            Aws::String CatalogVersion;
+
+            EvaluateRandomResultTableRequest() :
+                PlayFabBaseModel(),
+                TableId(),
+                CatalogVersion()
+            {}
+
+            EvaluateRandomResultTableRequest(const EvaluateRandomResultTableRequest& src) :
+                PlayFabBaseModel(),
+                TableId(src.TableId),
+                CatalogVersion(src.CatalogVersion)
+            {}
+
+            EvaluateRandomResultTableRequest(const rapidjson::Value& obj) : EvaluateRandomResultTableRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~EvaluateRandomResultTableRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("TableId"); writer.String(TableId.c_str());
+                if (CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator TableId_member = obj.FindMember("TableId");
+                if (TableId_member != obj.MemberEnd() && !TableId_member->value.IsNull()) TableId = TableId_member->value.GetString();
+                const Value::ConstMemberIterator CatalogVersion_member = obj.FindMember("CatalogVersion");
+                if (CatalogVersion_member != obj.MemberEnd() && !CatalogVersion_member->value.IsNull()) CatalogVersion = CatalogVersion_member->value.GetString();
+
+                return true;
+            }
+        };
+
+        struct EvaluateRandomResultTableResult : public PlayFabBaseModel
+        {
+            Aws::String ResultItemId;
+
+            EvaluateRandomResultTableResult() :
+                PlayFabBaseModel(),
+                ResultItemId()
+            {}
+
+            EvaluateRandomResultTableResult(const EvaluateRandomResultTableResult& src) :
+                PlayFabBaseModel(),
+                ResultItemId(src.ResultItemId)
+            {}
+
+            EvaluateRandomResultTableResult(const rapidjson::Value& obj) : EvaluateRandomResultTableResult()
+            {
+                readFromValue(obj);
+            }
+
+            ~EvaluateRandomResultTableResult()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                if (ResultItemId.length() > 0) { writer.String("ResultItemId"); writer.String(ResultItemId.c_str()); }
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator ResultItemId_member = obj.FindMember("ResultItemId");
+                if (ResultItemId_member != obj.MemberEnd() && !ResultItemId_member->value.IsNull()) ResultItemId = ResultItemId_member->value.GetString();
+
+                return true;
+            }
+        };
+
         struct LogStatement : public PlayFabBaseModel
         {
             Aws::String Level;

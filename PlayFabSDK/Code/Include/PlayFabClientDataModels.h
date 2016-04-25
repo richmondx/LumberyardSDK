@@ -657,19 +657,22 @@ namespace PlayFab
             Aws::String DeviceToken;
             OptionalBool SendPushNotificationConfirmation;
             Aws::String ConfirmationMessege;
+            Aws::String ConfirmationMessage;
 
             AndroidDevicePushNotificationRegistrationRequest() :
                 PlayFabBaseModel(),
                 DeviceToken(),
                 SendPushNotificationConfirmation(),
-                ConfirmationMessege()
+                ConfirmationMessege(),
+                ConfirmationMessage()
             {}
 
             AndroidDevicePushNotificationRegistrationRequest(const AndroidDevicePushNotificationRegistrationRequest& src) :
                 PlayFabBaseModel(),
                 DeviceToken(src.DeviceToken),
                 SendPushNotificationConfirmation(src.SendPushNotificationConfirmation),
-                ConfirmationMessege(src.ConfirmationMessege)
+                ConfirmationMessege(src.ConfirmationMessege),
+                ConfirmationMessage(src.ConfirmationMessage)
             {}
 
             AndroidDevicePushNotificationRegistrationRequest(const rapidjson::Value& obj) : AndroidDevicePushNotificationRegistrationRequest()
@@ -687,6 +690,7 @@ namespace PlayFab
                 writer.String("DeviceToken"); writer.String(DeviceToken.c_str());
                 if (SendPushNotificationConfirmation.notNull()) { writer.String("SendPushNotificationConfirmation"); writer.Bool(SendPushNotificationConfirmation); }
                 if (ConfirmationMessege.length() > 0) { writer.String("ConfirmationMessege"); writer.String(ConfirmationMessege.c_str()); }
+                if (ConfirmationMessage.length() > 0) { writer.String("ConfirmationMessage"); writer.String(ConfirmationMessage.c_str()); }
                 writer.EndObject();
             }
 
@@ -698,6 +702,8 @@ namespace PlayFab
                 if (SendPushNotificationConfirmation_member != obj.MemberEnd() && !SendPushNotificationConfirmation_member->value.IsNull()) SendPushNotificationConfirmation = SendPushNotificationConfirmation_member->value.GetBool();
                 const Value::ConstMemberIterator ConfirmationMessege_member = obj.FindMember("ConfirmationMessege");
                 if (ConfirmationMessege_member != obj.MemberEnd() && !ConfirmationMessege_member->value.IsNull()) ConfirmationMessege = ConfirmationMessege_member->value.GetString();
+                const Value::ConstMemberIterator ConfirmationMessage_member = obj.FindMember("ConfirmationMessage");
+                if (ConfirmationMessage_member != obj.MemberEnd() && !ConfirmationMessage_member->value.IsNull()) ConfirmationMessage = ConfirmationMessage_member->value.GetString();
 
                 return true;
             }
