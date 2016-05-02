@@ -177,6 +177,11 @@ void PlayFabAdminApiWrapper::SetStoreItems(AdminModels::UpdateStoreItemsRequest&
     PlayFabAdminApi::SetStoreItems(request, callback, errorCallback, customData);
 }
 
+void PlayFabAdminApiWrapper::SetStoreSegmentOverrides(AdminModels::SetStoreSegmentOverridesRequest& request, ProcessApiCallback<AdminModels::SetStoreSegemntOverridesResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabAdminApi::SetStoreSegmentOverrides(request, callback, errorCallback, customData);
+}
+
 void PlayFabAdminApiWrapper::SetTitleData(AdminModels::SetTitleDataRequest& request, ProcessApiCallback<AdminModels::SetTitleDataResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabAdminApi::SetTitleData(request, callback, errorCallback, customData);
