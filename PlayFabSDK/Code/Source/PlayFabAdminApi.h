@@ -44,7 +44,6 @@ namespace PlayFab
         static void ListVirtualCurrencyTypes(ProcessApiCallback<AdminModels::ListVirtualCurrencyTypesResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, ProcessApiCallback<AdminModels::UpdateCatalogItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetStoreItems(AdminModels::UpdateStoreItemsRequest& request, ProcessApiCallback<AdminModels::UpdateStoreItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
-        static void SetStoreSegmentOverrides(AdminModels::SetStoreSegmentOverridesRequest& request, ProcessApiCallback<AdminModels::SetStoreSegemntOverridesResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetTitleData(AdminModels::SetTitleDataRequest& request, ProcessApiCallback<AdminModels::SetTitleDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetupPushNotification(AdminModels::SetupPushNotificationRequest& request, ProcessApiCallback<AdminModels::SetupPushNotificationResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, ProcessApiCallback<AdminModels::UpdateCatalogItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -113,7 +112,6 @@ namespace PlayFab
         static void OnListVirtualCurrencyTypesResult(PlayFabRequest* request);
         static void OnSetCatalogItemsResult(PlayFabRequest* request);
         static void OnSetStoreItemsResult(PlayFabRequest* request);
-        static void OnSetStoreSegmentOverridesResult(PlayFabRequest* request);
         static void OnSetTitleDataResult(PlayFabRequest* request);
         static void OnSetupPushNotificationResult(PlayFabRequest* request);
         static void OnUpdateCatalogItemsResult(PlayFabRequest* request);

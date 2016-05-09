@@ -1028,36 +1028,6 @@ void PlayFabAdminApi::OnSetStoreItemsResult(PlayFabRequest* request)
     }
 }
 
-void PlayFabAdminApi::SetStoreSegmentOverrides(
-    SetStoreSegmentOverridesRequest& request,
-    ProcessApiCallback<SetStoreSegemntOverridesResult> callback,
-    ErrorCallback errorCallback,
-    void* customData
-    )
-{
-
-    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetStoreSegmentOverrides"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetStoreSegmentOverridesResult);
-    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
-}
-
-void PlayFabAdminApi::OnSetStoreSegmentOverridesResult(PlayFabRequest* request)
-{
-    if (PlayFabBaseModel::DecodeRequest(request))
-    {
-        SetStoreSegemntOverridesResult* outResult = new SetStoreSegemntOverridesResult;
-        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
-
-
-        if (request->mResultCallback != nullptr)
-        {
-            ProcessApiCallback<SetStoreSegemntOverridesResult> successCallback = reinterpret_cast<ProcessApiCallback<SetStoreSegemntOverridesResult>>(request->mResultCallback);
-            successCallback(*outResult, request->mCustomData);
-        }
-        delete outResult;
-        delete request;
-    }
-}
-
 void PlayFabAdminApi::SetTitleData(
     SetTitleDataRequest& request,
     ProcessApiCallback<SetTitleDataResult> callback,
