@@ -2000,19 +2000,22 @@ namespace PlayFab
             Aws::String Gamemode;
             Uint32 MinPlayerCount;
             Uint32 MaxPlayerCount;
+            OptionalBool StartOpen;
 
             GameModeInfo() :
                 PlayFabBaseModel(),
                 Gamemode(),
                 MinPlayerCount(0),
-                MaxPlayerCount(0)
+                MaxPlayerCount(0),
+                StartOpen()
             {}
 
             GameModeInfo(const GameModeInfo& src) :
                 PlayFabBaseModel(),
                 Gamemode(src.Gamemode),
                 MinPlayerCount(src.MinPlayerCount),
-                MaxPlayerCount(src.MaxPlayerCount)
+                MaxPlayerCount(src.MaxPlayerCount),
+                StartOpen(src.StartOpen)
             {}
 
             GameModeInfo(const rapidjson::Value& obj) : GameModeInfo()
@@ -2030,6 +2033,7 @@ namespace PlayFab
                 writer.String("Gamemode"); writer.String(Gamemode.c_str());
                 writer.String("MinPlayerCount"); writer.Uint(MinPlayerCount);
                 writer.String("MaxPlayerCount"); writer.Uint(MaxPlayerCount);
+                if (StartOpen.notNull()) { writer.String("StartOpen"); writer.Bool(StartOpen); }
                 writer.EndObject();
             }
 
@@ -2041,6 +2045,8 @@ namespace PlayFab
                 if (MinPlayerCount_member != obj.MemberEnd() && !MinPlayerCount_member->value.IsNull()) MinPlayerCount = MinPlayerCount_member->value.GetUint();
                 const Value::ConstMemberIterator MaxPlayerCount_member = obj.FindMember("MaxPlayerCount");
                 if (MaxPlayerCount_member != obj.MemberEnd() && !MaxPlayerCount_member->value.IsNull()) MaxPlayerCount = MaxPlayerCount_member->value.GetUint();
+                const Value::ConstMemberIterator StartOpen_member = obj.FindMember("StartOpen");
+                if (StartOpen_member != obj.MemberEnd() && !StartOpen_member->value.IsNull()) StartOpen = StartOpen_member->value.GetBool();
 
                 return true;
             }
