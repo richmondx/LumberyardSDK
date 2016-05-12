@@ -7352,19 +7352,22 @@ namespace PlayFab
             OptionalInt32 Version;
             std::list<CloudScriptFile> Files;
             bool Publish;
+            Aws::String DeveloperPlayFabId;
 
             UpdateCloudScriptRequest() :
                 PlayFabBaseModel(),
                 Version(),
                 Files(),
-                Publish(false)
+                Publish(false),
+                DeveloperPlayFabId()
             {}
 
             UpdateCloudScriptRequest(const UpdateCloudScriptRequest& src) :
                 PlayFabBaseModel(),
                 Version(src.Version),
                 Files(src.Files),
-                Publish(src.Publish)
+                Publish(src.Publish),
+                DeveloperPlayFabId(src.DeveloperPlayFabId)
             {}
 
             UpdateCloudScriptRequest(const rapidjson::Value& obj) : UpdateCloudScriptRequest()
@@ -7388,6 +7391,7 @@ namespace PlayFab
     writer.EndArray();
     
                 writer.String("Publish"); writer.Bool(Publish);
+                if (DeveloperPlayFabId.length() > 0) { writer.String("DeveloperPlayFabId"); writer.String(DeveloperPlayFabId.c_str()); }
                 writer.EndObject();
             }
 
@@ -7404,6 +7408,8 @@ namespace PlayFab
     }
                 const Value::ConstMemberIterator Publish_member = obj.FindMember("Publish");
                 if (Publish_member != obj.MemberEnd() && !Publish_member->value.IsNull()) Publish = Publish_member->value.GetBool();
+                const Value::ConstMemberIterator DeveloperPlayFabId_member = obj.FindMember("DeveloperPlayFabId");
+                if (DeveloperPlayFabId_member != obj.MemberEnd() && !DeveloperPlayFabId_member->value.IsNull()) DeveloperPlayFabId = DeveloperPlayFabId_member->value.GetString();
 
                 return true;
             }
