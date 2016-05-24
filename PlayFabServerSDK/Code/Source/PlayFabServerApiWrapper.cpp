@@ -287,6 +287,11 @@ void PlayFabServerApiWrapper::RedeemMatchmakerTicket(ServerModels::RedeemMatchma
     PlayFabServerApi::RedeemMatchmakerTicket(request, callback, errorCallback, customData);
 }
 
+void PlayFabServerApiWrapper::SetGameServerInstanceState(ServerModels::SetGameServerInstanceStateRequest& request, ProcessApiCallback<ServerModels::SetGameServerInstanceStateResult> callback, ErrorCallback errorCallback, void* customData)
+{
+    PlayFabServerApi::SetGameServerInstanceState(request, callback, errorCallback, customData);
+}
+
 void PlayFabServerApiWrapper::AwardSteamAchievement(ServerModels::AwardSteamAchievementRequest& request, ProcessApiCallback<ServerModels::AwardSteamAchievementResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::AwardSteamAchievement(request, callback, errorCallback, customData);

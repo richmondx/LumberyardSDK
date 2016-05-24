@@ -3237,6 +3237,40 @@ namespace PlayFab
             }
         };
 
+        enum GameInstanceState
+        {
+            GameInstanceStateOpen,
+            GameInstanceStateClosed
+        };
+
+        inline void writeGameInstanceStateEnumJSON(GameInstanceState enumVal, PFStringJsonWriter& writer)
+        {
+            switch (enumVal)
+            {
+            case GameInstanceStateOpen: writer.String("Open"); break;
+            case GameInstanceStateClosed: writer.String("Closed"); break;
+
+            }
+        }
+
+        inline GameInstanceState readGameInstanceStateFromValue(const rapidjson::Value& obj)
+        {
+            static std::map<Aws::String, GameInstanceState> _GameInstanceStateMap;
+            if (_GameInstanceStateMap.size() == 0)
+            {
+                // Auto-generate the map on the first use
+                _GameInstanceStateMap["Open"] = GameInstanceStateOpen;
+                _GameInstanceStateMap["Closed"] = GameInstanceStateClosed;
+
+            }
+
+            auto output = _GameInstanceStateMap.find(obj.GetString());
+            if (output != _GameInstanceStateMap.end())
+                return output->second;
+
+            return GameInstanceStateOpen; // Basically critical fail
+        }
+
         struct GetCatalogItemsRequest : public PlayFabBaseModel
         {
             Aws::String CatalogVersion;
@@ -3332,7 +3366,7 @@ namespace PlayFab
             Aws::String PlayFabId;
             Aws::String CharacterId;
             std::list<Aws::String> Keys;
-            OptionalInt32 IfChangedFromDataVersion;
+            OptionalUint32 IfChangedFromDataVersion;
 
             GetCharacterDataRequest() :
                 PlayFabBaseModel(),
@@ -3372,7 +3406,7 @@ namespace PlayFab
     }
     writer.EndArray();
      }
-                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Int(IfChangedFromDataVersion); }
+                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Uint(IfChangedFromDataVersion); }
                 writer.EndObject();
             }
 
@@ -3390,7 +3424,7 @@ namespace PlayFab
         }
     }
                 const Value::ConstMemberIterator IfChangedFromDataVersion_member = obj.FindMember("IfChangedFromDataVersion");
-                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetInt();
+                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetUint();
 
                 return true;
             }
@@ -5960,7 +5994,7 @@ namespace PlayFab
         {
             Aws::String PlayFabId;
             std::list<Aws::String> Keys;
-            OptionalInt32 IfChangedFromDataVersion;
+            OptionalUint32 IfChangedFromDataVersion;
 
             GetUserDataRequest() :
                 PlayFabBaseModel(),
@@ -5997,7 +6031,7 @@ namespace PlayFab
     }
     writer.EndArray();
      }
-                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Int(IfChangedFromDataVersion); }
+                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Uint(IfChangedFromDataVersion); }
                 writer.EndObject();
             }
 
@@ -6013,7 +6047,7 @@ namespace PlayFab
         }
     }
                 const Value::ConstMemberIterator IfChangedFromDataVersion_member = obj.FindMember("IfChangedFromDataVersion");
-                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetInt();
+                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetUint();
 
                 return true;
             }
@@ -8320,6 +8354,84 @@ namespace PlayFab
             }
         };
 
+        struct SetGameServerInstanceStateRequest : public PlayFabBaseModel
+        {
+            Aws::String LobbyId;
+            GameInstanceState State;
+
+            SetGameServerInstanceStateRequest() :
+                PlayFabBaseModel(),
+                LobbyId(),
+                State()
+            {}
+
+            SetGameServerInstanceStateRequest(const SetGameServerInstanceStateRequest& src) :
+                PlayFabBaseModel(),
+                LobbyId(src.LobbyId),
+                State(src.State)
+            {}
+
+            SetGameServerInstanceStateRequest(const rapidjson::Value& obj) : SetGameServerInstanceStateRequest()
+            {
+                readFromValue(obj);
+            }
+
+            ~SetGameServerInstanceStateRequest()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("LobbyId"); writer.String(LobbyId.c_str());
+                writer.String("State"); writeGameInstanceStateEnumJSON(State, writer);
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator LobbyId_member = obj.FindMember("LobbyId");
+                if (LobbyId_member != obj.MemberEnd() && !LobbyId_member->value.IsNull()) LobbyId = LobbyId_member->value.GetString();
+                const Value::ConstMemberIterator State_member = obj.FindMember("State");
+                if (State_member != obj.MemberEnd() && !State_member->value.IsNull()) State = readGameInstanceStateFromValue(State_member->value);
+
+                return true;
+            }
+        };
+
+        struct SetGameServerInstanceStateResult : public PlayFabBaseModel
+        {
+
+            SetGameServerInstanceStateResult() :
+                PlayFabBaseModel()
+            {}
+
+            SetGameServerInstanceStateResult(const SetGameServerInstanceStateResult& src) :
+                PlayFabBaseModel()
+            {}
+
+            SetGameServerInstanceStateResult(const rapidjson::Value& obj) : SetGameServerInstanceStateResult()
+            {
+                readFromValue(obj);
+            }
+
+            ~SetGameServerInstanceStateResult()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+
+                return true;
+            }
+        };
+
         struct SetPublisherDataRequest : public PlayFabBaseModel
         {
             Aws::String Key;
@@ -9085,14 +9197,13 @@ namespace PlayFab
             {
                 writer.StartObject();
                 writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
-                if (!Statistics.empty()) {
-    writer.String("Statistics");
+                writer.String("Statistics");
     writer.StartArray();
     for (std::list<StatisticUpdate>::iterator iter = Statistics.begin(); iter != Statistics.end(); iter++) {
         iter->writeJSON(writer);
     }
     writer.EndArray();
-     }
+    
                 writer.EndObject();
             }
 

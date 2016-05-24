@@ -1688,6 +1688,36 @@ void PlayFabServerApi::OnRedeemMatchmakerTicketResult(PlayFabRequest* request)
     }
 }
 
+void PlayFabServerApi::SetGameServerInstanceState(
+    SetGameServerInstanceStateRequest& request,
+    ProcessApiCallback<SetGameServerInstanceStateResult> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Server/SetGameServerInstanceState"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetGameServerInstanceStateResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabServerApi::OnSetGameServerInstanceStateResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        SetGameServerInstanceStateResult* outResult = new SetGameServerInstanceStateResult;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<SetGameServerInstanceStateResult> successCallback = reinterpret_cast<ProcessApiCallback<SetGameServerInstanceStateResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
 void PlayFabServerApi::AwardSteamAchievement(
     AwardSteamAchievementRequest& request,
     ProcessApiCallback<AwardSteamAchievementResult> callback,

@@ -4404,7 +4404,7 @@ namespace PlayFab
             Aws::String PlayFabId;
             Aws::String CharacterId;
             std::list<Aws::String> Keys;
-            OptionalInt32 IfChangedFromDataVersion;
+            OptionalUint32 IfChangedFromDataVersion;
 
             GetCharacterDataRequest() :
                 PlayFabBaseModel(),
@@ -4444,7 +4444,7 @@ namespace PlayFab
     }
     writer.EndArray();
      }
-                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Int(IfChangedFromDataVersion); }
+                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Uint(IfChangedFromDataVersion); }
                 writer.EndObject();
             }
 
@@ -4462,7 +4462,7 @@ namespace PlayFab
         }
     }
                 const Value::ConstMemberIterator IfChangedFromDataVersion_member = obj.FindMember("IfChangedFromDataVersion");
-                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetInt();
+                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetUint();
 
                 return true;
             }
@@ -8522,7 +8522,7 @@ namespace PlayFab
         {
             std::list<Aws::String> Keys;
             Aws::String PlayFabId;
-            OptionalInt32 IfChangedFromDataVersion;
+            OptionalUint32 IfChangedFromDataVersion;
 
             GetUserDataRequest() :
                 PlayFabBaseModel(),
@@ -8559,7 +8559,7 @@ namespace PlayFab
     writer.EndArray();
      }
                 if (PlayFabId.length() > 0) { writer.String("PlayFabId"); writer.String(PlayFabId.c_str()); }
-                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Int(IfChangedFromDataVersion); }
+                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Uint(IfChangedFromDataVersion); }
                 writer.EndObject();
             }
 
@@ -8575,7 +8575,7 @@ namespace PlayFab
                 const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
                 if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
                 const Value::ConstMemberIterator IfChangedFromDataVersion_member = obj.FindMember("IfChangedFromDataVersion");
-                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetInt();
+                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetUint();
 
                 return true;
             }
@@ -10463,6 +10463,7 @@ namespace PlayFab
             Aws::String LobbyId;
             Aws::String StatisticName;
             Aws::String CharacterId;
+            OptionalBool StartNewIfNoneFound;
             OptionalBool EnableQueue;
 
             MatchmakeRequest() :
@@ -10473,6 +10474,7 @@ namespace PlayFab
                 LobbyId(),
                 StatisticName(),
                 CharacterId(),
+                StartNewIfNoneFound(),
                 EnableQueue()
             {}
 
@@ -10484,6 +10486,7 @@ namespace PlayFab
                 LobbyId(src.LobbyId),
                 StatisticName(src.StatisticName),
                 CharacterId(src.CharacterId),
+                StartNewIfNoneFound(src.StartNewIfNoneFound),
                 EnableQueue(src.EnableQueue)
             {}
 
@@ -10505,6 +10508,7 @@ namespace PlayFab
                 if (LobbyId.length() > 0) { writer.String("LobbyId"); writer.String(LobbyId.c_str()); }
                 if (StatisticName.length() > 0) { writer.String("StatisticName"); writer.String(StatisticName.c_str()); }
                 if (CharacterId.length() > 0) { writer.String("CharacterId"); writer.String(CharacterId.c_str()); }
+                if (StartNewIfNoneFound.notNull()) { writer.String("StartNewIfNoneFound"); writer.Bool(StartNewIfNoneFound); }
                 if (EnableQueue.notNull()) { writer.String("EnableQueue"); writer.Bool(EnableQueue); }
                 writer.EndObject();
             }
@@ -10523,6 +10527,8 @@ namespace PlayFab
                 if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
                 const Value::ConstMemberIterator CharacterId_member = obj.FindMember("CharacterId");
                 if (CharacterId_member != obj.MemberEnd() && !CharacterId_member->value.IsNull()) CharacterId = CharacterId_member->value.GetString();
+                const Value::ConstMemberIterator StartNewIfNoneFound_member = obj.FindMember("StartNewIfNoneFound");
+                if (StartNewIfNoneFound_member != obj.MemberEnd() && !StartNewIfNoneFound_member->value.IsNull()) StartNewIfNoneFound = StartNewIfNoneFound_member->value.GetBool();
                 const Value::ConstMemberIterator EnableQueue_member = obj.FindMember("EnableQueue");
                 if (EnableQueue_member != obj.MemberEnd() && !EnableQueue_member->value.IsNull()) EnableQueue = EnableQueue_member->value.GetBool();
 
@@ -10534,7 +10540,9 @@ namespace PlayFab
         {
             MatchmakeStatusComplete,
             MatchmakeStatusWaiting,
-            MatchmakeStatusGameNotFound
+            MatchmakeStatusGameNotFound,
+            MatchmakeStatusNoAvailableSlots,
+            MatchmakeStatusSessionClosed
         };
 
         inline void writeMatchmakeStatusEnumJSON(MatchmakeStatus enumVal, PFStringJsonWriter& writer)
@@ -10544,6 +10552,8 @@ namespace PlayFab
             case MatchmakeStatusComplete: writer.String("Complete"); break;
             case MatchmakeStatusWaiting: writer.String("Waiting"); break;
             case MatchmakeStatusGameNotFound: writer.String("GameNotFound"); break;
+            case MatchmakeStatusNoAvailableSlots: writer.String("NoAvailableSlots"); break;
+            case MatchmakeStatusSessionClosed: writer.String("SessionClosed"); break;
 
             }
         }
@@ -10557,6 +10567,8 @@ namespace PlayFab
                 _MatchmakeStatusMap["Complete"] = MatchmakeStatusComplete;
                 _MatchmakeStatusMap["Waiting"] = MatchmakeStatusWaiting;
                 _MatchmakeStatusMap["GameNotFound"] = MatchmakeStatusGameNotFound;
+                _MatchmakeStatusMap["NoAvailableSlots"] = MatchmakeStatusNoAvailableSlots;
+                _MatchmakeStatusMap["SessionClosed"] = MatchmakeStatusSessionClosed;
 
             }
 
@@ -13548,14 +13560,13 @@ namespace PlayFab
             void writeJSON(PFStringJsonWriter& writer) override
             {
                 writer.StartObject();
-                if (!Statistics.empty()) {
-    writer.String("Statistics");
+                writer.String("Statistics");
     writer.StartArray();
     for (std::list<StatisticUpdate>::iterator iter = Statistics.begin(); iter != Statistics.end(); iter++) {
         iter->writeJSON(writer);
     }
     writer.EndArray();
-     }
+    
                 writer.EndObject();
             }
 
