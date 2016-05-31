@@ -488,6 +488,36 @@ void PlayFabAdminApi::OnIncrementPlayerStatisticVersionResult(PlayFabRequest* re
     }
 }
 
+void PlayFabAdminApi::RefundPurchase(
+    RefundPurchaseRequest& request,
+    ProcessApiCallback<RefundPurchaseResponse> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/RefundPurchase"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnRefundPurchaseResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabAdminApi::OnRefundPurchaseResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        RefundPurchaseResponse* outResult = new RefundPurchaseResponse;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<RefundPurchaseResponse> successCallback = reinterpret_cast<ProcessApiCallback<RefundPurchaseResponse>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
 void PlayFabAdminApi::ResetUserStatistics(
     ResetUserStatisticsRequest& request,
     ProcessApiCallback<ResetUserStatisticsResult> callback,
@@ -511,6 +541,36 @@ void PlayFabAdminApi::OnResetUserStatisticsResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<ResetUserStatisticsResult> successCallback = reinterpret_cast<ProcessApiCallback<ResetUserStatisticsResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
+void PlayFabAdminApi::ResolvePurchaseDispute(
+    ResolvePurchaseDisputeRequest& request,
+    ProcessApiCallback<ResolvePurchaseDisputeResponse> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/ResolvePurchaseDispute"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnResolvePurchaseDisputeResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabAdminApi::OnResolvePurchaseDisputeResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        ResolvePurchaseDisputeResponse* outResult = new ResolvePurchaseDisputeResponse;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<ResolvePurchaseDisputeResponse> successCallback = reinterpret_cast<ProcessApiCallback<ResolvePurchaseDisputeResponse>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;
@@ -1021,6 +1081,36 @@ void PlayFabAdminApi::OnSetStoreItemsResult(PlayFabRequest* request)
         if (request->mResultCallback != nullptr)
         {
             ProcessApiCallback<UpdateStoreItemsResult> successCallback = reinterpret_cast<ProcessApiCallback<UpdateStoreItemsResult>>(request->mResultCallback);
+            successCallback(*outResult, request->mCustomData);
+        }
+        delete outResult;
+        delete request;
+    }
+}
+
+void PlayFabAdminApi::SetStoreSegmentOverrides(
+    SetStoreSegmentOverridesRequest& request,
+    ProcessApiCallback<SetStoreSegemntOverridesResult> callback,
+    ErrorCallback errorCallback,
+    void* customData
+    )
+{
+
+    PlayFabRequest* newRequest = new PlayFabRequest(PlayFabSettings::playFabSettings.getURL("/Admin/SetStoreSegmentOverrides"), Aws::Http::HttpMethod::HTTP_POST, "X-SecretKey", PlayFabSettings::playFabSettings.developerSecretKey, request.toJSONString(), customData, callback, errorCallback, OnSetStoreSegmentOverridesResult);
+    PlayFabRequestManager::playFabHttp.AddRequest(newRequest);
+}
+
+void PlayFabAdminApi::OnSetStoreSegmentOverridesResult(PlayFabRequest* request)
+{
+    if (PlayFabBaseModel::DecodeRequest(request))
+    {
+        SetStoreSegemntOverridesResult* outResult = new SetStoreSegemntOverridesResult;
+        outResult->readFromValue(request->mResponseJson->FindMember("data")->value);
+
+
+        if (request->mResultCallback != nullptr)
+        {
+            ProcessApiCallback<SetStoreSegemntOverridesResult> successCallback = reinterpret_cast<ProcessApiCallback<SetStoreSegemntOverridesResult>>(request->mResultCallback);
             successCallback(*outResult, request->mCustomData);
         }
         delete outResult;

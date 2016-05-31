@@ -26,7 +26,9 @@ namespace PlayFab
         static void GetUserPublisherReadOnlyData(AdminModels::GetUserDataRequest& request, ProcessApiCallback<AdminModels::GetUserDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetUserReadOnlyData(AdminModels::GetUserDataRequest& request, ProcessApiCallback<AdminModels::GetUserDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void IncrementPlayerStatisticVersion(AdminModels::IncrementPlayerStatisticVersionRequest& request, ProcessApiCallback<AdminModels::IncrementPlayerStatisticVersionResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void RefundPurchase(AdminModels::RefundPurchaseRequest& request, ProcessApiCallback<AdminModels::RefundPurchaseResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void ResetUserStatistics(AdminModels::ResetUserStatisticsRequest& request, ProcessApiCallback<AdminModels::ResetUserStatisticsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void ResolvePurchaseDispute(AdminModels::ResolvePurchaseDisputeRequest& request, ProcessApiCallback<AdminModels::ResolvePurchaseDisputeResponse> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdatePlayerStatisticDefinition(AdminModels::UpdatePlayerStatisticDefinitionRequest& request, ProcessApiCallback<AdminModels::UpdatePlayerStatisticDefinitionResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateUserData(AdminModels::UpdateUserDataRequest& request, ProcessApiCallback<AdminModels::UpdateUserDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateUserInternalData(AdminModels::UpdateUserInternalDataRequest& request, ProcessApiCallback<AdminModels::UpdateUserDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -44,6 +46,7 @@ namespace PlayFab
         static void ListVirtualCurrencyTypes(ProcessApiCallback<AdminModels::ListVirtualCurrencyTypesResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, ProcessApiCallback<AdminModels::UpdateCatalogItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetStoreItems(AdminModels::UpdateStoreItemsRequest& request, ProcessApiCallback<AdminModels::UpdateStoreItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void SetStoreSegmentOverrides(AdminModels::SetStoreSegmentOverridesRequest& request, ProcessApiCallback<AdminModels::SetStoreSegemntOverridesResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetTitleData(AdminModels::SetTitleDataRequest& request, ProcessApiCallback<AdminModels::SetTitleDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetupPushNotification(AdminModels::SetupPushNotificationRequest& request, ProcessApiCallback<AdminModels::SetupPushNotificationResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateCatalogItems(AdminModels::UpdateCatalogItemsRequest& request, ProcessApiCallback<AdminModels::UpdateCatalogItemsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -94,7 +97,9 @@ namespace PlayFab
         static void OnGetUserPublisherReadOnlyDataResult(PlayFabRequest* request);
         static void OnGetUserReadOnlyDataResult(PlayFabRequest* request);
         static void OnIncrementPlayerStatisticVersionResult(PlayFabRequest* request);
+        static void OnRefundPurchaseResult(PlayFabRequest* request);
         static void OnResetUserStatisticsResult(PlayFabRequest* request);
+        static void OnResolvePurchaseDisputeResult(PlayFabRequest* request);
         static void OnUpdatePlayerStatisticDefinitionResult(PlayFabRequest* request);
         static void OnUpdateUserDataResult(PlayFabRequest* request);
         static void OnUpdateUserInternalDataResult(PlayFabRequest* request);
@@ -112,6 +117,7 @@ namespace PlayFab
         static void OnListVirtualCurrencyTypesResult(PlayFabRequest* request);
         static void OnSetCatalogItemsResult(PlayFabRequest* request);
         static void OnSetStoreItemsResult(PlayFabRequest* request);
+        static void OnSetStoreSegmentOverridesResult(PlayFabRequest* request);
         static void OnSetTitleDataResult(PlayFabRequest* request);
         static void OnSetupPushNotificationResult(PlayFabRequest* request);
         static void OnUpdateCatalogItemsResult(PlayFabRequest* request);

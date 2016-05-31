@@ -16,6 +16,7 @@ namespace PlayFab
         static void GetUserAccountInfo(ServerModels::GetUserAccountInfoRequest& request, ProcessApiCallback<ServerModels::GetUserAccountInfoResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SendPushNotification(ServerModels::SendPushNotificationRequest& request, ProcessApiCallback<ServerModels::SendPushNotificationResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void DeleteUsers(ServerModels::DeleteUsersRequest& request, ProcessApiCallback<ServerModels::DeleteUsersResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetFriendLeaderboard(ServerModels::GetFriendLeaderboardRequest& request, ProcessApiCallback<ServerModels::GetLeaderboardResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetLeaderboard(ServerModels::GetLeaderboardRequest& request, ProcessApiCallback<ServerModels::GetLeaderboardResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetLeaderboardAroundUser(ServerModels::GetLeaderboardAroundUserRequest& request, ProcessApiCallback<ServerModels::GetLeaderboardAroundUserResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void GetPlayerStatistics(ServerModels::GetPlayerStatisticsRequest& request, ProcessApiCallback<ServerModels::GetPlayerStatisticsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -64,6 +65,9 @@ namespace PlayFab
         static void UnlockContainerInstance(ServerModels::UnlockContainerInstanceRequest& request, ProcessApiCallback<ServerModels::UnlockContainerItemResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UnlockContainerItem(ServerModels::UnlockContainerItemRequest& request, ProcessApiCallback<ServerModels::UnlockContainerItemResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateUserInventoryItemCustomData(ServerModels::UpdateUserInventoryItemDataRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void AddFriend(ServerModels::AddFriendRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetFriendsList(ServerModels::GetFriendsListRequest& request, ProcessApiCallback<ServerModels::GetFriendsListResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void RemoveFriend(ServerModels::RemoveFriendRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void NotifyMatchmakerPlayerLeft(ServerModels::NotifyMatchmakerPlayerLeftRequest& request, ProcessApiCallback<ServerModels::NotifyMatchmakerPlayerLeftResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void RedeemMatchmakerTicket(ServerModels::RedeemMatchmakerTicketRequest& request, ProcessApiCallback<ServerModels::RedeemMatchmakerTicketResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void SetGameServerInstanceState(ServerModels::SetGameServerInstanceStateRequest& request, ProcessApiCallback<ServerModels::SetGameServerInstanceStateResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
@@ -94,6 +98,17 @@ namespace PlayFab
         static void UpdateCharacterData(ServerModels::UpdateCharacterDataRequest& request, ProcessApiCallback<ServerModels::UpdateCharacterDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateCharacterInternalData(ServerModels::UpdateCharacterDataRequest& request, ProcessApiCallback<ServerModels::UpdateCharacterDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
         static void UpdateCharacterReadOnlyData(ServerModels::UpdateCharacterDataRequest& request, ProcessApiCallback<ServerModels::UpdateCharacterDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void AddGuildVirtualCurrency(ServerModels::AddGuildVirtualCurrencyRequest& request, ProcessApiCallback<ServerModels::ModifyGuildVirtualCurrencyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetGuildData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetGuildInternalData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetGuildReadOnlyData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GetGuildStatistics(ServerModels::GetGuildStatisticsRequest& request, ProcessApiCallback<ServerModels::GetGuildStatisticsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void GrantItemsToGuild(ServerModels::GrantItemsToGuildRequest& request, ProcessApiCallback<ServerModels::GrantItemsToGuildResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void SubtractGuildVirtualCurrency(ServerModels::SubtractGuildVirtualCurrencyRequest& request, ProcessApiCallback<ServerModels::ModifyGuildVirtualCurrencyResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void UpdateGuildData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void UpdateGuildInternalData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void UpdateGuildReadOnlyData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
+        static void UpdateGuildStatistics(ServerModels::UpdateGuildStatisticsRequest& request, ProcessApiCallback<ServerModels::UpdateGuildStatisticsResult> callback = nullptr, ErrorCallback errorCallback = nullptr, void* customData = nullptr);
 
     private:
         // ------------ Private constructor, to enforce all-static class
@@ -106,6 +121,7 @@ namespace PlayFab
         static void OnGetUserAccountInfoResult(PlayFabRequest* request);
         static void OnSendPushNotificationResult(PlayFabRequest* request);
         static void OnDeleteUsersResult(PlayFabRequest* request);
+        static void OnGetFriendLeaderboardResult(PlayFabRequest* request);
         static void OnGetLeaderboardResult(PlayFabRequest* request);
         static void OnGetLeaderboardAroundUserResult(PlayFabRequest* request);
         static void OnGetPlayerStatisticsResult(PlayFabRequest* request);
@@ -154,6 +170,9 @@ namespace PlayFab
         static void OnUnlockContainerInstanceResult(PlayFabRequest* request);
         static void OnUnlockContainerItemResult(PlayFabRequest* request);
         static void OnUpdateUserInventoryItemCustomDataResult(PlayFabRequest* request);
+        static void OnAddFriendResult(PlayFabRequest* request);
+        static void OnGetFriendsListResult(PlayFabRequest* request);
+        static void OnRemoveFriendResult(PlayFabRequest* request);
         static void OnNotifyMatchmakerPlayerLeftResult(PlayFabRequest* request);
         static void OnRedeemMatchmakerTicketResult(PlayFabRequest* request);
         static void OnSetGameServerInstanceStateResult(PlayFabRequest* request);
@@ -184,5 +203,16 @@ namespace PlayFab
         static void OnUpdateCharacterDataResult(PlayFabRequest* request);
         static void OnUpdateCharacterInternalDataResult(PlayFabRequest* request);
         static void OnUpdateCharacterReadOnlyDataResult(PlayFabRequest* request);
+        static void OnAddGuildVirtualCurrencyResult(PlayFabRequest* request);
+        static void OnGetGuildDataResult(PlayFabRequest* request);
+        static void OnGetGuildInternalDataResult(PlayFabRequest* request);
+        static void OnGetGuildReadOnlyDataResult(PlayFabRequest* request);
+        static void OnGetGuildStatisticsResult(PlayFabRequest* request);
+        static void OnGrantItemsToGuildResult(PlayFabRequest* request);
+        static void OnSubtractGuildVirtualCurrencyResult(PlayFabRequest* request);
+        static void OnUpdateGuildDataResult(PlayFabRequest* request);
+        static void OnUpdateGuildInternalDataResult(PlayFabRequest* request);
+        static void OnUpdateGuildReadOnlyDataResult(PlayFabRequest* request);
+        static void OnUpdateGuildStatisticsResult(PlayFabRequest* request);
     };
 };
