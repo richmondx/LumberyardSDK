@@ -63,19 +63,9 @@ void PlayFabClientApiWrapper::LoginWithPlayFab(ClientModels::LoginWithPlayFabReq
     PlayFabClientApi::LoginWithPlayFab(request, callback, errorCallback, customData);
 }
 
-void PlayFabClientApiWrapper::LoginWithPSN(ClientModels::LoginWithPSNRequest& request, ProcessApiCallback<ClientModels::LoginResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::LoginWithPSN(request, callback, errorCallback, customData);
-}
-
 void PlayFabClientApiWrapper::LoginWithSteam(ClientModels::LoginWithSteamRequest& request, ProcessApiCallback<ClientModels::LoginResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::LoginWithSteam(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::LoginWithXbox(ClientModels::LoginWithXboxRequest& request, ProcessApiCallback<ClientModels::LoginResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::LoginWithXbox(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::RegisterPlayFabUser(ClientModels::RegisterPlayFabUserRequest& request, ProcessApiCallback<ClientModels::RegisterPlayFabUserResult> callback, ErrorCallback errorCallback, void* customData)
@@ -111,11 +101,6 @@ void PlayFabClientApiWrapper::GetPlayFabIDsFromGoogleIDs(ClientModels::GetPlayFa
 void PlayFabClientApiWrapper::GetPlayFabIDsFromKongregateIDs(ClientModels::GetPlayFabIDsFromKongregateIDsRequest& request, ProcessApiCallback<ClientModels::GetPlayFabIDsFromKongregateIDsResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::GetPlayFabIDsFromKongregateIDs(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetPlayFabIDsFromPSNAccountIDs(ClientModels::GetPlayFabIDsFromPSNAccountIDsRequest& request, ProcessApiCallback<ClientModels::GetPlayFabIDsFromPSNAccountIDsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetPlayFabIDsFromPSNAccountIDs(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::GetPlayFabIDsFromSteamIDs(ClientModels::GetPlayFabIDsFromSteamIDsRequest& request, ProcessApiCallback<ClientModels::GetPlayFabIDsFromSteamIDsResult> callback, ErrorCallback errorCallback, void* customData)
@@ -163,19 +148,9 @@ void PlayFabClientApiWrapper::LinkKongregate(ClientModels::LinkKongregateAccount
     PlayFabClientApi::LinkKongregate(request, callback, errorCallback, customData);
 }
 
-void PlayFabClientApiWrapper::LinkPSNAccount(ClientModels::LinkPSNAccountRequest& request, ProcessApiCallback<ClientModels::LinkPSNAccountResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::LinkPSNAccount(request, callback, errorCallback, customData);
-}
-
 void PlayFabClientApiWrapper::LinkSteamAccount(ClientModels::LinkSteamAccountRequest& request, ProcessApiCallback<ClientModels::LinkSteamAccountResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::LinkSteamAccount(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::LinkXboxAccount(ClientModels::LinkXboxAccountRequest& request, ProcessApiCallback<ClientModels::LinkXboxAccountResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::LinkXboxAccount(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::ReportPlayer(ClientModels::ReportPlayerClientRequest& request, ProcessApiCallback<ClientModels::ReportPlayerClientResult> callback, ErrorCallback errorCallback, void* customData)
@@ -223,19 +198,9 @@ void PlayFabClientApiWrapper::UnlinkKongregate(ProcessApiCallback<ClientModels::
     PlayFabClientApi::UnlinkKongregate(callback, errorCallback, customData);
 }
 
-void PlayFabClientApiWrapper::UnlinkPSNAccount(ProcessApiCallback<ClientModels::UnlinkPSNAccountResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::UnlinkPSNAccount(callback, errorCallback, customData);
-}
-
 void PlayFabClientApiWrapper::UnlinkSteamAccount(ProcessApiCallback<ClientModels::UnlinkSteamAccountResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::UnlinkSteamAccount(callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::UnlinkXboxAccount(ClientModels::UnlinkXboxAccountRequest& request, ProcessApiCallback<ClientModels::UnlinkXboxAccountResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::UnlinkXboxAccount(request, callback, errorCallback, customData);
 }
 
 void PlayFabClientApiWrapper::UpdateUserTitleDisplayName(ClientModels::UpdateUserTitleDisplayNameRequest& request, ProcessApiCallback<ClientModels::UpdateUserTitleDisplayNameResult> callback, ErrorCallback errorCallback, void* customData)
@@ -528,16 +493,6 @@ void PlayFabClientApiWrapper::UpdateSharedGroupData(ClientModels::UpdateSharedGr
     PlayFabClientApi::UpdateSharedGroupData(request, callback, errorCallback, customData);
 }
 
-void PlayFabClientApiWrapper::ConsumePSNEntitlements(ClientModels::ConsumePSNEntitlementsRequest& request, ProcessApiCallback<ClientModels::ConsumePSNEntitlementsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ConsumePSNEntitlements(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::RefreshPSNAuthToken(ClientModels::RefreshPSNAuthTokenRequest& request, ProcessApiCallback<ClientModels::EmptyResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::RefreshPSNAuthToken(request, callback, errorCallback, customData);
-}
-
 void PlayFabClientApiWrapper::ExecuteCloudScript(ClientModels::ExecuteCloudScriptRequest& request, ProcessApiCallback<ClientModels::ExecuteCloudScriptResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::ExecuteCloudScript(request, callback, errorCallback, customData);
@@ -641,110 +596,5 @@ void PlayFabClientApiWrapper::OpenTrade(ClientModels::OpenTradeRequest& request,
 void PlayFabClientApiWrapper::AttributeInstall(ClientModels::AttributeInstallRequest& request, ProcessApiCallback<ClientModels::AttributeInstallResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabClientApi::AttributeInstall(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ApproveGuildRoleChange(ClientModels::ApproveGuildRoleChangeRequest& request, ProcessApiCallback<ClientModels::ApproveGuildRoleChangeResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ApproveGuildRoleChange(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ChangeGuildMemberRole(ClientModels::ChangeGuildMemberRoleRequest& request, ProcessApiCallback<ClientModels::ChangeGuildMemberRoleResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ChangeGuildMemberRole(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::CreateGuild(ClientModels::CreateGuildRequest& request, ProcessApiCallback<ClientModels::CreateGuildResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::CreateGuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::DeleteGuild(ClientModels::DeleteGuildRequest& request, ProcessApiCallback<ClientModels::DeleteGuildResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::DeleteGuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::DenyGuildRoleChange(ClientModels::DenyGuildRoleChangeRequest& request, ProcessApiCallback<ClientModels::DenyGuildRoleChangeResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::DenyGuildRoleChange(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildData(ClientModels::GetGuildDataRequest& request, ProcessApiCallback<ClientModels::GetGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildData(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildInventory(ClientModels::GetGuildInventoryRequest& request, ProcessApiCallback<ClientModels::GetGuildInventoryResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildInventory(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildMembershipLeaderboard(ClientModels::GetGuildMembershipLeaderboardRequest& request, ProcessApiCallback<ClientModels::GetGuildMembershipLeaderboardResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildMembershipLeaderboard(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildReadOnlyData(ClientModels::GetGuildDataRequest& request, ProcessApiCallback<ClientModels::GetGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildReadOnlyData(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildsLeaderboard(ClientModels::GetGuildsLeaderboardRequest& request, ProcessApiCallback<ClientModels::GetGuildsLeaderboardResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildsLeaderboard(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildsLeaderboardAroundGuild(ClientModels::GetGuildsLeaderboardAroundGuildRequest& request, ProcessApiCallback<ClientModels::GetGuildsLeaderboardAroundGuildResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildsLeaderboardAroundGuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetGuildStatistics(ClientModels::GetGuildStatisticsRequest& request, ProcessApiCallback<ClientModels::GetGuildStatisticsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetGuildStatistics(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::GetLeaderboardOfPlayersGuilds(ClientModels::GetLeaderboardOfPlayersGuildsRequest& request, ProcessApiCallback<ClientModels::GetLeaderboardOfPlayersGuildsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::GetLeaderboardOfPlayersGuilds(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::LeaveGuild(ClientModels::LeaveGuildRequest& request, ProcessApiCallback<ClientModels::LeaveGuildResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::LeaveGuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ListGuildMembers(ClientModels::ListGuildMembersRequest& request, ProcessApiCallback<ClientModels::ListGuildMembersResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ListGuildMembers(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ListPendingGuildRoleChangeRequests(ClientModels::ListPendingGuildRoleChangeRequestsRequest& request, ProcessApiCallback<ClientModels::ListPendingGuildRoleChangeRequestsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ListPendingGuildRoleChangeRequests(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::ListPlayerGuildMemberships(ProcessApiCallback<ClientModels::ListPlayerGuildMembershipsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::ListPlayerGuildMemberships(callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::RemoveGuildMember(ClientModels::RemoveGuildMemberRequest& request, ProcessApiCallback<ClientModels::RemoveGuildMemberResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::RemoveGuildMember(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::RequestGuildRoleChange(ClientModels::RequestGuildRoleChangeRequest& request, ProcessApiCallback<ClientModels::RequestGuildRoleChangeResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::RequestGuildRoleChange(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::UpdateGuildData(ClientModels::UpdateGuildDataRequest& request, ProcessApiCallback<ClientModels::UpdateGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::UpdateGuildData(request, callback, errorCallback, customData);
-}
-
-void PlayFabClientApiWrapper::UpdateGuildStatistics(ClientModels::UpdateGuildStatisticsRequest& request, ProcessApiCallback<ClientModels::UpdateGuildStatisticsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabClientApi::UpdateGuildStatistics(request, callback, errorCallback, customData);
 }
 

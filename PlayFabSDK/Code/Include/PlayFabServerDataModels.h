@@ -66,120 +66,6 @@ namespace PlayFab
             }
         };
 
-        struct AddFriendRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            Aws::String FriendPlayFabId;
-            Aws::String FriendUsername;
-            Aws::String FriendEmail;
-            Aws::String FriendTitleDisplayName;
-
-            AddFriendRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                FriendPlayFabId(),
-                FriendUsername(),
-                FriendEmail(),
-                FriendTitleDisplayName()
-            {}
-
-            AddFriendRequest(const AddFriendRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                FriendPlayFabId(src.FriendPlayFabId),
-                FriendUsername(src.FriendUsername),
-                FriendEmail(src.FriendEmail),
-                FriendTitleDisplayName(src.FriendTitleDisplayName)
-            {}
-
-            AddFriendRequest(const rapidjson::Value& obj) : AddFriendRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~AddFriendRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
-                if (FriendPlayFabId.length() > 0) { writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str()); }
-                if (FriendUsername.length() > 0) { writer.String("FriendUsername"); writer.String(FriendUsername.c_str()); }
-                if (FriendEmail.length() > 0) { writer.String("FriendEmail"); writer.String(FriendEmail.c_str()); }
-                if (FriendTitleDisplayName.length() > 0) { writer.String("FriendTitleDisplayName"); writer.String(FriendTitleDisplayName.c_str()); }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
-                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
-                const Value::ConstMemberIterator FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
-                if (FriendPlayFabId_member != obj.MemberEnd() && !FriendPlayFabId_member->value.IsNull()) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
-                const Value::ConstMemberIterator FriendUsername_member = obj.FindMember("FriendUsername");
-                if (FriendUsername_member != obj.MemberEnd() && !FriendUsername_member->value.IsNull()) FriendUsername = FriendUsername_member->value.GetString();
-                const Value::ConstMemberIterator FriendEmail_member = obj.FindMember("FriendEmail");
-                if (FriendEmail_member != obj.MemberEnd() && !FriendEmail_member->value.IsNull()) FriendEmail = FriendEmail_member->value.GetString();
-                const Value::ConstMemberIterator FriendTitleDisplayName_member = obj.FindMember("FriendTitleDisplayName");
-                if (FriendTitleDisplayName_member != obj.MemberEnd() && !FriendTitleDisplayName_member->value.IsNull()) FriendTitleDisplayName = FriendTitleDisplayName_member->value.GetString();
-
-                return true;
-            }
-        };
-
-        struct AddGuildVirtualCurrencyRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            Aws::String VirtualCurrency;
-            Int32 Amount;
-
-            AddGuildVirtualCurrencyRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                VirtualCurrency(),
-                Amount(0)
-            {}
-
-            AddGuildVirtualCurrencyRequest(const AddGuildVirtualCurrencyRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                VirtualCurrency(src.VirtualCurrency),
-                Amount(src.Amount)
-            {}
-
-            AddGuildVirtualCurrencyRequest(const rapidjson::Value& obj) : AddGuildVirtualCurrencyRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~AddGuildVirtualCurrencyRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str());
-                writer.String("Amount"); writer.Int(Amount);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator VirtualCurrency_member = obj.FindMember("VirtualCurrency");
-                if (VirtualCurrency_member != obj.MemberEnd() && !VirtualCurrency_member->value.IsNull()) VirtualCurrency = VirtualCurrency_member->value.GetString();
-                const Value::ConstMemberIterator Amount_member = obj.FindMember("Amount");
-                if (Amount_member != obj.MemberEnd() && !Amount_member->value.IsNull()) Amount = Amount_member->value.GetInt();
-
-                return true;
-            }
-        };
-
         struct AddSharedGroupMembersRequest : public PlayFabBaseModel
         {
             Aws::String SharedGroupId;
@@ -4353,518 +4239,6 @@ namespace PlayFab
             }
         };
 
-        struct GetFriendLeaderboardRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            Aws::String StatisticName;
-            Int32 StartPosition;
-            Int32 MaxResultsCount;
-            OptionalBool IncludeSteamFriends;
-            OptionalBool IncludeFacebookFriends;
-
-            GetFriendLeaderboardRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                StatisticName(),
-                StartPosition(0),
-                MaxResultsCount(0),
-                IncludeSteamFriends(),
-                IncludeFacebookFriends()
-            {}
-
-            GetFriendLeaderboardRequest(const GetFriendLeaderboardRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                StatisticName(src.StatisticName),
-                StartPosition(src.StartPosition),
-                MaxResultsCount(src.MaxResultsCount),
-                IncludeSteamFriends(src.IncludeSteamFriends),
-                IncludeFacebookFriends(src.IncludeFacebookFriends)
-            {}
-
-            GetFriendLeaderboardRequest(const rapidjson::Value& obj) : GetFriendLeaderboardRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendLeaderboardRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
-                writer.String("StatisticName"); writer.String(StatisticName.c_str());
-                writer.String("StartPosition"); writer.Int(StartPosition);
-                writer.String("MaxResultsCount"); writer.Int(MaxResultsCount);
-                if (IncludeSteamFriends.notNull()) { writer.String("IncludeSteamFriends"); writer.Bool(IncludeSteamFriends); }
-                if (IncludeFacebookFriends.notNull()) { writer.String("IncludeFacebookFriends"); writer.Bool(IncludeFacebookFriends); }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
-                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
-                const Value::ConstMemberIterator StatisticName_member = obj.FindMember("StatisticName");
-                if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
-                const Value::ConstMemberIterator StartPosition_member = obj.FindMember("StartPosition");
-                if (StartPosition_member != obj.MemberEnd() && !StartPosition_member->value.IsNull()) StartPosition = StartPosition_member->value.GetInt();
-                const Value::ConstMemberIterator MaxResultsCount_member = obj.FindMember("MaxResultsCount");
-                if (MaxResultsCount_member != obj.MemberEnd() && !MaxResultsCount_member->value.IsNull()) MaxResultsCount = MaxResultsCount_member->value.GetInt();
-                const Value::ConstMemberIterator IncludeSteamFriends_member = obj.FindMember("IncludeSteamFriends");
-                if (IncludeSteamFriends_member != obj.MemberEnd() && !IncludeSteamFriends_member->value.IsNull()) IncludeSteamFriends = IncludeSteamFriends_member->value.GetBool();
-                const Value::ConstMemberIterator IncludeFacebookFriends_member = obj.FindMember("IncludeFacebookFriends");
-                if (IncludeFacebookFriends_member != obj.MemberEnd() && !IncludeFacebookFriends_member->value.IsNull()) IncludeFacebookFriends = IncludeFacebookFriends_member->value.GetBool();
-
-                return true;
-            }
-        };
-
-        struct GetFriendsListRequest : public PlayFabBaseModel
-        {
-            Aws::String PlayFabId;
-            OptionalBool IncludeSteamFriends;
-            OptionalBool IncludeFacebookFriends;
-
-            GetFriendsListRequest() :
-                PlayFabBaseModel(),
-                PlayFabId(),
-                IncludeSteamFriends(),
-                IncludeFacebookFriends()
-            {}
-
-            GetFriendsListRequest(const GetFriendsListRequest& src) :
-                PlayFabBaseModel(),
-                PlayFabId(src.PlayFabId),
-                IncludeSteamFriends(src.IncludeSteamFriends),
-                IncludeFacebookFriends(src.IncludeFacebookFriends)
-            {}
-
-            GetFriendsListRequest(const rapidjson::Value& obj) : GetFriendsListRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendsListRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
-                if (IncludeSteamFriends.notNull()) { writer.String("IncludeSteamFriends"); writer.Bool(IncludeSteamFriends); }
-                if (IncludeFacebookFriends.notNull()) { writer.String("IncludeFacebookFriends"); writer.Bool(IncludeFacebookFriends); }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
-                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
-                const Value::ConstMemberIterator IncludeSteamFriends_member = obj.FindMember("IncludeSteamFriends");
-                if (IncludeSteamFriends_member != obj.MemberEnd() && !IncludeSteamFriends_member->value.IsNull()) IncludeSteamFriends = IncludeSteamFriends_member->value.GetBool();
-                const Value::ConstMemberIterator IncludeFacebookFriends_member = obj.FindMember("IncludeFacebookFriends");
-                if (IncludeFacebookFriends_member != obj.MemberEnd() && !IncludeFacebookFriends_member->value.IsNull()) IncludeFacebookFriends = IncludeFacebookFriends_member->value.GetBool();
-
-                return true;
-            }
-        };
-
-        struct GetFriendsListResult : public PlayFabBaseModel
-        {
-            std::list<FriendInfo> Friends;
-
-            GetFriendsListResult() :
-                PlayFabBaseModel(),
-                Friends()
-            {}
-
-            GetFriendsListResult(const GetFriendsListResult& src) :
-                PlayFabBaseModel(),
-                Friends(src.Friends)
-            {}
-
-            GetFriendsListResult(const rapidjson::Value& obj) : GetFriendsListResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetFriendsListResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (!Friends.empty()) {
-    writer.String("Friends");
-    writer.StartArray();
-    for (std::list<FriendInfo>::iterator iter = Friends.begin(); iter != Friends.end(); iter++) {
-        iter->writeJSON(writer);
-    }
-    writer.EndArray();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator Friends_member = obj.FindMember("Friends");
-    if (Friends_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = Friends_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            Friends.push_back(FriendInfo(memberList[i]));
-        }
-    }
-
-                return true;
-            }
-        };
-
-        struct GetGuildDataRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            std::list<Aws::String> Keys;
-            OptionalUint32 IfChangedFromDataVersion;
-
-            GetGuildDataRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                Keys(),
-                IfChangedFromDataVersion()
-            {}
-
-            GetGuildDataRequest(const GetGuildDataRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                Keys(src.Keys),
-                IfChangedFromDataVersion(src.IfChangedFromDataVersion)
-            {}
-
-            GetGuildDataRequest(const rapidjson::Value& obj) : GetGuildDataRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetGuildDataRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                if (!Keys.empty()) {
-    writer.String("Keys");
-    writer.StartArray();
-    for (std::list<Aws::String>::iterator iter = Keys.begin(); iter != Keys.end(); iter++) {
-        writer.String(iter->c_str());
-    }
-    writer.EndArray();
-     }
-                if (IfChangedFromDataVersion.notNull()) { writer.String("IfChangedFromDataVersion"); writer.Uint(IfChangedFromDataVersion); }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator Keys_member = obj.FindMember("Keys");
-    if (Keys_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = Keys_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            Keys.push_back(memberList[i].GetString());
-        }
-    }
-                const Value::ConstMemberIterator IfChangedFromDataVersion_member = obj.FindMember("IfChangedFromDataVersion");
-                if (IfChangedFromDataVersion_member != obj.MemberEnd() && !IfChangedFromDataVersion_member->value.IsNull()) IfChangedFromDataVersion = IfChangedFromDataVersion_member->value.GetUint();
-
-                return true;
-            }
-        };
-
-        struct GetGuildDataResult : public PlayFabBaseModel
-        {
-            Uint32 DataVersion;
-            std::map<Aws::String, UserDataRecord> Data;
-
-            GetGuildDataResult() :
-                PlayFabBaseModel(),
-                DataVersion(0),
-                Data()
-            {}
-
-            GetGuildDataResult(const GetGuildDataResult& src) :
-                PlayFabBaseModel(),
-                DataVersion(src.DataVersion),
-                Data(src.Data)
-            {}
-
-            GetGuildDataResult(const rapidjson::Value& obj) : GetGuildDataResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetGuildDataResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("DataVersion"); writer.Uint(DataVersion);
-                if (!Data.empty()) {
-    writer.String("Data");
-    writer.StartObject();
-    for (std::map<Aws::String, UserDataRecord>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
-        writer.String(iter->first.c_str()); iter->second.writeJSON(writer);
-    }
-    writer.EndObject();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator DataVersion_member = obj.FindMember("DataVersion");
-                if (DataVersion_member != obj.MemberEnd() && !DataVersion_member->value.IsNull()) DataVersion = DataVersion_member->value.GetUint();
-                const Value::ConstMemberIterator Data_member = obj.FindMember("Data");
-    if (Data_member != obj.MemberEnd()) {
-        for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
-            Data[iter->name.GetString()] = UserDataRecord(iter->value);
-        }
-    }
-
-                return true;
-            }
-        };
-
-        struct StatisticNameVersion : public PlayFabBaseModel
-        {
-            Aws::String StatisticName;
-            Uint32 Version;
-
-            StatisticNameVersion() :
-                PlayFabBaseModel(),
-                StatisticName(),
-                Version(0)
-            {}
-
-            StatisticNameVersion(const StatisticNameVersion& src) :
-                PlayFabBaseModel(),
-                StatisticName(src.StatisticName),
-                Version(src.Version)
-            {}
-
-            StatisticNameVersion(const rapidjson::Value& obj) : StatisticNameVersion()
-            {
-                readFromValue(obj);
-            }
-
-            ~StatisticNameVersion()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("StatisticName"); writer.String(StatisticName.c_str());
-                writer.String("Version"); writer.Uint(Version);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator StatisticName_member = obj.FindMember("StatisticName");
-                if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
-                const Value::ConstMemberIterator Version_member = obj.FindMember("Version");
-                if (Version_member != obj.MemberEnd() && !Version_member->value.IsNull()) Version = Version_member->value.GetUint();
-
-                return true;
-            }
-        };
-
-        struct GetGuildStatisticsRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            std::list<Aws::String> StatisticNames;
-            std::list<StatisticNameVersion> StatisticNameVersions;
-
-            GetGuildStatisticsRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                StatisticNames(),
-                StatisticNameVersions()
-            {}
-
-            GetGuildStatisticsRequest(const GetGuildStatisticsRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                StatisticNames(src.StatisticNames),
-                StatisticNameVersions(src.StatisticNameVersions)
-            {}
-
-            GetGuildStatisticsRequest(const rapidjson::Value& obj) : GetGuildStatisticsRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetGuildStatisticsRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                if (!StatisticNames.empty()) {
-    writer.String("StatisticNames");
-    writer.StartArray();
-    for (std::list<Aws::String>::iterator iter = StatisticNames.begin(); iter != StatisticNames.end(); iter++) {
-        writer.String(iter->c_str());
-    }
-    writer.EndArray();
-     }
-                if (!StatisticNameVersions.empty()) {
-    writer.String("StatisticNameVersions");
-    writer.StartArray();
-    for (std::list<StatisticNameVersion>::iterator iter = StatisticNameVersions.begin(); iter != StatisticNameVersions.end(); iter++) {
-        iter->writeJSON(writer);
-    }
-    writer.EndArray();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator StatisticNames_member = obj.FindMember("StatisticNames");
-    if (StatisticNames_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = StatisticNames_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            StatisticNames.push_back(memberList[i].GetString());
-        }
-    }
-                const Value::ConstMemberIterator StatisticNameVersions_member = obj.FindMember("StatisticNameVersions");
-    if (StatisticNameVersions_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = StatisticNameVersions_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            StatisticNameVersions.push_back(StatisticNameVersion(memberList[i]));
-        }
-    }
-
-                return true;
-            }
-        };
-
-        struct StatisticValue : public PlayFabBaseModel
-        {
-            Aws::String StatisticName;
-            Int32 Value;
-            Uint32 Version;
-
-            StatisticValue() :
-                PlayFabBaseModel(),
-                StatisticName(),
-                Value(0),
-                Version(0)
-            {}
-
-            StatisticValue(const StatisticValue& src) :
-                PlayFabBaseModel(),
-                StatisticName(src.StatisticName),
-                Value(src.Value),
-                Version(src.Version)
-            {}
-
-            StatisticValue(const rapidjson::Value& obj) : StatisticValue()
-            {
-                readFromValue(obj);
-            }
-
-            ~StatisticValue()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (StatisticName.length() > 0) { writer.String("StatisticName"); writer.String(StatisticName.c_str()); }
-                writer.String("Value"); writer.Int(Value);
-                writer.String("Version"); writer.Uint(Version);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator StatisticName_member = obj.FindMember("StatisticName");
-                if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
-                const Value::ConstMemberIterator Value_member = obj.FindMember("Value");
-                if (Value_member != obj.MemberEnd() && !Value_member->value.IsNull()) Value = Value_member->value.GetInt();
-                const Value::ConstMemberIterator Version_member = obj.FindMember("Version");
-                if (Version_member != obj.MemberEnd() && !Version_member->value.IsNull()) Version = Version_member->value.GetUint();
-
-                return true;
-            }
-        };
-
-        struct GetGuildStatisticsResult : public PlayFabBaseModel
-        {
-            std::list<StatisticValue> Statistics;
-
-            GetGuildStatisticsResult() :
-                PlayFabBaseModel(),
-                Statistics()
-            {}
-
-            GetGuildStatisticsResult(const GetGuildStatisticsResult& src) :
-                PlayFabBaseModel(),
-                Statistics(src.Statistics)
-            {}
-
-            GetGuildStatisticsResult(const rapidjson::Value& obj) : GetGuildStatisticsResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~GetGuildStatisticsResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (!Statistics.empty()) {
-    writer.String("Statistics");
-    writer.StartArray();
-    for (std::list<StatisticValue>::iterator iter = Statistics.begin(); iter != Statistics.end(); iter++) {
-        iter->writeJSON(writer);
-    }
-    writer.EndArray();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator Statistics_member = obj.FindMember("Statistics");
-    if (Statistics_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = Statistics_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            Statistics.push_back(StatisticValue(memberList[i]));
-        }
-    }
-
-                return true;
-            }
-        };
-
         struct GetLeaderboardAroundCharacterRequest : public PlayFabBaseModel
         {
             Aws::String StatisticName;
@@ -5342,6 +4716,51 @@ namespace PlayFab
             }
         };
 
+        struct StatisticNameVersion : public PlayFabBaseModel
+        {
+            Aws::String StatisticName;
+            Uint32 Version;
+
+            StatisticNameVersion() :
+                PlayFabBaseModel(),
+                StatisticName(),
+                Version(0)
+            {}
+
+            StatisticNameVersion(const StatisticNameVersion& src) :
+                PlayFabBaseModel(),
+                StatisticName(src.StatisticName),
+                Version(src.Version)
+            {}
+
+            StatisticNameVersion(const rapidjson::Value& obj) : StatisticNameVersion()
+            {
+                readFromValue(obj);
+            }
+
+            ~StatisticNameVersion()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                writer.String("StatisticName"); writer.String(StatisticName.c_str());
+                writer.String("Version"); writer.Uint(Version);
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator StatisticName_member = obj.FindMember("StatisticName");
+                if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
+                const Value::ConstMemberIterator Version_member = obj.FindMember("Version");
+                if (Version_member != obj.MemberEnd() && !Version_member->value.IsNull()) Version = Version_member->value.GetUint();
+
+                return true;
+            }
+        };
+
         struct GetPlayerStatisticsRequest : public PlayFabBaseModel
         {
             Aws::String PlayFabId;
@@ -5412,6 +4831,57 @@ namespace PlayFab
             StatisticNameVersions.push_back(StatisticNameVersion(memberList[i]));
         }
     }
+
+                return true;
+            }
+        };
+
+        struct StatisticValue : public PlayFabBaseModel
+        {
+            Aws::String StatisticName;
+            Int32 Value;
+            Uint32 Version;
+
+            StatisticValue() :
+                PlayFabBaseModel(),
+                StatisticName(),
+                Value(0),
+                Version(0)
+            {}
+
+            StatisticValue(const StatisticValue& src) :
+                PlayFabBaseModel(),
+                StatisticName(src.StatisticName),
+                Value(src.Value),
+                Version(src.Version)
+            {}
+
+            StatisticValue(const rapidjson::Value& obj) : StatisticValue()
+            {
+                readFromValue(obj);
+            }
+
+            ~StatisticValue()
+            {
+            }
+
+            void writeJSON(PFStringJsonWriter& writer) override
+            {
+                writer.StartObject();
+                if (StatisticName.length() > 0) { writer.String("StatisticName"); writer.String(StatisticName.c_str()); }
+                writer.String("Value"); writer.Int(Value);
+                writer.String("Version"); writer.Uint(Version);
+                writer.EndObject();
+            }
+
+            bool readFromValue(const rapidjson::Value& obj) override
+            {
+                const Value::ConstMemberIterator StatisticName_member = obj.FindMember("StatisticName");
+                if (StatisticName_member != obj.MemberEnd() && !StatisticName_member->value.IsNull()) StatisticName = StatisticName_member->value.GetString();
+                const Value::ConstMemberIterator Value_member = obj.FindMember("Value");
+                if (Value_member != obj.MemberEnd() && !Value_member->value.IsNull()) Value = Value_member->value.GetInt();
+                const Value::ConstMemberIterator Version_member = obj.FindMember("Version");
+                if (Version_member != obj.MemberEnd() && !Version_member->value.IsNull()) Version = Version_member->value.GetUint();
 
                 return true;
             }
@@ -7250,125 +6720,6 @@ namespace PlayFab
             }
         };
 
-        struct GrantItemsToGuildRequest : public PlayFabBaseModel
-        {
-            Aws::String CatalogVersion;
-            Aws::String GuildId;
-            Aws::String Annotation;
-            std::list<Aws::String> ItemIds;
-
-            GrantItemsToGuildRequest() :
-                PlayFabBaseModel(),
-                CatalogVersion(),
-                GuildId(),
-                Annotation(),
-                ItemIds()
-            {}
-
-            GrantItemsToGuildRequest(const GrantItemsToGuildRequest& src) :
-                PlayFabBaseModel(),
-                CatalogVersion(src.CatalogVersion),
-                GuildId(src.GuildId),
-                Annotation(src.Annotation),
-                ItemIds(src.ItemIds)
-            {}
-
-            GrantItemsToGuildRequest(const rapidjson::Value& obj) : GrantItemsToGuildRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~GrantItemsToGuildRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (CatalogVersion.length() > 0) { writer.String("CatalogVersion"); writer.String(CatalogVersion.c_str()); }
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                if (Annotation.length() > 0) { writer.String("Annotation"); writer.String(Annotation.c_str()); }
-                writer.String("ItemIds");
-    writer.StartArray();
-    for (std::list<Aws::String>::iterator iter = ItemIds.begin(); iter != ItemIds.end(); iter++) {
-        writer.String(iter->c_str());
-    }
-    writer.EndArray();
-    
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator CatalogVersion_member = obj.FindMember("CatalogVersion");
-                if (CatalogVersion_member != obj.MemberEnd() && !CatalogVersion_member->value.IsNull()) CatalogVersion = CatalogVersion_member->value.GetString();
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator Annotation_member = obj.FindMember("Annotation");
-                if (Annotation_member != obj.MemberEnd() && !Annotation_member->value.IsNull()) Annotation = Annotation_member->value.GetString();
-                const Value::ConstMemberIterator ItemIds_member = obj.FindMember("ItemIds");
-    if (ItemIds_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = ItemIds_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            ItemIds.push_back(memberList[i].GetString());
-        }
-    }
-
-                return true;
-            }
-        };
-
-        struct GrantItemsToGuildResult : public PlayFabBaseModel
-        {
-            std::list<GrantedItemInstance> ItemGrantResults;
-
-            GrantItemsToGuildResult() :
-                PlayFabBaseModel(),
-                ItemGrantResults()
-            {}
-
-            GrantItemsToGuildResult(const GrantItemsToGuildResult& src) :
-                PlayFabBaseModel(),
-                ItemGrantResults(src.ItemGrantResults)
-            {}
-
-            GrantItemsToGuildResult(const rapidjson::Value& obj) : GrantItemsToGuildResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~GrantItemsToGuildResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (!ItemGrantResults.empty()) {
-    writer.String("ItemGrantResults");
-    writer.StartArray();
-    for (std::list<GrantedItemInstance>::iterator iter = ItemGrantResults.begin(); iter != ItemGrantResults.end(); iter++) {
-        iter->writeJSON(writer);
-    }
-    writer.EndArray();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator ItemGrantResults_member = obj.FindMember("ItemGrantResults");
-    if (ItemGrantResults_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = ItemGrantResults_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            ItemGrantResults.push_back(GrantedItemInstance(memberList[i]));
-        }
-    }
-
-                return true;
-            }
-        };
-
         struct GrantItemsToUserRequest : public PlayFabBaseModel
         {
             Aws::String CatalogVersion;
@@ -7899,57 +7250,6 @@ namespace PlayFab
             {
                 const Value::ConstMemberIterator VirtualCurrency_member = obj.FindMember("VirtualCurrency");
                 if (VirtualCurrency_member != obj.MemberEnd() && !VirtualCurrency_member->value.IsNull()) VirtualCurrency = VirtualCurrency_member->value.GetString();
-                const Value::ConstMemberIterator Balance_member = obj.FindMember("Balance");
-                if (Balance_member != obj.MemberEnd() && !Balance_member->value.IsNull()) Balance = Balance_member->value.GetInt();
-
-                return true;
-            }
-        };
-
-        struct ModifyGuildVirtualCurrencyResult : public PlayFabBaseModel
-        {
-            Aws::String VirtualCurrency;
-            Int32 BalanceChange;
-            Int32 Balance;
-
-            ModifyGuildVirtualCurrencyResult() :
-                PlayFabBaseModel(),
-                VirtualCurrency(),
-                BalanceChange(0),
-                Balance(0)
-            {}
-
-            ModifyGuildVirtualCurrencyResult(const ModifyGuildVirtualCurrencyResult& src) :
-                PlayFabBaseModel(),
-                VirtualCurrency(src.VirtualCurrency),
-                BalanceChange(src.BalanceChange),
-                Balance(src.Balance)
-            {}
-
-            ModifyGuildVirtualCurrencyResult(const rapidjson::Value& obj) : ModifyGuildVirtualCurrencyResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~ModifyGuildVirtualCurrencyResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                if (VirtualCurrency.length() > 0) { writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str()); }
-                writer.String("BalanceChange"); writer.Int(BalanceChange);
-                writer.String("Balance"); writer.Int(Balance);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator VirtualCurrency_member = obj.FindMember("VirtualCurrency");
-                if (VirtualCurrency_member != obj.MemberEnd() && !VirtualCurrency_member->value.IsNull()) VirtualCurrency = VirtualCurrency_member->value.GetString();
-                const Value::ConstMemberIterator BalanceChange_member = obj.FindMember("BalanceChange");
-                if (BalanceChange_member != obj.MemberEnd() && !BalanceChange_member->value.IsNull()) BalanceChange = BalanceChange_member->value.GetInt();
                 const Value::ConstMemberIterator Balance_member = obj.FindMember("Balance");
                 if (Balance_member != obj.MemberEnd() && !Balance_member->value.IsNull()) Balance = Balance_member->value.GetInt();
 
@@ -8694,51 +7994,6 @@ namespace PlayFab
             }
         };
 
-        struct RemoveFriendRequest : public PlayFabBaseModel
-        {
-            Aws::String FriendPlayFabId;
-            Aws::String PlayFabId;
-
-            RemoveFriendRequest() :
-                PlayFabBaseModel(),
-                FriendPlayFabId(),
-                PlayFabId()
-            {}
-
-            RemoveFriendRequest(const RemoveFriendRequest& src) :
-                PlayFabBaseModel(),
-                FriendPlayFabId(src.FriendPlayFabId),
-                PlayFabId(src.PlayFabId)
-            {}
-
-            RemoveFriendRequest(const rapidjson::Value& obj) : RemoveFriendRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~RemoveFriendRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("FriendPlayFabId"); writer.String(FriendPlayFabId.c_str());
-                writer.String("PlayFabId"); writer.String(PlayFabId.c_str());
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator FriendPlayFabId_member = obj.FindMember("FriendPlayFabId");
-                if (FriendPlayFabId_member != obj.MemberEnd() && !FriendPlayFabId_member->value.IsNull()) FriendPlayFabId = FriendPlayFabId_member->value.GetString();
-                const Value::ConstMemberIterator PlayFabId_member = obj.FindMember("PlayFabId");
-                if (PlayFabId_member != obj.MemberEnd() && !PlayFabId_member->value.IsNull()) PlayFabId = PlayFabId_member->value.GetString();
-
-                return true;
-            }
-        };
-
         struct RemoveSharedGroupMembersRequest : public PlayFabBaseModel
         {
             Aws::String SharedGroupId;
@@ -9441,57 +8696,6 @@ namespace PlayFab
             }
         };
 
-        struct SubtractGuildVirtualCurrencyRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            Aws::String VirtualCurrency;
-            Int32 Amount;
-
-            SubtractGuildVirtualCurrencyRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                VirtualCurrency(),
-                Amount(0)
-            {}
-
-            SubtractGuildVirtualCurrencyRequest(const SubtractGuildVirtualCurrencyRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                VirtualCurrency(src.VirtualCurrency),
-                Amount(src.Amount)
-            {}
-
-            SubtractGuildVirtualCurrencyRequest(const rapidjson::Value& obj) : SubtractGuildVirtualCurrencyRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~SubtractGuildVirtualCurrencyRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                writer.String("VirtualCurrency"); writer.String(VirtualCurrency.c_str());
-                writer.String("Amount"); writer.Int(Amount);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator VirtualCurrency_member = obj.FindMember("VirtualCurrency");
-                if (VirtualCurrency_member != obj.MemberEnd() && !VirtualCurrency_member->value.IsNull()) VirtualCurrency = VirtualCurrency_member->value.GetString();
-                const Value::ConstMemberIterator Amount_member = obj.FindMember("Amount");
-                if (Amount_member != obj.MemberEnd() && !Amount_member->value.IsNull()) Amount = Amount_member->value.GetInt();
-
-                return true;
-            }
-        };
-
         struct SubtractUserVirtualCurrencyRequest : public PlayFabBaseModel
         {
             Aws::String PlayFabId;
@@ -9947,215 +9151,6 @@ namespace PlayFab
             }
 
             ~UpdateCharacterStatisticsResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-
-                return true;
-            }
-        };
-
-        struct UpdateGuildDataRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            std::map<Aws::String, Aws::String> Data;
-            std::list<Aws::String> KeysToRemove;
-            Boxed<UserDataPermission> Permission;
-
-            UpdateGuildDataRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                Data(),
-                KeysToRemove(),
-                Permission()
-            {}
-
-            UpdateGuildDataRequest(const UpdateGuildDataRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                Data(src.Data),
-                KeysToRemove(src.KeysToRemove),
-                Permission(src.Permission)
-            {}
-
-            UpdateGuildDataRequest(const rapidjson::Value& obj) : UpdateGuildDataRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateGuildDataRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                if (!Data.empty()) {
-    writer.String("Data");
-    writer.StartObject();
-    for (std::map<Aws::String, Aws::String>::iterator iter = Data.begin(); iter != Data.end(); ++iter) {
-        writer.String(iter->first.c_str()); writer.String(iter->second.c_str());
-    }
-    writer.EndObject();
-     }
-                if (!KeysToRemove.empty()) {
-    writer.String("KeysToRemove");
-    writer.StartArray();
-    for (std::list<Aws::String>::iterator iter = KeysToRemove.begin(); iter != KeysToRemove.end(); iter++) {
-        writer.String(iter->c_str());
-    }
-    writer.EndArray();
-     }
-                if (Permission.notNull()) { writer.String("Permission"); writeUserDataPermissionEnumJSON(Permission, writer); }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator Data_member = obj.FindMember("Data");
-    if (Data_member != obj.MemberEnd()) {
-        for (Value::ConstMemberIterator iter = Data_member->value.MemberBegin(); iter != Data_member->value.MemberEnd(); ++iter) {
-            Data[iter->name.GetString()] = iter->value.GetString();
-        }
-    }
-                const Value::ConstMemberIterator KeysToRemove_member = obj.FindMember("KeysToRemove");
-    if (KeysToRemove_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = KeysToRemove_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            KeysToRemove.push_back(memberList[i].GetString());
-        }
-    }
-                const Value::ConstMemberIterator Permission_member = obj.FindMember("Permission");
-                if (Permission_member != obj.MemberEnd() && !Permission_member->value.IsNull()) Permission = readUserDataPermissionFromValue(Permission_member->value);
-
-                return true;
-            }
-        };
-
-        struct UpdateGuildDataResult : public PlayFabBaseModel
-        {
-            Uint32 DataVersion;
-
-            UpdateGuildDataResult() :
-                PlayFabBaseModel(),
-                DataVersion(0)
-            {}
-
-            UpdateGuildDataResult(const UpdateGuildDataResult& src) :
-                PlayFabBaseModel(),
-                DataVersion(src.DataVersion)
-            {}
-
-            UpdateGuildDataResult(const rapidjson::Value& obj) : UpdateGuildDataResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateGuildDataResult()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("DataVersion"); writer.Uint(DataVersion);
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator DataVersion_member = obj.FindMember("DataVersion");
-                if (DataVersion_member != obj.MemberEnd() && !DataVersion_member->value.IsNull()) DataVersion = DataVersion_member->value.GetUint();
-
-                return true;
-            }
-        };
-
-        struct UpdateGuildStatisticsRequest : public PlayFabBaseModel
-        {
-            Aws::String GuildId;
-            std::list<StatisticUpdate> Statistics;
-
-            UpdateGuildStatisticsRequest() :
-                PlayFabBaseModel(),
-                GuildId(),
-                Statistics()
-            {}
-
-            UpdateGuildStatisticsRequest(const UpdateGuildStatisticsRequest& src) :
-                PlayFabBaseModel(),
-                GuildId(src.GuildId),
-                Statistics(src.Statistics)
-            {}
-
-            UpdateGuildStatisticsRequest(const rapidjson::Value& obj) : UpdateGuildStatisticsRequest()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateGuildStatisticsRequest()
-            {
-            }
-
-            void writeJSON(PFStringJsonWriter& writer) override
-            {
-                writer.StartObject();
-                writer.String("GuildId"); writer.String(GuildId.c_str());
-                if (!Statistics.empty()) {
-    writer.String("Statistics");
-    writer.StartArray();
-    for (std::list<StatisticUpdate>::iterator iter = Statistics.begin(); iter != Statistics.end(); iter++) {
-        iter->writeJSON(writer);
-    }
-    writer.EndArray();
-     }
-                writer.EndObject();
-            }
-
-            bool readFromValue(const rapidjson::Value& obj) override
-            {
-                const Value::ConstMemberIterator GuildId_member = obj.FindMember("GuildId");
-                if (GuildId_member != obj.MemberEnd() && !GuildId_member->value.IsNull()) GuildId = GuildId_member->value.GetString();
-                const Value::ConstMemberIterator Statistics_member = obj.FindMember("Statistics");
-    if (Statistics_member != obj.MemberEnd()) {
-        const rapidjson::Value& memberList = Statistics_member->value;
-        for (SizeType i = 0; i < memberList.Size(); i++) {
-            Statistics.push_back(StatisticUpdate(memberList[i]));
-        }
-    }
-
-                return true;
-            }
-        };
-
-        struct UpdateGuildStatisticsResult : public PlayFabBaseModel
-        {
-
-            UpdateGuildStatisticsResult() :
-                PlayFabBaseModel()
-            {}
-
-            UpdateGuildStatisticsResult(const UpdateGuildStatisticsResult& src) :
-                PlayFabBaseModel()
-            {}
-
-            UpdateGuildStatisticsResult(const rapidjson::Value& obj) : UpdateGuildStatisticsResult()
-            {
-                readFromValue(obj);
-            }
-
-            ~UpdateGuildStatisticsResult()
             {
             }
 

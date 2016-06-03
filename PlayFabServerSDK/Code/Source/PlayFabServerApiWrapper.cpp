@@ -37,11 +37,6 @@ void PlayFabServerApiWrapper::DeleteUsers(ServerModels::DeleteUsersRequest& requ
     PlayFabServerApi::DeleteUsers(request, callback, errorCallback, customData);
 }
 
-void PlayFabServerApiWrapper::GetFriendLeaderboard(ServerModels::GetFriendLeaderboardRequest& request, ProcessApiCallback<ServerModels::GetLeaderboardResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetFriendLeaderboard(request, callback, errorCallback, customData);
-}
-
 void PlayFabServerApiWrapper::GetLeaderboard(ServerModels::GetLeaderboardRequest& request, ProcessApiCallback<ServerModels::GetLeaderboardResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::GetLeaderboard(request, callback, errorCallback, customData);
@@ -282,21 +277,6 @@ void PlayFabServerApiWrapper::UpdateUserInventoryItemCustomData(ServerModels::Up
     PlayFabServerApi::UpdateUserInventoryItemCustomData(request, callback, errorCallback, customData);
 }
 
-void PlayFabServerApiWrapper::AddFriend(ServerModels::AddFriendRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::AddFriend(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GetFriendsList(ServerModels::GetFriendsListRequest& request, ProcessApiCallback<ServerModels::GetFriendsListResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetFriendsList(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::RemoveFriend(ServerModels::RemoveFriendRequest& request, ProcessApiCallback<ServerModels::EmptyResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::RemoveFriend(request, callback, errorCallback, customData);
-}
-
 void PlayFabServerApiWrapper::NotifyMatchmakerPlayerLeft(ServerModels::NotifyMatchmakerPlayerLeftRequest& request, ProcessApiCallback<ServerModels::NotifyMatchmakerPlayerLeftResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::NotifyMatchmakerPlayerLeft(request, callback, errorCallback, customData);
@@ -445,60 +425,5 @@ void PlayFabServerApiWrapper::UpdateCharacterInternalData(ServerModels::UpdateCh
 void PlayFabServerApiWrapper::UpdateCharacterReadOnlyData(ServerModels::UpdateCharacterDataRequest& request, ProcessApiCallback<ServerModels::UpdateCharacterDataResult> callback, ErrorCallback errorCallback, void* customData)
 {
     PlayFabServerApi::UpdateCharacterReadOnlyData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::AddGuildVirtualCurrency(ServerModels::AddGuildVirtualCurrencyRequest& request, ProcessApiCallback<ServerModels::ModifyGuildVirtualCurrencyResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::AddGuildVirtualCurrency(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GetGuildData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetGuildData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GetGuildInternalData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetGuildInternalData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GetGuildReadOnlyData(ServerModels::GetGuildDataRequest& request, ProcessApiCallback<ServerModels::GetGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetGuildReadOnlyData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GetGuildStatistics(ServerModels::GetGuildStatisticsRequest& request, ProcessApiCallback<ServerModels::GetGuildStatisticsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GetGuildStatistics(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::GrantItemsToGuild(ServerModels::GrantItemsToGuildRequest& request, ProcessApiCallback<ServerModels::GrantItemsToGuildResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::GrantItemsToGuild(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::SubtractGuildVirtualCurrency(ServerModels::SubtractGuildVirtualCurrencyRequest& request, ProcessApiCallback<ServerModels::ModifyGuildVirtualCurrencyResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::SubtractGuildVirtualCurrency(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::UpdateGuildData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::UpdateGuildData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::UpdateGuildInternalData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::UpdateGuildInternalData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::UpdateGuildReadOnlyData(ServerModels::UpdateGuildDataRequest& request, ProcessApiCallback<ServerModels::UpdateGuildDataResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::UpdateGuildReadOnlyData(request, callback, errorCallback, customData);
-}
-
-void PlayFabServerApiWrapper::UpdateGuildStatistics(ServerModels::UpdateGuildStatisticsRequest& request, ProcessApiCallback<ServerModels::UpdateGuildStatisticsResult> callback, ErrorCallback errorCallback, void* customData)
-{
-    PlayFabServerApi::UpdateGuildStatistics(request, callback, errorCallback, customData);
 }
 
